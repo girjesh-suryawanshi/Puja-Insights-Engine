@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { 
-  Flower2, Flame, Heart, Home as HomeIcon, Sparkles, BookOpen, 
-  CalendarDays, MapPin, CheckCircle2, Star, Send, Phone, Mail, Clock
+  Flame, Heart, Home as HomeIcon, Sparkles, BookOpen, 
+  CalendarDays, MapPin, Star, Send, Phone, Mail, Clock, ChevronRight
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,6 +10,7 @@ import { z } from "zod";
 import { useSubmitContact } from "@workspace/api-client-react";
 import { useToast } from "@/hooks/use-toast";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { pujas } from "@/data/pujas";
 
 // Animations
 const fadeIn = {
@@ -25,14 +26,6 @@ const staggerContainer = {
   }
 };
 
-const services = [
-  { icon: Flame, name: "Satyanarayan Puja", desc: "For peace, prosperity, and resolving life's difficulties." },
-  { icon: HomeIcon, name: "Griha Pravesh", desc: "Auspicious entry into a new home to remove negative energy." },
-  { icon: Heart, name: "Marriage Ceremony", desc: "Authentic Vedic rituals for a blissful marital journey." },
-  { icon: Flower2, name: "Ganesh Puja", desc: "To remove obstacles before starting any new venture." },
-  { icon: Sparkles, name: "Navratri Puja", desc: "Invoke the blessings of Goddess Durga for strength." },
-  { icon: BookOpen, name: "Namkaran & Mundan", desc: "Traditional ceremonies for your child's prosperous future." },
-];
 
 const steps = [
   { icon: BookOpen, title: "Select a Puja", desc: "Browse our comprehensive list of Vedic ceremonies and choose the one you need." },
@@ -156,23 +149,42 @@ export default function Home() {
             subtitle="Authentic Vedic rituals tailored to your spiritual and astrological needs." 
           />
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, i) => (
-              <div 
-                key={i} 
-                className="bg-white rounded-2xl p-8 shadow-lg shadow-black/5 border border-border/50 hover:shadow-xl hover:border-primary/30 transition-all duration-300 group"
-              >
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                  <service.icon className="w-7 h-7 text-primary group-hover:text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-3 font-display">{service.name}</h3>
-                <p className="text-muted-foreground mb-6">{service.desc}</p>
-                <Link href="/book" className="text-primary font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
-                  Book Now <span aria-hidden="true">→</span>
+          <motion.div 
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          >
+            {pujas.map((puja) => (
+              <motion.div key={puja.slug} variants={fadeIn}>
+                <Link href={`/puja/${puja.slug}`}>
+                  <div className="group bg-white rounded-2xl overflow-hidden shadow-md shadow-black/5 border border-border/50 hover:shadow-xl hover:border-primary/30 hover:-translate-y-1 transition-all duration-300 cursor-pointer h-full flex flex-col">
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={`${import.meta.env.BASE_URL}${puja.image.replace(/^\//, "")}`}
+                        alt={puja.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                      <div className="absolute bottom-3 left-3">
+                        <span className="text-xs text-white/90 bg-black/30 backdrop-blur px-2 py-1 rounded-full flex items-center gap-1">
+                          <Clock className="w-3 h-3" /> {puja.duration}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-5 flex flex-col flex-grow">
+                      <h3 className="text-base font-bold text-foreground mb-1 group-hover:text-primary transition-colors">{puja.name}</h3>
+                      <p className="text-xs text-muted-foreground mb-3 flex-grow line-clamp-2">{puja.tagline}</p>
+                      <div className="flex items-center justify-between pt-3 border-t border-border">
+                        <span className="text-sm font-bold text-primary">{puja.price}</span>
+                        <span className="text-xs text-primary font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+                          View Details <ChevronRight className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </Link>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 

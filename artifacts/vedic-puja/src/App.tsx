@@ -6,6 +6,7 @@ import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import Home from "./pages/Home";
 import Book from "./pages/Book";
+import PujaDetail from "./pages/PujaDetail";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
@@ -18,6 +19,7 @@ function Router() {
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/book" component={Book} />
+          <Route path="/puja/:slug" component={PujaDetail} />
           <Route component={NotFound} />
         </Switch>
       </main>
