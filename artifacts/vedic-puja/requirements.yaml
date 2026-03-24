@@ -1,0 +1,23 @@
+packages:
+  "framer-motion": "For smooth scroll and entrance animations to give a premium feel"
+  "react-hook-form": "For robust booking and contact forms"
+  "@hookform/resolvers": "Zod integration for forms"
+  "lucide-react": "Icons for services and UI elements"
+
+images:
+  - path: "artifacts/vedic-puja/public/images/hero-bg.png"
+    description: "A beautiful, warm saffron background with subtle mandala patterns and glowing sacred light, abstract premium hindu theme"
+    aspect_ratio: "16:9"
+  - path: "artifacts/vedic-puja/public/images/pandit-1.png"
+    description: "Portrait of a respectful traditional Hindu priest in saffron robes with a gentle smile"
+    aspect_ratio: "1:1"
+  - path: "artifacts/vedic-puja/public/images/pandit-2.png"
+    description: "Portrait of a wise, experienced traditional Hindu priest with a tilak on his forehead"
+    aspect_ratio: "1:1"
+  - path: "artifacts/vedic-puja/public/images/puja-items.png"
+    description: "Beautiful arrangement of a traditional Hindu puja thali with fresh marigold flowers, lit diya, and coconut"
+    aspect_ratio: "16:9"
+
+notes:
+  - Expects API client hooks from @workspace/api-client-react
+  - Forms use Zod validation matching OpenAPI schema
