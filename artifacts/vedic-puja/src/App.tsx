@@ -7,6 +7,10 @@ import { Footer } from "./components/layout/Footer";
 import Home from "./pages/Home";
 import Book from "./pages/Book";
 import PujaDetail from "./pages/PujaDetail";
+import { LocationPage } from "./pages/LocationPage";
+import { BlogPostPage } from "./pages/BlogPost";
+import { BlogList } from "./pages/BlogList";
+import { About } from "./pages/About";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
@@ -20,6 +24,10 @@ function Router() {
           <Route path="/" component={Home} />
           <Route path="/book" component={Book} />
           <Route path="/puja/:slug" component={PujaDetail} />
+          <Route path="/location/:slug" component={LocationPage} />
+          <Route path="/blog" component={BlogList} />
+          <Route path="/blog/:slug" component={BlogPostPage} />
+          <Route path="/about" component={About} />
           <Route component={NotFound} />
         </Switch>
       </main>

@@ -1,0 +1,302 @@
+You are an expert SEO content writer specializing in Indian religious services websites and google AdWords expert .
+
+Your task is to generate a HIGH-QUALITY, HUMAN-LIKE, SEO-OPTIMIZED webpage content for a North Indian Pandit Service website based in Bangalore.
+
+IMPORTANT INSTRUCTIONS:
+
+* Write in simple easy to understand , natural, human tone (avoid robotic language)
+* Content must feel trustworthy, cultural, and respectful
+* Each page should have internal linking with other page 
+* Use conversational Hinglish touch where appropriate (but keep mostly English)
+* Content must be 800–1000 words
+* Avoid fluff, repetition, or generic filler
+* Content should be unique and not copied
+* Optimize for Google SEO + user conversion so that rank on google 1 page
+
+BUSINESS CONTEXT:
+
+* Service: North Indian Pandit Booking in Bangalore
+* Audience: North Indian families living in Bangalore
+* USP:
+
+  * Hindi-speaking experienced pandits
+  * Complete puja with samagri
+  * Easy online booking
+  * Available across Bangalore
+  * Authentic Vedic rituals
+
+INPUT VARIABLES:
+Page Title: [INSERT PAGE TITLE]
+Primary Keyword: [INSERT MAIN KEYWORD]
+Secondary Keywords: [INSERT 5-10 RELATED KEYWORDS]
+Page Type: [Service Page / Location Page / Blog Page / Core Page]
+
+---
+
+CONTENT STRUCTURE:
+
+1. INTRODUCTION (150–200 words)
+
+* Hook the user emotionally
+* Mention Bangalore + North Indian context
+* Naturally include primary keyword
+
+2. ABOUT THE PUJA / SERVICE (200 words)
+
+* Explain meaning, importance
+* Cultural + spiritual relevance
+
+3. WHY THIS PUJA IS IMPORTANT (150 words)
+
+* Benefits (spiritual + practical)
+* Use bullet points
+
+4. OUR PANDIT SERVICE IN BANGALORE (150–200 words)
+
+* Highlight Hindi pandits
+* Samagri included
+* Easy booking
+* Availability in all areas
+
+5. WHAT IS INCLUDED (Bullet section)
+
+* Pandit
+* Samagri
+* Muhurat guidance
+* Complete vidhi
+
+6. PROCESS (Step-by-step)
+
+* Booking → confirmation → puja → completion
+
+7. PRICING / PACKAGES (optional but recommended)
+
+* Keep flexible language
+
+8. WHY CHOOSE US (Bullet points)
+
+* Experience
+* Authentic rituals
+* On-time service
+
+9. FAQ SECTION (5 questions)
+
+* Cost
+* Duration
+* Items required
+* Language
+* Booking process
+
+10. CALL TO ACTION (Strong closing)
+
+* Book now
+* Call / WhatsApp
+
+---
+
+SEO OPTIMIZATION RULES:
+
+* Use primary keyword in:
+
+  * Title
+  * First paragraph
+  * 2–3 headings
+* Use secondary keywords naturally (no stuffing)
+* Add LSI keywords like:
+  "pandit near me", "book pandit online", "puja services Bangalore"
+* Keep keyword density natural (~1–2%)
+
+---
+
+LOCAL SEO (VERY IMPORTANT):
+
+* Mention Bangalore areas:
+  Whitefield, BTM, HSR Layout, Electronic City, Marathahalli
+* Add phrases like:
+  "available across Bangalore"
+  "near you in Bangalore"
+
+---
+
+TONE GUIDELINES:
+
+* Friendly + respectful
+* Slight emotional appeal (family, tradition, blessings)
+* Trust-building language
+
+---
+
+OUTPUT FORMAT:
+
+* Proper headings (H2, H3)
+* Bullet points
+* Short paragraphs
+* Clean formatting
+
+---
+
+NOW GENERATE CONTENT FOR:
+
+Page Title: [INSERT]
+Primary Keyword: [INSERT]
+Secondary Keywords: [INSERT]
+Page Type: [INSERT]   above is my prompt structure to create new pages based on below title and their respective keywords
+
+SECTION 1: CORE PAGES
+1. Homepage
+Primary: north indian pandit bangalore
+Secondary: hindi pandit bangalore, pandit near me, book pandit online, pandit for puja bangalore
+Intent: Transactional 💰
+2. About Us
+Primary: best pandit in bangalore
+Secondary: experienced hindi pandit, vedic pandit bangalore, trusted pandit service
+Intent: Trust
+3. Contact Page
+Primary: contact pandit bangalore
+Secondary: pandit phone number bangalore, hire pandit near me
+Intent: Conversion
+4. Book Pandit Page
+Primary: book pandit online bangalore
+Secondary: hire pandit bangalore, pandit booking service, instant pandit booking
+Intent: Conversion 💰
+🛕 SECTION 2: MAIN PUJA SERVICE PAGES
+5. Griha Pravesh Puja
+Primary: griha pravesh pandit bangalore
+Secondary: housewarming puja bangalore, vastu puja pandit, hindi pandit griha pravesh
+6. Satyanarayan Puja
+Primary: satyanarayan puja bangalore
+Secondary: satyanarayan katha pandit, vishnu puja bangalore
+7. Rudrabhishek Puja
+Primary: rudrabhishek pandit bangalore
+Secondary: shiv puja bangalore, abhishek puja pandit
+8. Navgrah Shanti Puja
+Primary: navgraha puja bangalore
+Secondary: graha shanti puja, dosh nivaran puja
+9. Vastu Shanti Puja
+Primary: vastu puja bangalore
+Secondary: vastu shanti pandit, griha vastu puja
+10. Bhumi Pujan
+Primary: bhoomi pujan pandit bangalore
+Secondary: land puja pandit, foundation puja
+11. Ganesh Puja
+Primary: ganesh puja pandit bangalore
+Secondary: ganpati puja at home, vinayak puja pandit
+12. Lakshmi Puja
+Primary: lakshmi puja pandit bangalore
+Secondary: diwali puja pandit, dhan laxmi puja
+13. Maha Mrityunjaya Jaap
+Primary: maha mrityunjaya jaap pandit
+Secondary: mrityunjaya puja bangalore
+14. Sundarkand Path
+Primary: sundarkand path bangalore
+Secondary: hanuman path pandit
+15. Ramayan Path
+Primary: ramayan path pandit bangalore
+Secondary: ram katha pandit
+👶 SECTION 3: LIFE EVENT PAGES
+16. Marriage Puja
+Primary: marriage pandit bangalore
+Secondary: vivah pandit, wedding puja pandit
+17. Engagement Puja
+Primary: engagement puja pandit
+Secondary: ring ceremony pandit
+18. Namkaran
+Primary: namkaran pandit bangalore
+Secondary: naming ceremony puja
+19. Annaprashan
+Primary: annaprashan puja pandit
+Secondary: first rice ceremony pandit
+20. Godh Bharai
+Primary: godh bharai pandit bangalore
+Secondary: baby shower puja pandit
+21. Birthday Puja
+Primary: birthday puja pandit
+Secondary: janamdin puja pandit
+⚰️ SECTION 4: DOSH & SHANTI
+22. Pitra Dosh
+Primary: pitra dosh puja bangalore
+Secondary: pitru shanti puja
+23. Manglik Dosh
+Primary: mangal dosh puja
+Secondary: manglik puja pandit
+24. Shraddha
+Primary: shradh pandit bangalore
+Secondary: pind daan pandit
+25. Antim Sanskar
+Primary: antim sanskar pandit bangalore
+Secondary: funeral pandit service
+26. Kaal Sarp
+Primary: kaal sarp dosh puja bangalore
+Secondary: sarp dosh nivaran
+🔥 SECTION 5: HAVAN
+27. Havan Puja
+Primary: havan pandit bangalore
+Secondary: havan at home
+28. Chandi Havan
+Primary: chandi havan pandit
+Secondary: durga havan
+29. Gayatri Havan
+Primary: gayatri havan pandit
+Secondary: gayatri mantra puja
+30. Sudarshan Havan
+Primary: sudarshan havan pandit
+31. Lakshmi Kubera Havan
+Primary: kubera havan pandit
+Secondary: dhan puja havan
+📍 SECTION 6: LOCATION PAGES
+32–40 (repeat structure)
+
+Example:
+
+32. Whitefield
+Primary: pandit in whitefield
+Secondary: hindi pandit whitefield, puja service whitefield
+33. Electronic City
+Primary: pandit in electronic city
+34. Marathahalli
+Primary: pandit in marathahalli
+35. BTM
+Primary: pandit in btm
+36. Indiranagar
+Primary: pandit in indiranagar
+37. HSR Layout
+Primary: pandit in hsr layout
+38. Yelahanka
+Primary: pandit in yelahanka
+39. Hebbal
+Primary: pandit in hebbal
+40. Sarjapur
+Primary: pandit in sarjapur
+🧠 SECTION 7: BLOG PAGES
+41. Muhurat
+Primary: griha pravesh muhurat 2026
+Secondary: auspicious dates
+42. Satyanarayan Vidhi
+Primary: satyanarayan puja vidhi
+43. Samagri List
+Primary: puja samagri list
+44. Rudrabhishek Benefits
+Primary: benefits of rudrabhishek
+45. Booking Guide
+Primary: how to book pandit online
+46. Cost
+Primary: pandit cost in bangalore
+47. Comparison
+Primary: north indian vs south indian puja
+48. Navgrah Importance
+Primary: importance of navgraha puja
+49. Best Days
+Primary: best day for puja
+50. Hindu Ritual Guide
+Primary: hindu rituals guide
+🚀 FINAL STRATEGY (IMPORTANT)
+
+👉 Each page:
+
+1 Primary keyword
+5–10 Secondary keywords
+
+👉 Internal linking:
+
+Link service pages ↔ homepage
+Link blogs → service pages

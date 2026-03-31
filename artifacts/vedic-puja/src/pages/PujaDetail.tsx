@@ -2,7 +2,8 @@ import { useParams, Link } from "wouter";
 import { motion } from "framer-motion";
 import {
   Clock, IndianRupee, CheckCircle2, Sparkles, BookOpen,
-  ChevronRight, Phone, CalendarDays, Star, ArrowLeft, Users
+  ChevronRight, Phone, CalendarDays, Star, ArrowLeft, Users,
+  HelpCircle, ArrowRight, ListChecks
 } from "lucide-react";
 import { getPujaBySlug, pujas } from "@/data/pujas";
 import { useForm } from "react-hook-form";
@@ -50,7 +51,10 @@ export default function PujaDetail() {
     );
   }
 
-  const relatedPujas = pujas.filter((p) => p.slug !== puja.slug).slice(0, 3);
+  const relatedPujas = pujas
+    .filter((p) => p.slug !== puja.slug && p.category === puja.category)
+    .slice(0, 3)
+    .concat(pujas.filter((p) => p.slug !== puja.slug && p.category !== puja.category).slice(0, 3 - pujas.filter((p) => p.slug !== puja.slug && p.category === puja.category).length));
 
   const onSubmit = (data: z.infer<typeof bookingSchema>) => {
     bookingMutation.mutate(
@@ -133,6 +137,14 @@ export default function PujaDetail() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             {/* Left — Details */}
             <div className="lg:col-span-2 space-y-10">
+
+              {/* Intro Section */}
+              {puja.intro && (
+                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="bg-gradient-to-br from-primary/5 to-amber-50 rounded-2xl p-8 border border-primary/10">
+                  <p className="text-foreground leading-relaxed text-base font-medium">{puja.intro}</p>
+                </motion.div>
+              )}
+
               {/* About */}
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="bg-white rounded-2xl p-8 shadow-sm border border-border">
                 <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
@@ -147,6 +159,23 @@ export default function PujaDetail() {
                 </div>
               </motion.div>
 
+              {/* Why Important */}
+              {puja.whyImportant && puja.whyImportant.length > 0 && (
+                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="bg-white rounded-2xl p-8 shadow-sm border border-border">
+                  <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+                    <Sparkles className="w-6 h-6 text-primary" /> Why {puja.name} is Important
+                  </h2>
+                  <div className="space-y-3">
+                    {puja.whyImportant.map((point, idx) => (
+                      <div key={idx} className="flex items-start gap-3 p-3 bg-amber-50 rounded-xl border border-amber-100">
+                        <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-sm text-foreground leading-relaxed">{point}</span>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+
               {/* Benefits */}
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="bg-white rounded-2xl p-8 shadow-sm border border-border">
                 <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
@@ -158,6 +187,31 @@ export default function PujaDetail() {
                       <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                       <span className="text-sm text-foreground font-medium">{b}</span>
                     </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Our Service in Bangalore */}
+              <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="bg-white rounded-2xl p-8 shadow-sm border border-border">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
+                  Our {puja.name} Pandit Service in Bangalore
+                </h2>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  For North Indian families in Bangalore, finding a Hindi-speaking pandit who performs {puja.name} with complete North Indian vidhi can be challenging. Our experienced pandits from the Varanasi and Haridwar traditions bring authentic rituals directly to your home — in {puja.areas?.slice(0, 3).join(", ")}, and all areas of Bangalore.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    "Hindi-speaking pandits from North Indian tradition",
+                    "Complete samagri included in the package",
+                    "Muhurat calculation based on your birth details",
+                    "Available across all areas of Bangalore",
+                    "10+ years of puja experience per pandit",
+                    "Same-day and advance booking available"
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-2 text-sm text-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                      <span>{item}</span>
+                    </div>
                   ))}
                 </div>
               </motion.div>
@@ -185,6 +239,78 @@ export default function PujaDetail() {
                   </ul>
                 </motion.div>
               </div>
+
+              {/* Process */}
+              {puja.process && puja.process.length > 0 && (
+                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="bg-white rounded-2xl p-8 shadow-sm border border-border">
+                  <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+                    <ListChecks className="w-6 h-6 text-primary" /> How It Works
+                  </h2>
+                  <div className="space-y-4">
+                    {puja.process.map((step, idx) => (
+                      <div key={idx} className="flex gap-4">
+                        <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">
+                          {idx + 1}
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-foreground mb-1">{step.step}</h3>
+                          <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* FAQ */}
+              {puja.faq && puja.faq.length > 0 && (
+                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="bg-white rounded-2xl p-8 shadow-sm border border-border">
+                  <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+                    <HelpCircle className="w-6 h-6 text-primary" /> Frequently Asked Questions
+                  </h2>
+                  <div className="space-y-3">
+                    {puja.faq.map((item, idx) => (
+                      <details key={idx} className="group border border-border rounded-xl overflow-hidden">
+                        <summary className="flex items-center justify-between p-4 cursor-pointer bg-white hover:bg-primary/5 transition-colors">
+                          <span className="font-medium text-foreground text-sm pr-4">{item.q}</span>
+                          <ChevronRight className="w-5 h-5 text-muted-foreground group-open:rotate-90 transition-transform shrink-0" />
+                        </summary>
+                        <div className="px-4 pb-4 pt-2 bg-primary/5">
+                          <p className="text-sm text-muted-foreground leading-relaxed">{item.a}</p>
+                        </div>
+                      </details>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Why Choose Us */}
+              <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="bg-gradient-to-br from-primary to-secondary rounded-2xl p-8 text-white">
+                <h2 className="text-2xl font-bold mb-6">Why Choose VedicPuja for {puja.name}?</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                  {[
+                    "Hindi-speaking pandits — feels just like home",
+                    "10+ years experience per pandit",
+                    "Complete samagri — no shopping needed",
+                    "Muhurat guidance included",
+                    "Available pan-Bangalore",
+                    "Transparent pricing, no hidden charges",
+                    "Verified and trusted pandits only",
+                    "24/7 support for urgent bookings"
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-2 text-sm text-white/90">
+                      <CheckCircle2 className="w-4 h-4 shrink-0 text-yellow-300" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <a
+                  href="#book-now"
+                  className="inline-flex items-center gap-2 bg-white text-primary font-bold px-6 py-3 rounded-xl hover:bg-orange-50 transition-colors"
+                >
+                  Book {puja.name} Now <ArrowRight className="w-4 h-4" />
+                </a>
+              </motion.div>
             </div>
 
             {/* Right — Booking Sidebar */}
@@ -245,40 +371,54 @@ export default function PujaDetail() {
                   </a>
                   <p className="text-xs text-muted-foreground mt-1">Available 24/7</p>
                 </div>
+
+                {/* Service Areas */}
+                {puja.areas && puja.areas.length > 0 && (
+                  <div className="mt-4 bg-white border border-border rounded-2xl p-5">
+                    <h4 className="font-semibold text-foreground text-sm mb-3">Service Areas</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {puja.areas.map(area => (
+                        <span key={area} className="text-xs px-2.5 py-1 bg-primary/5 text-primary rounded-full border border-primary/10">{area}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
 
           {/* Related Pujas */}
-          <div className="mt-16">
-            <h2 className="text-2xl font-bold text-foreground mb-8">Other Pujas You May Need</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {relatedPujas.map((related) => (
-                <Link key={related.slug} href={`/puja/${related.slug}`}>
-                  <motion.div
-                    initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
-                    className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-border hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer"
-                  >
-                    <div className="h-40 overflow-hidden">
-                      <img
-                        src={`${import.meta.env.BASE_URL}${related.image.replace(/^\//, "")}`}
-                        alt={related.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="p-5">
-                      <h3 className="font-bold text-foreground text-base mb-1 group-hover:text-primary transition-colors">{related.name}</h3>
-                      <p className="text-xs text-muted-foreground line-clamp-2">{related.tagline}</p>
-                      <div className="flex items-center justify-between mt-3">
-                        <span className="text-xs text-primary font-semibold">{related.price}</span>
-                        <span className="text-xs text-muted-foreground flex items-center gap-1"><Clock className="w-3 h-3" />{related.duration}</span>
+          {relatedPujas.length > 0 && (
+            <div className="mt-16">
+              <h2 className="text-2xl font-bold text-foreground mb-8">Other Pujas You May Need</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {relatedPujas.slice(0, 3).map((related) => (
+                  <Link key={related.slug} href={`/puja/${related.slug}`}>
+                    <motion.div
+                      initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
+                      className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-border hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                    >
+                      <div className="h-40 overflow-hidden">
+                        <img
+                          src={`${import.meta.env.BASE_URL}${related.image.replace(/^\//, "")}`}
+                          alt={related.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
                       </div>
-                    </div>
-                  </motion.div>
-                </Link>
-              ))}
+                      <div className="p-5">
+                        <h3 className="font-bold text-foreground text-base mb-1 group-hover:text-primary transition-colors">{related.name}</h3>
+                        <p className="text-xs text-muted-foreground line-clamp-2">{related.tagline}</p>
+                        <div className="flex items-center justify-between mt-3">
+                          <span className="text-xs text-primary font-semibold">{related.price}</span>
+                          <span className="text-xs text-muted-foreground flex items-center gap-1"><Clock className="w-3 h-3" />{related.duration}</span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
     </div>
