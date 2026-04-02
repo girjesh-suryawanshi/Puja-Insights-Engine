@@ -14,15 +14,20 @@ router.post("/bookings", async (req, res) => {
 
   const { name, email, phone, pujaType, date, address, city, message } = parsed.data;
 
-  const [booking] = await db
-    .insert(bookingsTable)
-    .values({ name, email, phone, pujaType, date, address, city, message: message ?? null })
-    .returning();
+  try {
+    const [booking] = await db
+      .insert(bookingsTable)
+      .values({ name, email, phone, pujaType, date, address, city, message: message ?? null })
+      .returning();
 
-  res.status(201).json({
-    ...booking,
-    createdAt: booking.createdAt.toISOString(),
-  });
+    res.status(201).json({
+      ...booking,
+      createdAt: booking.createdAt.toISOString(),
+    });
+  } catch (err) {
+    console.error("DATABASE ERROR DETAILS:", err);
+    res.status(500).json({ error: "Database error", details: String(err) });
+  }
 });
 
 router.get("/bookings", async (_req, res) => {

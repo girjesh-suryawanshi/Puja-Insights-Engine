@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # The Backend API Server
+  api-server:
+    build:
+      context: .
+      dockerfile: docker/backend.Dockerfile
+    container_name: puja-api
+    restart: always
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@host.docker.internal:5432/puja_insights?schema=public
+      - NODE_ENV=production
+      - PORT=5000
+    # Enable internal communication to the host laptop's local Postgres
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    expose:
+      - "5000"
+    networks:
+      - puja-network
+
+  # The Frontend Application (Nginx)
+  vedic-puja:
+    build:
+      context: .
+      dockerfile: docker/frontend.Dockerfile
+    container_name: puja-web
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      - api-server
+    networks:
+      - puja-network
+
+networks:
+  puja-network:
+    driver: bridge
