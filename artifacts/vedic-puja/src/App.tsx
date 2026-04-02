@@ -12,6 +12,11 @@ import { BlogPostPage } from "./pages/BlogPost";
 import { BlogList } from "./pages/BlogList";
 import { About } from "./pages/About";
 import NotFound from "@/pages/not-found";
+import { AuthProvider } from "./providers/AuthProvider";
+import { SettingsProvider } from "./providers/SettingsProvider";
+import React, { Suspense } from "react";
+
+const AdminApp = React.lazy(() => import("./pages/admin/AdminApp"));
 
 const queryClient = new QueryClient();
 
@@ -28,6 +33,16 @@ function Router() {
           <Route path="/blog" component={BlogList} />
           <Route path="/blog/:slug" component={BlogPostPage} />
           <Route path="/about" component={About} />
+          <Route path="/admin">
+            <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading Admin Panel...</div>}>
+              <AdminApp />
+            </Suspense>
+          </Route>
+          <Route path="/admin/*rest">
+            <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading Admin Panel...</div>}>
+              <AdminApp />
+            </Suspense>
+          </Route>
           <Route component={NotFound} />
         </Switch>
       </main>
@@ -38,14 +53,18 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Router />
-        </WouterRouter>
-        <Toaster />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <SettingsProvider>
+      <AuthProvider>
+        <QueryClientProvider client={queryClient}>
+          <TooltipProvider>
+            <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+              <Router />
+            </WouterRouter>
+            <Toaster />
+          </TooltipProvider>
+        </QueryClientProvider>
+      </AuthProvider>
+    </SettingsProvider>
   );
 }
 
