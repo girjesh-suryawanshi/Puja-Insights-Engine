@@ -4,35 +4,19 @@ import { Star, Award, Users, Heart, CheckCircle, Phone } from "lucide-react";
 
 const stats = [
   { value: "10,000+", label: "Families Served" },
-  { value: "15+ Years", label: "Combined Experience" },
-  { value: "50+", label: "Pandit Partners" },
+  { value: "20+ Years", label: "Teaching Experience" },
+  { value: "100%", label: "Authentic Vidhi" },
   { value: "33+", label: "Puja Services" },
 ];
 
 const pandits = [
   {
-    name: "Pt. Ramesh Sharma",
-    role: "Senior Pandit",
+    name: "Pt. Diwakar Pandey",
+    role: "Vedic Acharya & Spiritual Guide",
     experience: "20 Years Experience",
-    specialty: "Griha Pravesh, Vivah, Rudrabhishek",
-    origin: "Varanasi, UP",
-    rating: 4.9,
-  },
-  {
-    name: "Pt. Suresh Mishra",
-    role: "Vedic Specialist",
-    experience: "15 Years Experience",
-    specialty: "Navgraha Puja, Dosh Nivaran, Havan",
-    origin: "Haridwar, Uttarakhand",
-    rating: 4.8,
-  },
-  {
-    name: "Pt. Anil Tiwari",
-    role: "Karmakanda Expert",
-    experience: "12 Years Experience",
-    specialty: "Satyanarayan Katha, Navratri, Sundarkand",
-    origin: "Mathura, UP",
-    rating: 4.9,
+    specialty: "Vastu, Griha Pravesh, All Vedic Rituals",
+    origin: "Serving All Bangalore",
+    rating: 5.0,
   },
 ];
 
@@ -55,7 +39,7 @@ const values = [
   {
     icon: Award,
     title: "Experience You Can Trust",
-    description: "Our pandit network comprises priests with 10–25 years of experience, trained at institutions in Varanasi, Haridwar, and Mathura."
+    description: "Our Vedic Acharya & Spiritual Guide, Pandit Diwakar Pandey, has over 20 years of experience, trained at prestigious institutions in Varanasi."
   }
 ];
 
@@ -112,7 +96,7 @@ export function About() {
                   That day, he realized that thousands of North Indian families in Bangalore faced the same challenge — the desire to maintain authentic Vedic traditions but struggling to find pandits who understood North Indian rituals, could recite the Satyanarayan Katha in proper Hindi, or knew the regional variations of different ceremonies.
                 </p>
                 <p>
-                  Radhe Radhe Puja was built to solve this problem. We partner exclusively with experienced North Indian pandits — trained in Varanasi, Haridwar, Mathura, and Ayodhya traditions — who are based in Bangalore and serve all major residential areas of the city.
+                  Radhe Radhe Puja was built to solve this problem. Our lead acharya, Pt. Diwakar Pandey — highly trained in the Varanasi tradition — is based in Bangalore and serves all major residential areas of the city.
                 </p>
               </div>
             </div>
@@ -139,36 +123,62 @@ export function About() {
       <div className="py-16 bg-gradient-to-br from-amber-50 to-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-display font-bold text-foreground mb-4">Meet Our Pandits</h2>
+            <h2 className="text-3xl font-display font-bold text-foreground mb-4">Vedic Acharya & Spiritual Guide</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Our pandits are handpicked from the most respected Vedic traditions in North India. Each has undergone rigorous training and has years of practical experience.
+              Pandit Diwakar Pandey is an esteemed Vedic scholar from Varanasi, personally ensuring every ritual is performed with complete authenticity.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="flex justify-center">
             {pandits.map((pandit, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-white rounded-2xl border border-border shadow-sm p-6 text-center"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="bg-white rounded-3xl border border-primary/10 shadow-xl overflow-hidden max-w-4xl w-full flex flex-col md:flex-row"
               >
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mx-auto mb-4 text-3xl">
-                  🙏
+                <div className="w-full md:w-1/3 bg-gradient-to-br from-primary/5 to-secondary/5 flex flex-col items-center justify-center p-8 border-b md:border-b-0 md:border-r border-border">
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center text-5xl mb-4 shadow-inner">
+                    🙏
+                  </div>
+                  <h3 className="font-display font-bold text-2xl text-foreground mb-1">{pandit.name}</h3>
+                  <div className="text-primary font-semibold mb-4">{pandit.role}</div>
+                  <div className="flex items-center gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                  <div className="text-sm font-bold text-primary bg-primary/10 px-4 py-1.5 rounded-full uppercase tracking-wider">
+                    {pandit.experience}
+                  </div>
                 </div>
-                <h3 className="font-display font-bold text-lg text-foreground mb-1">{pandit.name}</h3>
-                <div className="text-primary text-sm font-medium mb-1">{pandit.role}</div>
-                <div className="text-muted-foreground text-xs mb-3">{pandit.origin}</div>
-                <div className="flex items-center justify-center gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className={`w-4 h-4 ${i < Math.floor(pandit.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200 fill-gray-200'}`} />
-                  ))}
-                  <span className="text-sm text-muted-foreground ml-1">{pandit.rating}</span>
+                
+                <div className="flex-1 p-8 md:p-10 flex flex-col justify-center">
+                  <h4 className="text-xs uppercase font-bold text-primary tracking-[0.2em] mb-4">Spiritual Leadership</h4>
+                  <p className="text-muted-foreground leading-relaxed mb-6 text-lg">
+                    Pt. Diwakar Pandey serves as the Vedic Acharya & Spiritual Guide of Radhe Radhe Puja, overseeing the scriptural accuracy and devotional quality of every ritual performed under our name. Born in Varanasi and trained in the ancient Vedic traditions, he brings a level of authenticity and linguistic clarity that is rare to find.
+                  </p>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8 text-sm">
+                    <div className="flex items-start gap-3">
+                      <div className="mt-1 bg-primary/10 p-1 rounded-md"><CheckCircle className="w-4 h-4 text-primary" /></div>
+                      <div>
+                        <span className="font-bold block text-foreground">Varanasi Tradition</span>
+                        <span className="text-muted-foreground">Traditional Kashi training in Vedic rituals.</span>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="mt-1 bg-primary/10 p-1 rounded-md"><CheckCircle className="w-4 h-4 text-primary" /></div>
+                      <div>
+                        <span className="font-bold block text-foreground">Complete Samagri Control</span>
+                        <span className="text-muted-foreground">Ensures all materials are pure and as per vidhi.</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-amber-50/50 p-5 rounded-2xl border border-amber-100 italic text-muted-foreground text-sm leading-relaxed">
+                    "Our mission at Radhe Radhe Puja is to ensure that every North Indian family in Bangalore feels the same spiritual connection they would feel at their ancestral home in the North. We don't just chant mantras; we invoke the divine with heart and precision."
+                  </div>
                 </div>
-                <div className="text-xs text-muted-foreground bg-primary/5 rounded-lg p-2.5 mb-2">
-                  <span className="font-medium text-foreground">Specializes in:</span> {pandit.specialty}
-                </div>
-                <div className="text-xs font-medium text-primary">{pandit.experience}</div>
               </motion.div>
             ))}
           </div>
@@ -183,7 +193,7 @@ export function About() {
             {[
               { step: "1", title: "You Book", desc: "Fill our simple booking form with puja type, date, and your Bangalore address." },
               { step: "2", title: "We Confirm", desc: "Our team calls within 2 hours to confirm pandit details and any special requirements." },
-              { step: "3", title: "Pandit Arrives", desc: "On the day, your Hindi pandit arrives on time with all samagri and ritual materials." },
+              { step: "3", title: "Pandit Arrives", desc: "On the day, Pt. Diwakar Pandey arrives on time with all samagri and ritual materials." },
               { step: "4", title: "Divine Blessings", desc: "Complete puja performed with authentic Vedic vidhi. Prasad distributed. Ashirvad given." }
             ].map((item, idx) => (
               <div key={idx} className="text-center">
@@ -203,7 +213,7 @@ export function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-display font-bold text-foreground text-center mb-4">We Serve All of Bangalore</h2>
           <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-10">
-            Our pandits are stationed across Bangalore for quick response times in every area.
+            Pandit Diwakar Pandey travels to all residential and commercial areas across Bangalore to perform authentic Vedic rituals.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
             {["Whitefield", "Electronic City", "Marathahalli", "BTM Layout", "Indiranagar", "HSR Layout", "Yelahanka", "Hebbal", "Sarjapur Road", "Koramangala", "JP Nagar", "Jayanagar", "Banashankari", "Rajajinagar", "Malleshwaram"].map(area => (

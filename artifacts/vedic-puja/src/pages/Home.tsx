@@ -34,9 +34,9 @@ const steps = [
 ];
 
 const testimonials = [
-  { name: "Rahul Sharma", city: "Delhi", text: "The pandit ji was highly knowledgeable and explained the significance of every mantra during the Satyanarayan Puja. Very satisfied.", rating: 5 },
-  { name: "Priya Desai", city: "Mumbai", text: "Booked them for our Griha Pravesh. Everything was handled professionally. They even brought all the samagri. Highly recommended!", rating: 5 },
-  { name: "Amit Verma", city: "Bangalore", text: "Very prompt service and the pricing is completely transparent. The Diwali Puja was conducted beautifully.", rating: 5 },
+  { name: "Suresh Hegde", city: "HSR Layout, Bangalore", text: "Pandit Diwakar Pandey ji conducted our Griha Pravesh ceremony with such devotion. His explanation of every mantra in Hindi was very helpful for our family.", rating: 5 },
+  { name: "Priya Nair", city: "Whitefield, Bangalore", text: "Finding a North Indian Pandit in Bangalore was difficult until we found Radhe Radhe Puja. Pandit ji was very professional and brought all the samagri.", rating: 5 },
+  { name: "Amit Kulkarni", city: "Indiranagar, Bangalore", text: "Very prompt service. Pandit Diwakar ji is highly knowledgeable. The Satyanarayan Puja was performed beautifully with traditional Vedic rituals.", rating: 5 },
 ];
 
 const contactSchema = z.object({
@@ -100,7 +100,7 @@ export default function Home() {
                 Divine Blessings at <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Your Doorstep</span>
               </motion.h1>
               <motion.p variants={fadeIn} className="text-lg md:text-xl text-muted-foreground mb-8 text-balance">
-                Book experienced, verified North Indian Pandits for authentic Radhe Radhe Pujas and rituals right at your home.
+                Book Pandit Diwakar Pandey, an experienced, verified North Indian Pandit for authentic Radhe Radhe Pujas and rituals right at your home.
               </motion.p>
               <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
                 <Link 
@@ -126,8 +126,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { label: "Verified Pandits", value: "500+", desc: "Rigorous background checks" },
-              { label: "Experience", value: "15+ Yrs", desc: "Deep Vedic knowledge" },
+              { label: "Verified Pandit", value: "Verified", desc: "Rigorous background checks" },
+              { label: "Experience", value: "20+ Yrs", desc: "Deep Vedic knowledge" },
               { label: "Transparent Pricing", value: "100%", desc: "No hidden charges" },
               { label: "Samagri Included", value: "Optional", desc: "We can bring everything" },
             ].map((stat, i) => (
@@ -218,31 +218,60 @@ export default function Home() {
       {/* PANDIT PROFILES */}
       <section id="pandits" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading title="Our Esteemed Acharyas" subtitle="Highly qualified pandits with deep roots in Vedic traditions." />
+          <SectionHeading title="Our Esteemed Vedic Acharya & Spiritual Guide" subtitle="A highly qualified scholar with deep roots in Varanasi's Vedic traditions." />
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex flex-col items-center">
             {[
-              { img: "pandit-1.png", name: "Acharya Vishnu Datt", exp: "20+ Years", spec: "Vastu & Marriage" },
-              { img: "pandit-2.png", name: "Pandit Ramakant", exp: "15+ Years", spec: "Satyanarayan & Griha Pravesh" },
-              { img: "pandit-1.png", name: "Shastri Shivam", exp: "12+ Years", spec: "Astrology & Navratri Puja" },
+              { 
+                img: "pandit-1.png", 
+                name: "Pandit Diwakar Pandey", 
+                exp: "20+ Years", 
+                spec: "All Vedic Pujas, Vastu & Havan", 
+                location: "Bangalore",
+                bio: "Acharya Diwakar Pandey is the spiritual cornerstone of Radhe Radhe Puja, bringing generations of Vedic wisdom from Varanasi to the families of Bangalore. Specialist in conducting traditional ceremonies with complete scriptural purity, he has personally performed over 5,000+ rituals, becoming a trusted guide for the North Indian community in Karnataka."
+              },
             ].map((pandit, i) => (
-              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-border group hover:shadow-xl transition-all">
-                <div className="h-64 overflow-hidden relative">
-                  <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors z-10 mix-blend-multiply" />
+              <div key={i} className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-primary/10 group hover:shadow-orange-500/10 transition-all max-w-5xl mx-auto flex flex-col md:flex-row items-stretch">
+                <div className="w-full md:w-2/5 h-80 md:h-auto overflow-hidden relative shrink-0">
+                  <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors z-10 mix-blend-multiply" />
                   <img 
                     src={`${import.meta.env.BASE_URL}images/${pandit.img}`} 
                     alt={pandit.name} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-display font-bold text-foreground">{pandit.name}</h3>
-                  <div className="flex gap-4 mt-3 text-sm text-muted-foreground">
-                    <span className="flex items-center gap-1"><BookOpen className="w-4 h-4" /> {pandit.exp}</span>
-                    <span className="flex items-center gap-1"><Star className="w-4 h-4 text-accent fill-accent" /> 5.0</span>
+                  <div className="absolute bottom-4 left-4 z-20 md:hidden">
+                    <span className="bg-primary/90 text-white px-3 py-1 rounded-full text-[10px] font-bold shadow-lg uppercase tracking-wider">Vedic Acharya & Spiritual Guide</span>
                   </div>
-                  <div className="mt-4 pt-4 border-t border-border">
-                    <p className="text-sm"><strong>Expertise:</strong> {pandit.spec}</p>
+                </div>
+                <div className="p-8 md:p-12 flex flex-col justify-center">
+                  <div className="hidden md:block">
+                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4 inline-block">Vedic Acharya & Spiritual Guide</span>
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">{pandit.name}</h3>
+                  
+                  <div className="flex flex-wrap gap-4 mb-6 text-sm text-muted-foreground">
+                    <span className="flex items-center gap-1.5"><BookOpen className="w-4 h-4 text-primary" /> {pandit.exp}</span>
+                    <span className="flex items-center gap-1.5"><MapPin className="w-4 h-4 text-primary" /> {pandit.location}</span>
+                    <span className="flex items-center gap-1.5"><Star className="w-4 h-4 text-accent fill-accent" /> 5.0 (450+ Reviews)</span>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <p className="text-muted-foreground leading-relaxed text-lg">
+                      {pandit.bio}
+                    </p>
+                    <p className="text-foreground/80 font-medium italic border-l-4 border-primary pl-4 py-1">
+                      "Radhe Radhe Puja is not just a service, it's our commitment to keeping your ancestral traditions alive, even far from home."
+                    </p>
+                  </div>
+
+                  <div className="mt-8 pt-8 border-t border-border flex flex-col sm:flex-row sm:items-center gap-6">
+                    <div>
+                      <p className="text-xs uppercase font-bold text-muted-foreground mb-1 tracking-widest">Expertise</p>
+                      <p className="text-sm font-semibold">{pandit.spec}</p>
+                    </div>
+                    <Link href="/book" className="text-primary font-bold flex items-center gap-2 hover:translate-x-1 transition-transform">
+                      Book with {pandit.name.split(' ')[1]} Ji <ChevronRight className="w-4 h-4" />
+                    </Link>
                   </div>
                 </div>
               </div>
