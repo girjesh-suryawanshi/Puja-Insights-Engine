@@ -21,6 +21,7 @@ const BlogList = React.lazy(() => import("./pages/BlogList").then(m => ({ defaul
 const About = React.lazy(() => import("./pages/About").then(m => ({ default: m.About })));
 const LocationsList = React.lazy(() => import("./pages/LocationsList").then(m => ({ default: m.LocationsList })));
 const AdminApp = React.lazy(() => import("./pages/admin/AdminApp"));
+import { ReloadPrompt } from "./components/pwa/ReloadPrompt";
 
 const queryClient = new QueryClient();
 

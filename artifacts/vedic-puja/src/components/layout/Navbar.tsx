@@ -1,9 +1,11 @@
 import { Link, useLocation } from "wouter";
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, Flame, ChevronDown, ChevronRight } from "lucide-react";
+import { Menu, X, Flame, ChevronDown, ChevronRight, Smartphone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { pujas } from "@/data/pujas";
 import { locations } from "@/data/locations";
+import { usePWAInstall } from "@/hooks/usePWAInstall";
+import { InstallGuide } from "@/components/pwa/InstallGuide";
 
 const categoryLabels: Record<string, string> = {
   puja: "Puja Services",
@@ -18,6 +20,17 @@ export function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [location] = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { isInstallable, isIOS, isStandalone, handleInstall } = usePWAInstall();
+  const [isGuideOpen, setIsGuideOpen] = useState(false);
+
+  const handleInstallClick = async () => {
+    if (isInstallable) {
+      await handleInstall();
+    } else {
+      // Fallback for iOS or when native prompt isn't ready
+      setIsGuideOpen(true);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -160,6 +173,15 @@ export function Navbar() {
             >
               Book a Pandit
             </Link>
+            {!isStandalone && (
+              <button
+                onClick={handleInstallClick}
+                className="flex items-center gap-1.5 px-4 py-2 rounded-full font-semibold border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-200 whitespace-nowrap group"
+              >
+                <Smartphone className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                Install App
+              </button>
+            )}
           </nav>
 
           {/* Mobile Toggle */}
@@ -171,6 +193,8 @@ export function Navbar() {
           </button>
         </div>
       </div>
+
+      <InstallGuide isOpen={isGuideOpen} onClose={() => setIsGuideOpen(false)} isIOS={isIOS} />
 
       {/* Mobile Nav */}
       <AnimatePresence>
@@ -242,7 +266,6 @@ export function Navbar() {
               <Link href="/about" onClick={() => setIsMobileMenuOpen(false)}>
                 <a className="font-medium text-lg text-foreground hover:text-primary transition-colors py-2 block">About</a>
               </Link>
-
               <Link
                 href="/book"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -251,6 +274,18 @@ export function Navbar() {
                   Book a Pandit Now
                 </a>
               </Link>
+              {!isStandalone && (
+                <button
+                  onClick={() => {
+                    handleInstallClick();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-200 mt-2"
+                >
+                  <Smartphone className="w-5 h-5" />
+                  Install Radhe Puja App
+                </button>
+              )}
             </div>
           </motion.div>
         )}

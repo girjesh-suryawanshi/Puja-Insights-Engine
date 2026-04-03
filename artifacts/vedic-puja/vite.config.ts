@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+import { VitePWA } from "vite-plugin-pwa";
 
 const replitPlugins = (process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined)
   ? [
@@ -46,6 +47,38 @@ export default defineConfig(({ mode }) => {
       tailwindcss(),
       runtimeErrorOverlay(),
       ...replitPlugins,
+      VitePWA({
+        registerType: "autoUpdate",
+        includeAssets: ["favicon.svg", "opengraph.jpg", "pwa-192x192.png", "pwa-512x512.png"],
+        manifest: {
+          name: "Radhe Radhe Puja - North Indian Pandit Bangalore",
+          short_name: "Radhe Puja",
+          description: "Book experienced Hindi-speaking pandits for authentic North Indian pujas and Vedic rituals in Bangalore.",
+          theme_color: "#f97316",
+          background_color: "#ffffff",
+          display: "standalone",
+          scope: "/",
+          start_url: "/",
+          icons: [
+            {
+              src: "pwa-192x192.png",
+              sizes: "192x192",
+              type: "image/png",
+            },
+            {
+              src: "pwa-512x512.png",
+              sizes: "512x512",
+              type: "image/png",
+            },
+            {
+              src: "pwa-512x512.png",
+              sizes: "512x512",
+              type: "image/png",
+              purpose: "any maskable",
+            },
+          ],
+        },
+      }),
     ],
   resolve: {
     alias: {
