@@ -45,22 +45,49 @@ const values = [
 
 export function About() {
   return (
-    <div className="min-h-screen pt-20">
-      {/* Hero */}
-      <div className="bg-gradient-to-br from-primary/10 via-amber-50 to-orange-50 py-20 border-b border-primary/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            🙏 About Radhe Radhe Puja
-          </div>
-          <h1 className="text-3xl md:text-5xl font-display font-bold text-foreground mb-6">
-            Best Pandit Service for<br />
-            <span className="text-primary">North Indian Families in Bangalore</span>
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Radhe Radhe Puja was founded with one simple mission: to ensure that North Indian families living in Bangalore never have to compromise on the authenticity of their sacred rituals. We bring experienced, Hindi-speaking pandits from the Varanasi and Haridwar traditions directly to your doorstep.
-          </p>
+    <div className="min-h-screen">
+      {/* Hero Header */}
+      <section className="relative h-[60vh] min-h-[400px] flex items-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/blog/hindu-rituals.png"
+            alt="About Radhe Radhe Puja"
+            className="w-full h-full object-cover"
+          />
+          {/* Professional Dual Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-transparent" />
         </div>
-      </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 backdrop-blur-sm text-primary text-sm font-semibold mb-6 border border-primary/20"
+          >
+            🙏 About Radhe Radhe Puja
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-6xl font-display font-bold text-foreground mb-6 leading-[1.1]"
+          >
+            Best Pandit Service for<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-600">
+              North Indian Families in Bangalore
+            </span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+          >
+            Radhe Radhe Puja ensures that North Indian families living in Bangalore never have to compromise on the authenticity of their sacred rituals. We bring experienced, Hindi-speaking pandits from the Varanasi and Haridwar traditions directly to your doorstep.
+          </motion.p>
+        </div>
+      </section>
 
       {/* Stats */}
       <div className="py-12 bg-white border-b border-border">
