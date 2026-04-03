@@ -1,4 +1,7 @@
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
+import { DateRangeFilter } from "@/components/ui/DateRangeFilter";
+import { PaginationControls } from "@/components/ui/PaginationControls";
 interface Booking {
   id: number;
   name: string;
@@ -37,14 +40,29 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 
 export function BookingsManager() {
-  const { data: bookings, isLoading, error } = useQuery<Booking[]>({
-  queryKey: ["/api/admin/bookings"],
-  queryFn: async () => {
-    const res = await fetch("/api/admin/bookings");
-    if (!res.ok) throw new Error("Failed to fetch bookings");
-    return res.json();
-  },
-});
+  const [page, setPage] = React.useState(1);
+  const [pageSize, setPageSize] = React.useState(10);
+  const [startDate, setStartDate] = React.useState<string | undefined>(undefined);
+  const [endDate, setEndDate] = React.useState<string | undefined>(undefined);
+
+  const { data: response, isLoading, error } = useQuery<{ data: Booking[]; total: number }>({
+    queryKey: ["/api/admin/bookings", { page, pageSize, startDate, endDate }],
+    queryFn: async () => {
+      const params = new URLSearchParams({
+        page: page.toString(),
+        size: pageSize.toString()
+      });
+      if (startDate) params.append("start", startDate);
+      if (endDate) params.append("end", endDate);
+      const res = await fetch(`/api/admin/bookings?${params.toString()}`);
+      if (!res.ok) throw new Error("Failed to fetch bookings");
+      return res.json();
+    },
+  });
+
+  const bookings = response?.data || [];
+  const total = response?.total || 0;
+
 
   const exportToCSV = () => {
     if (!bookings || bookings.length === 0) {
@@ -86,19 +104,24 @@ export function BookingsManager() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-black tracking-tight text-gray-900 mb-1">Pooja Bookings</h1>
-          <p className="text-muted-foreground">Manage and track all spiritual service reservations.</p>
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-black tracking-tight text-gray-900 mb-1">Pooja Bookings</h1>
+            <p className="text-muted-foreground">Manage and track all spiritual service reservations.</p>
+          </div>
+          <Button 
+            onClick={exportToCSV}
+            className="bg-orange-500 hover:bg-orange-600 text-white font-bold h-12 px-6 rounded-xl shadow-lg shadow-orange-500/20 transition-all flex items-center gap-2"
+          >
+            <Download className="w-5 h-5" />
+            Export All Data (CSV)
+          </Button>
         </div>
-        <Button 
-          onClick={exportToCSV}
-          className="bg-orange-500 hover:bg-orange-600 text-white font-bold h-12 px-6 rounded-xl shadow-lg shadow-orange-500/20 transition-all flex items-center gap-2"
-        >
-          <Download className="w-5 h-5" />
-          Export All Data (CSV)
-        </Button>
-      </div>
+        <DateRangeFilter
+          startDate={startDate}
+          endDate={endDate}
+          onChange={(s, e) => { setStartDate(s); setEndDate(e); setPage(1); }}
+        />
 
       <Card className="border-none shadow-xl shadow-gray-200/50 rounded-2xl overflow-hidden">
         <CardHeader className="bg-white border-b border-gray-100">
@@ -176,6 +199,13 @@ export function BookingsManager() {
                 )}
               </TableBody>
             </Table>
+            <PaginationControls
+              page={page}
+              pageSize={pageSize}
+              total={total}
+              onPageChange={setPage}
+              onPageSizeChange={setPageSize}
+            />
           </div>
         </CardContent>
       </Card>

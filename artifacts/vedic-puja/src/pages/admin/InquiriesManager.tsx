@@ -1,4 +1,7 @@
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
+import { DateRangeFilter } from "@/components/ui/DateRangeFilter";
+import { PaginationControls } from "@/components/ui/PaginationControls";
 interface Contact {
   id: number;
   name: string;
@@ -23,14 +26,28 @@ import {
 import { toast } from "sonner";
 
 export function InquiriesManager() {
-  const { data: contacts, isLoading, error } = useQuery<Contact[]>({
-  queryKey: ["/api/admin/contacts"],
-  queryFn: async () => {
-    const res = await fetch("/api/admin/contacts");
-    if (!res.ok) throw new Error("Failed to fetch contacts");
-    return res.json();
-  },
-});
+  const [page, setPage] = React.useState(1);
+  const [pageSize, setPageSize] = React.useState(10);
+  const [startDate, setStartDate] = React.useState<string | undefined>(undefined);
+  const [endDate, setEndDate] = React.useState<string | undefined>(undefined);
+
+  const { data: response, isLoading, error } = useQuery<{ data: Contact[]; total: number }>({
+    queryKey: ["/api/admin/contacts", { page, pageSize, startDate, endDate }],
+    queryFn: async () => {
+      const params = new URLSearchParams({
+        page: page.toString(),
+        size: pageSize.toString()
+      });
+      if (startDate) params.append("start", startDate);
+      if (endDate) params.append("end", endDate);
+      const res = await fetch(`/api/admin/contacts?${params.toString()}`);
+      if (!res.ok) throw new Error("Failed to fetch contacts");
+      return res.json();
+    },
+  });
+
+  const contacts = response?.data || [];
+  const total = response?.total || 0;
 
   const exportToCSV = () => {
     if (!contacts || contacts.length === 0) {
@@ -69,19 +86,24 @@ export function InquiriesManager() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-black tracking-tight text-gray-900 mb-1">Contact Inquiries</h1>
-          <p className="text-muted-foreground">Review and respond to customer messages and feedback.</p>
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-black tracking-tight text-gray-900 mb-1">Contact Inquiries</h1>
+            <p className="text-muted-foreground">Review and respond to customer messages and feedback.</p>
+          </div>
+          <Button 
+            onClick={exportToCSV}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold h-12 px-6 rounded-xl shadow-lg shadow-blue-500/20 transition-all flex items-center gap-2"
+          >
+            <Download className="w-5 h-5" />
+            Export All Inquiries (CSV)
+          </Button>
         </div>
-        <Button 
-          onClick={exportToCSV}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-bold h-12 px-6 rounded-xl shadow-lg shadow-blue-500/20 transition-all flex items-center gap-2"
-        >
-          <Download className="w-5 h-5" />
-          Export All Inquiries (CSV)
-        </Button>
-      </div>
+        <DateRangeFilter
+          startDate={startDate}
+          endDate={endDate}
+          onChange={(s, e) => { setStartDate(s); setEndDate(e); setPage(1); }}
+        />
 
       <Card className="border-none shadow-xl shadow-gray-200/50 rounded-2xl overflow-hidden">
         <CardHeader className="bg-white border-b border-gray-100">
@@ -153,6 +175,13 @@ export function InquiriesManager() {
                 )}
               </TableBody>
             </Table>
+            <PaginationControls
+              page={page}
+              pageSize={pageSize}
+              total={total}
+              onPageChange={setPage}
+              onPageSizeChange={setPageSize}
+            />
           </div>
         </CardContent>
       </Card>

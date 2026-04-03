@@ -14,7 +14,7 @@ export function SettingsEditor() {
   const [loading, setLoading] = useState(true);
   const [newKey, setNewKey] = useState("");
   const [newValue, setNewValue] = useState("");
-  const [newType, setNewType] = useState("contact");
+  const [newType, setNewType] = useState("tracking_script");
   const [newLocation, setNewLocation] = useState("head");
 
   const fetchSettings = async () => {
@@ -71,7 +71,6 @@ export function SettingsEditor() {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
             <select value={newType} onChange={e=>setNewType(e.target.value)} className="w-full border p-2 rounded">
-              <option value="contact">Business Info / Contact</option>
               <option value="tracking_script">Tracking Script (GTM/Pixel)</option>
             </select>
           </div>

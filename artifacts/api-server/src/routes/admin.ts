@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { db } from "@workspace/db";
 import { settingsTable, blogsTable, usersTable, bookingsTable, contactsTable } from "@workspace/db/schema";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, gte, lte, sql, and } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 
 const router = Router();
@@ -70,16 +70,74 @@ router.post("/users", async (req, res) => {
   res.json({ id: newUser[0].id, email: newUser[0].email, role: newUser[0].role });
 });
 
-// Bookings (Admin only)
+// Bookings (Admin only) with pagination and date filter
 router.get("/bookings", async (req, res) => {
-  const bookings = await db.select().from(bookingsTable).orderBy(desc(bookingsTable.createdAt));
-  res.json(bookings.map(b => ({ ...b, createdAt: b.createdAt.toISOString() })));
+  const { start, end, page = "1", size = "10" } = req.query as any;
+  const pageNum = Number(page);
+  const pageSize = Number(size);
+
+  let conditions: any[] = [];
+  if (start && !isNaN(Date.parse(start))) {
+    conditions.push(gte(bookingsTable.createdAt, new Date(start)));
+  }
+  if (end && !isNaN(Date.parse(end))) {
+    const endOfDay = new Date(end);
+    endOfDay.setHours(23, 59, 59, 999);
+    conditions.push(lte(bookingsTable.createdAt, endOfDay));
+  }
+
+  const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+  // Count query
+  const totalResult = await db.select({ total: sql<number>`count(*)` })
+    .from(bookingsTable)
+    .where(whereClause);
+  const total = totalResult[0].total;
+
+  // Data query
+  const data = await db.select()
+    .from(bookingsTable)
+    .where(whereClause)
+    .orderBy(desc(bookingsTable.createdAt))
+    .limit(pageSize)
+    .offset((pageNum - 1) * pageSize);
+
+  res.json({ data, total });
 });
 
-// Contacts (Admin only)
+// Contacts (Admin only) with pagination and date filter
 router.get("/contacts", async (req, res) => {
-  const contacts = await db.select().from(contactsTable).orderBy(desc(contactsTable.createdAt));
-  res.json(contacts.map(c => ({ ...c, createdAt: c.createdAt.toISOString() })));
+  const { start, end, page = "1", size = "10" } = req.query as any;
+  const pageNum = Number(page);
+  const pageSize = Number(size);
+
+  let conditions: any[] = [];
+  if (start && !isNaN(Date.parse(start))) {
+    conditions.push(gte(contactsTable.createdAt, new Date(start)));
+  }
+  if (end && !isNaN(Date.parse(end))) {
+    const endOfDay = new Date(end);
+    endOfDay.setHours(23, 59, 59, 999);
+    conditions.push(lte(contactsTable.createdAt, endOfDay));
+  }
+
+  const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+  // Count query
+  const totalResult = await db.select({ total: sql<number>`count(*)` })
+    .from(contactsTable)
+    .where(whereClause);
+  const total = totalResult[0].total;
+
+  // Data query
+  const data = await db.select()
+    .from(contactsTable)
+    .where(whereClause)
+    .orderBy(desc(contactsTable.createdAt))
+    .limit(pageSize)
+    .offset((pageNum - 1) * pageSize);
+
+  res.json({ data, total });
 });
 
 export default router;
