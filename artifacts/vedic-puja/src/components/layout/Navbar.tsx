@@ -58,11 +58,12 @@ export function Navbar() {
 
   return (
     <header
+      ref={dropdownRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isOnLightBg ? "bg-white/95 backdrop-blur-md shadow-md py-3" : "bg-transparent py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={dropdownRef}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group shrink-0">
@@ -176,8 +177,8 @@ export function Navbar() {
             className="lg:hidden bg-white border-t border-border mt-3 overflow-hidden"
           >
             <div className="flex flex-col px-4 py-4 space-y-1 max-h-[80vh] overflow-y-auto">
-              <Link href="/" className="font-medium text-lg text-foreground hover:text-primary transition-colors py-2">
-                Home
+              <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
+                <a className="font-medium text-lg text-foreground hover:text-primary transition-colors py-2 block">Home</a>
               </Link>
 
               {/* Mobile Services */}
@@ -195,8 +196,8 @@ export function Navbar() {
                       <div key={category} className="mb-3">
                         <div className="text-xs font-bold text-primary uppercase tracking-wider py-1">{label}</div>
                         {items.map(puja => (
-                          <Link key={puja.slug} href={`/puja/${puja.slug}`}>
-                            <div className="py-1.5 text-sm text-muted-foreground hover:text-primary transition-colors">{puja.name}</div>
+                          <Link key={puja.slug} href={`/puja/${puja.slug}`} onClick={() => setIsMobileMenuOpen(false)}>
+                            <a className="py-1.5 text-sm text-muted-foreground hover:text-primary transition-colors block">{puja.name}</a>
                           </Link>
                         ))}
                       </div>
@@ -217,22 +218,28 @@ export function Navbar() {
                 {activeDropdown === "locations-mobile" && (
                   <div className="pl-4 grid grid-cols-2 gap-1 mb-2">
                     {locations.map(loc => (
-                      <Link key={loc.slug} href={`/location/${loc.slug}`}>
-                        <div className="py-1.5 text-sm text-muted-foreground hover:text-primary transition-colors">{loc.name}</div>
+                      <Link key={loc.slug} href={`/location/${loc.slug}`} onClick={() => setIsMobileMenuOpen(false)}>
+                        <a className="py-1.5 text-sm text-muted-foreground hover:text-primary transition-colors block">{loc.name}</a>
                       </Link>
                     ))}
                   </div>
                 )}
               </div>
 
-              <Link href="/blog" className="font-medium text-lg text-foreground hover:text-primary transition-colors py-2">Blog</Link>
-              <Link href="/about" className="font-medium text-lg text-foreground hover:text-primary transition-colors py-2">About</Link>
+              <Link href="/blog" onClick={() => setIsMobileMenuOpen(false)}>
+                <a className="font-medium text-lg text-foreground hover:text-primary transition-colors py-2 block">Blog</a>
+              </Link>
+              <Link href="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                <a className="font-medium text-lg text-foreground hover:text-primary transition-colors py-2 block">About</a>
+              </Link>
 
               <Link
                 href="/book"
-                className="px-6 py-3 text-center rounded-xl font-semibold bg-primary text-white shadow-md mt-2"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
-                Book a Pandit Now
+                <a className="px-6 py-3 text-center rounded-xl font-semibold bg-primary text-white shadow-md mt-2 block">
+                  Book a Pandit Now
+                </a>
               </Link>
             </div>
           </motion.div>
