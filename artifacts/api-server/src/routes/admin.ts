@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { db } from "@workspace/db";
-import { settingsTable, blogsTable, usersTable } from "@workspace/db/schema";
-import { eq } from "drizzle-orm";
+import { settingsTable, blogsTable, usersTable, bookingsTable, contactsTable } from "@workspace/db/schema";
+import { eq, desc } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 
 const router = Router();
@@ -68,6 +68,18 @@ router.post("/users", async (req, res) => {
   const passwordHash = await bcrypt.hash(password, 10);
   const newUser = await db.insert(usersTable).values({ email, passwordHash, role }).returning();
   res.json({ id: newUser[0].id, email: newUser[0].email, role: newUser[0].role });
+});
+
+// Bookings (Admin only)
+router.get("/bookings", async (req, res) => {
+  const bookings = await db.select().from(bookingsTable).orderBy(desc(bookingsTable.createdAt));
+  res.json(bookings.map(b => ({ ...b, createdAt: b.createdAt.toISOString() })));
+});
+
+// Contacts (Admin only)
+router.get("/contacts", async (req, res) => {
+  const contacts = await db.select().from(contactsTable).orderBy(desc(contactsTable.createdAt));
+  res.json(contacts.map(c => ({ ...c, createdAt: c.createdAt.toISOString() })));
 });
 
 export default router;

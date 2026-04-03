@@ -1,4 +1,5 @@
 import { Link, useLocation } from "wouter";
+import { LayoutDashboard, FileText, Settings, Users, Calendar, MessageSquare, LogOut } from "lucide-react";
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -17,20 +18,47 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
         </div>
         <nav className="p-4 flex flex-col gap-1.5 flex-grow font-medium">
           <Link href="/admin">
-            <a className={`block px-4 py-2.5 rounded-lg transition-all ${location === '/admin' ? 'bg-orange-500/10 text-orange-400' : 'hover:bg-gray-800 hover:text-white'}`}>Overview</a>
+            <a className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all font-medium ${location === '/admin' ? 'bg-orange-500/10 text-orange-500 shadow-sm border border-orange-500/10' : 'text-gray-400 hover:bg-gray-800 hover:text-white'}`}>
+              <LayoutDashboard className="w-4 h-4" />
+              <span>Overview</span>
+            </a>
+          </Link>
+          <Link href="/admin/bookings">
+            <a className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all font-medium ${location === '/admin/bookings' ? 'bg-orange-500/10 text-orange-500 shadow-sm border border-orange-500/10' : 'text-gray-400 hover:bg-gray-800 hover:text-white'}`}>
+              <Calendar className="w-4 h-4" />
+              <span>Bookings</span>
+            </a>
+          </Link>
+          <Link href="/admin/contacts">
+            <a className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all font-medium ${location === '/admin/contacts' ? 'bg-orange-500/10 text-orange-500 shadow-sm border border-orange-500/10' : 'text-gray-400 hover:bg-gray-800 hover:text-white'}`}>
+              <MessageSquare className="w-4 h-4" />
+              <span>Inquiries</span>
+            </a>
           </Link>
           <Link href="/admin/blogs">
-            <a className={`block px-4 py-2.5 rounded-lg transition-all ${location === '/admin/blogs' ? 'bg-orange-500/10 text-orange-400' : 'hover:bg-gray-800 hover:text-white'}`}>Content Manager</a>
+            <a className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all font-medium ${location === '/admin/blogs' ? 'bg-orange-500/10 text-orange-500 shadow-sm border border-orange-500/10' : 'text-gray-400 hover:bg-gray-800 hover:text-white'}`}>
+              <FileText className="w-4 h-4" />
+              <span>Content Manager</span>
+            </a>
           </Link>
           <Link href="/admin/settings">
-            <a className={`block px-4 py-2.5 rounded-lg transition-all ${location === '/admin/settings' ? 'bg-orange-500/10 text-orange-400' : 'hover:bg-gray-800 hover:text-white'}`}>Site Configuration</a>
+            <a className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all font-medium ${location === '/admin/settings' ? 'bg-orange-500/10 text-orange-500 shadow-sm border border-orange-500/10' : 'text-gray-400 hover:bg-gray-800 hover:text-white'}`}>
+              <Settings className="w-4 h-4" />
+              <span>Site Configuration</span>
+            </a>
           </Link>
           <Link href="/admin/users">
-            <a className={`block px-4 py-2.5 rounded-lg transition-all ${location === '/admin/users' ? 'bg-orange-500/10 text-orange-400' : 'hover:bg-gray-800 hover:text-white'}`}>Team Access</a>
+            <a className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all font-medium ${location === '/admin/users' ? 'bg-orange-500/10 text-orange-500 shadow-sm border border-orange-500/10' : 'text-gray-400 hover:bg-gray-800 hover:text-white'}`}>
+              <Users className="w-4 h-4" />
+              <span>Team Access</span>
+            </a>
           </Link>
           
           <div className="mt-auto border-t border-gray-800 pt-4">
-            <button onClick={handleLogout} className="w-full text-left px-4 py-2.5 text-red-400 hover:bg-red-500/10 rounded-lg transition-all">Sign Out securely</button>
+            <button onClick={handleLogout} className="flex items-center gap-3 w-full text-left px-4 py-2.5 text-red-500 hover:bg-red-500/10 rounded-lg transition-all font-bold">
+              <LogOut className="w-4 h-4" />
+              <span>Sign Out securely</span>
+            </button>
           </div>
         </nav>
       </aside>
