@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, Flame, ChevronDown } from "lucide-react";
+import { Menu, X, Flame, ChevronDown, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { pujas } from "@/data/pujas";
 import { locations } from "@/data/locations";
@@ -133,6 +133,11 @@ export function Navbar() {
                                 </Link>
                               ))}
                             </div>
+                            <Link href="/locations" onClick={() => setActiveDropdown(null)}>
+                              <div className="px-3 py-2 mt-1 text-xs text-primary font-bold hover:underline cursor-pointer flex items-center gap-1">
+                                View All Areas <ChevronRight className="w-3 h-3" />
+                              </div>
+                            </Link>
                           </div>
                         )}
                       </motion.div>
@@ -222,6 +227,11 @@ export function Navbar() {
                         <a className="py-1.5 text-sm text-muted-foreground hover:text-primary transition-colors block">{loc.name}</a>
                       </Link>
                     ))}
+                    <Link href="/locations" onClick={() => setIsMobileMenuOpen(false)}>
+                      <a className="py-2 text-xs font-bold text-primary uppercase tracking-wider flex items-center gap-1">
+                        View All Areas <ChevronRight className="w-3 h-3" />
+                      </a>
+                    </Link>
                   </div>
                 )}
               </div>

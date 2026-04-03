@@ -203,6 +203,115 @@ export const locations: Location[] = [
       { q: "Can Bhumi Pujan be done for a new plot in Sarjapur?", a: "Yes, Bhumi Pujan for new plots and construction projects is regularly performed throughout the Sarjapur Road corridor." }
     ],
     image: "/images/locations/marathahalli.png"
+  },
+  {
+    slug: "koramangala",
+    name: "Koramangala",
+    fullName: "Koramangala, Bangalore",
+    primaryKeyword: "pandit in koramangala",
+    metaTitle: "Pandit in Koramangala Bangalore | Hindi-Speaking Puja Pandit | Radhe Radhe Puja",
+    metaDescription: "Book experienced Hindi-speaking pandit in Koramangala, Bangalore. Authentic North Indian puja rituals for Griha Pravesh, Satyanarayan, Vastu & Havan. Home delivery of samagri.",
+    intro: "Koramangala — the vibrant startup and residential hub — is home to many young North Indian professionals and families living in its upscale blocks. Whether you're in the prime 4th Block, the serene ST Bed, or near the Sony World Signal, maintaining your spiritual roots is essential. Our Pandit in Koramangala service brings authentic Varanasi-style rituals to your modern home, ensuring that every Griha Pravesh or Satyanarayan Puja is performed with complete devotion and Hindi mantras.",
+    about: "Our pandit service covers all blocks of Koramangala (1st to 8th), ST Bed Layout, Ejipura Main Road, and surrounding gated communities. Pandit Diwakar Pandey is frequently invited to high-end villas and luxury apartments in the area for Vastu and Havan ceremonies. We ensure that our pandits arrive on time, navigating the local Koramangala traffic to meet your precise muhurat.",
+    popularPujas: ["Griha Pravesh", "Satyanarayan Puja", "Vastu Shanti", "Havan", "Office Opening Puja", "Navratri Puja"],
+    areas: ["Koramangala 1st Block", "Koramangala 4th Block", "Koramangala 7th Block", "ST Bed Layout", "Sony World Signal", "Ejipura"],
+    famousFor: "Startup Hub, Upscale Residential, Vibrant Nightlife",
+    faq: [
+      { q: "Do you provide Hindi-speaking pandits in Koramangala?", a: "Yes, all our pandits in Koramangala are fluent in Hindi and Sanskrit, following the authentic North Indian Vedic traditions." },
+      { q: "Is samagri included for pujas in Koramangala?", a: "We offer both options — we can provide the complete puja samagri list for you to buy, or we can bring everything ourselves for a hassle-free experience." },
+      { q: "How much notice is needed for a Griha Pravesh in Koramangala?", a: "For large ceremonies like Griha Pravesh, we recommend booking at least 3-5 days in advance to ensure the best muhurat and Pandit availability." }
+    ],
+    image: "/images/locations/whitefield.png"
+  },
+  {
+    slug: "jp-nagar",
+    name: "JP Nagar",
+    fullName: "JP Nagar, Bangalore",
+    primaryKeyword: "pandit in jp nagar",
+    metaTitle: "Pandit in JP Nagar Bangalore | North Indian Puja Service | Radhe Radhe Puja",
+    metaDescription: "Book Hindi pandit in JP Nagar, Bangalore for Griha Pravesh, Satyanarayan Puja, and more. Serving all phases from 1st to 9th. Authentic Vedic rituals at your doorstep.",
+    intro: "JP Nagar — known for its lush green lanes and beautifully planned residential phases — has become a favorite for North Indian families seeking a balanced lifestyle in Bangalore. From the bustling 15th Cross to the serene 7th Phase, our Pandit in JP Nagar service ensures that North Indian traditions remain vibrant, providing experienced, Hindi-speaking pandits for all Vedic rituals at your doorstep.",
+    about: "Serving all phases (1st to 9th), Sarakki, Yelachenahalli, and Jaraganahalli. We specialize in home pujas like Namkaran, Birthday, and Annaprashan ceremonies for families in Sobha, Purva, and Brigade projects in JP Nagar. Our pandits are well-versed in the specific requirements of residential communities in South Bangalore.",
+    popularPujas: ["Griha Pravesh", "Satyanarayan Puja", "Annaprashan", "Namkaran", "Mundan", "Birthday Puja"],
+    areas: ["JP Nagar 1st Phase", "JP Nagar 7th Phase", "Sarakki Circle", "Yelachenahalli", "Rose Garden Road", "Puttenahalli"],
+    famousFor: "Greenery, Culture, South Bangalore's Premier Residential Area",
+    faq: [
+      { q: "Which areas of JP Nagar do you cover?", a: "We cover all 9 phases of JP Nagar, including Sarakki, Rose Garden, and Puttenahalli." },
+      { q: "Are your pandits experienced with apartment-complex rituals?", a: "Yes, we regularly perform pujas in major JP Nagar apartments and follow all complex-specific guidelines for havan and rituals." }
+    ],
+    image: "/images/locations/btm-layout.png"
+  },
+  {
+    slug: "jayanagar",
+    name: "Jayanagar",
+    fullName: "Jayanagar, Bangalore",
+    primaryKeyword: "pandit in jayanagar",
+    metaTitle: "Pandit in Jayanagar Bangalore | Hindi-Speaking Puja Pandit | Radhe Radhe Puja",
+    metaDescription: "Book traditional North Indian pandit in Jayanagar, Bangalore. Serving all blocks (1st to 9th) for authentic Griha Pravesh, Satyanarayan, and Vastu ceremonies.",
+    intro: "Jayanagar — one of Bangalore's most iconic and traditionally rich residential areas — holds a special place for families who value heritage. Whether you live in the prime 4th Block or the expansive 9th Block, our Pandit in Jayanagar service bridges the gap for North Indian families, bringing authentic Vedic Acharya Pandit Diwakar Pandey to perform rituals with the same purity and precision as seen in Varanasi and Haridwar.",
+    about: "Full coverage of Jayanagar 1st to 9th Block, South End Circle, Madhavan Park, and Tilaknagar. We have a dedicated team for traditional homas and office openings in these heritage neighborhoods, ensuring that the sanctity of the ritual is maintained even in the heart of old Bangalore.",
+    popularPujas: ["Griha Pravesh", "Satyanarayan Puja", "Vastu Shanti Puja", "Havan", "Sudarsana Homam", "Marriage Rituals"],
+    areas: ["Jayanagar 4th Block", "Jayanagar 9th Block", "South End Circle", "Madhavan Park", "Tilaknagar", "Bayanapalya"],
+    famousFor: "Heritage, Tree-lined Streets, Traditional Markets",
+    faq: [
+      { q: "Are there travel charges for Jayanagar?", a: "No, Jayanagar is within our primary service zone. We do not charge extra for travel to any block in Jayanagar." },
+      { q: "Can we book a pandit for a shop opening in Jayanagar 4th Block?", a: "Absolutely. We specialize in commercial and shop opening pujas according to North Indian traditions." }
+    ],
+    image: "/images/locations/indiranagar.png"
+  },
+  {
+    slug: "banashankari",
+    name: "Banashankari",
+    fullName: "Banashankari, Bangalore",
+    primaryKeyword: "pandit in banashankari",
+    metaTitle: "Pandit in Banashankari Bangalore | Hindi Puja Pandit | Radhe Radhe Puja",
+    metaDescription: "Experienced North Indian pandit in Banashankari, Bangalore. Authentic Hindi pujas for Griha Pravesh, Ganesh Puja, Vastu and more. Home service in all stages.",
+    intro: "Banashankari — a temple-centric heart of South Bangalore — provides a deeply spiritual environment for its residents. For North Indian families in Banashankari 1st, 2nd, and 3rd Stages, our Pandit service offers a connection to their native rituals, ensuring that Hindi-speaking pandits are available for every sacred occasion, from Vastu Puja to Navgraha Shanti.",
+    about: "Serving Banashankari 1st to 6th Stage, Padmanabhanagar, and Kathreguppe. We provide complete samagri kits tailored for specific North Indian customs, ensuring that families living in this predominantly South Indian neighborhood can still perform their rituals with 100% authenticity.",
+    popularPujas: ["Ganesh Puja", "Satyanarayan Puja", "Griha Pravesh", "Navgraha Shanti", "Mundan Puja", "Marriage Anniversary"],
+    areas: ["BSK 2nd Stage", "BSK 3rd Stage", "Padmanabhanagar", "Kathreguppe", "Kadirenahalli", "Girinagar"],
+    famousFor: "Temples, Spiritual Vibe, Residential Stage Layouts",
+    faq: [
+      { q: "Do you bring Ganga jal and other sacred items?", a: "Yes, we can provide all sacred items including Ganga jal, kalash, and specialized havan samagri upon request." },
+      { q: "Is a Hindi pandit available for Satyanarayan Puja in Banashankari?", a: "Yes, we have senior Hindi-speaking pandits available daily for Satyanarayan Katha in Banashankari." }
+    ],
+    image: "/images/locations/marathahalli.png"
+  },
+  {
+    slug: "rajajinagar",
+    name: "Rajajinagar",
+    fullName: "Rajajinagar, Bangalore",
+    primaryKeyword: "pandit in rajajinagar",
+    metaTitle: "Pandit in Rajajinagar Bangalore | Hindi-Speaking Puja Pandit | Radhe Radhe Puja",
+    metaDescription: "Authentic North Indian pandit in Rajajinagar, Bangalore. Specializing in Hindi pujas, Griha Pravesh, and trade-related ceremonies. Senior Vedic Scholars available.",
+    intro: "Rajajinagar — a historical neighborhood with a strong community spirit — is home to many established North Indian families, many of whom have lived here for generations. Our Pandit in Rajajinagar service honors this legacy by providing senior Vedic scholars who perform pujas with complete North Indian vidhi, making sure that your ancestral traditions are preserved right here in West Bangalore.",
+    about: "Covering Rajajinagar 1st to 6th Block, West of Chord Road, Basaveshwaranagar, and Mahalakshmi Layout. We specialize in large-scale community pujas and family ceremonies for the diverse residential and business community in Rajajinagar.",
+    popularPujas: ["Griha Pravesh", "Satyanarayan Puja", "Laxmi Puja (Business)", "Vastu Shanti", "Navgraha Puja", "Rudra Abhishek"],
+    areas: ["Rajajinagar 1st Block", "Rajajinagar 6th Block", "West of Chord Road", "Basaveshwaranagar", "Mahalakshmi Layout", "Soap Factory Area"],
+    famousFor: "Strong Community, Business Hub, Historical Significance",
+    faq: [
+      { q: "Are your pandits from Varanasi?", a: "Yes, our pandits, including Acharya Diwakar Pandey, are trained in the Varanasi or Haridwar Vedic traditions." },
+      { q: "Do you perform business inauguration pujas in Rajajinagar?", a: "Yes, we are highly experienced in commercial and business-opening rituals for Rajajinagar's vibrant trade community." }
+    ],
+    image: "/images/locations/electronic-city.png"
+  },
+  {
+    slug: "malleshwaram",
+    name: "Malleshwaram",
+    fullName: "Malleshwaram, Bangalore",
+    primaryKeyword: "pandit in malleshwaram",
+    metaTitle: "Pandit in Malleshwaram Bangalore | Hindi Puja Pandit | Radhe Radhe Puja",
+    metaDescription: "Traditional Hindi-speaking pandit in Malleshwaram, Bangalore. Serving the North Indian community with authentic Griha Pravesh and Vedic rituals near iconic temples.",
+    intro: "Malleshwaram — famous for its ancient temples and deep cultural heritage — is where tradition meets everyday life. For the growing North Indian community along Margosa and Sampige Roads, our Pandit in Malleshwaram service provides an authentic link to Haridwar and Varanasi traditions, bringing experienced Hindi pandits to your home for every sacred ritual.",
+    about: "Serving Malleshwaram's 1st to 18th Cross, Margosa Road, Sampige Road, and specialized areas like Vyallikaval. We are well-versed in the specific requirements of traditional Malleshwaram homes as well as new high-rise developments, providing tailored rituals for every family.",
+    popularPujas: ["Griha Pravesh", "Satyanarayan Puja", "Vastu Shanti", "Navyug Puja", "Birthday Puja", "Havan"],
+    areas: ["Malleshwaram 18th Cross", "Margosa Road", "Sampige Road", "Vyallikaval", "Sadashivanagar", "Sankey Road"],
+    famousFor: "Temples, Heritage, Educational Hub",
+    faq: [
+      { q: "Can we get a pandit near Kadu Malleshwara Temple?", a: "Yes, we serve all homes and apartments in the immediate vicinity of Malleshwaram's iconic temples." },
+      { q: "What languages do your pandits speak?", a: "Our pandits are primarily Hindi and Sanskrit speaking scholars, specializing in the North Indian tradition." }
+    ],
+    image: "/images/locations/indiranagar.png"
   }
 ];
 

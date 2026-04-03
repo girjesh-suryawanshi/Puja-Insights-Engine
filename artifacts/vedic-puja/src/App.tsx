@@ -19,7 +19,7 @@ const LocationPage = React.lazy(() => import("./pages/LocationPage").then(m => (
 const BlogPostPage = React.lazy(() => import("./pages/BlogPost").then(m => ({ default: m.BlogPostPage })));
 const BlogList = React.lazy(() => import("./pages/BlogList").then(m => ({ default: m.BlogList })));
 const About = React.lazy(() => import("./pages/About").then(m => ({ default: m.About })));
-
+const LocationsList = React.lazy(() => import("./pages/LocationsList").then(m => ({ default: m.LocationsList })));
 const AdminApp = React.lazy(() => import("./pages/admin/AdminApp"));
 
 const queryClient = new QueryClient();
@@ -40,6 +40,9 @@ function Router() {
           </Route>
           <Route path="/location/:slug">
             <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}><LocationPage /></Suspense>
+          </Route>
+          <Route path="/locations">
+            <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}><LocationsList /></Suspense>
           </Route>
           <Route path="/blog">
             <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}><BlogList /></Suspense>
