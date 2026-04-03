@@ -18,7 +18,7 @@ export function Footer() {
                 <Flame className="w-4 h-4 text-white" />
               </div>
               <span className="font-display font-bold text-2xl text-white">
-                Vedic<span className="text-primary">Puja</span>
+                Radhe Radhe<span className="text-primary">Puja</span>
               </span>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
@@ -27,11 +27,11 @@ export function Footer() {
             <div className="space-y-3 text-gray-400 text-sm">
               <div className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                <a href="tel:+919876543210" className="hover:text-primary transition-colors">+91 98765 43210</a>
+                <a href="tel:+919546308950" className="hover:text-primary transition-colors">+91 95463 08950</a>
               </div>
               <div className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                <a href="mailto:blessings@vedicpuja.com" className="hover:text-primary transition-colors">blessings@vedicpuja.com</a>
+                <a href="mailto:radhepujabangalore@gmail.com" className="hover:text-primary transition-colors">radhepujabangalore@gmail.com</a>
               </div>
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
@@ -91,7 +91,7 @@ export function Footer() {
         </div>
 
         <div className="pt-8 border-t border-gray-800 text-center text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p>© {new Date().getFullYear()} VedicPuja Services. All rights reserved. | North Indian Pandit Service in Bangalore</p>
+          <p>© {new Date().getFullYear()} Radhe Radhe Puja Services. All rights reserved. | North Indian Pandit Service in Bangalore</p>
           <div className="flex gap-4">
             <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>

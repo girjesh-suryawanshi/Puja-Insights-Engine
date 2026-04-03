@@ -194,8 +194,8 @@ export function BlogPostPage() {
               <Link href="/book" className="block w-full text-center py-3 rounded-xl font-semibold bg-white text-primary hover:bg-orange-50 transition-colors text-sm">
                 Book Now
               </Link>
-              <a href="tel:+919876543210" className="block w-full text-center py-3 mt-2 rounded-xl font-semibold border-2 border-white/50 text-white hover:bg-white/10 transition-colors text-sm">
-                Call: +91 98765 43210
+              <a href="tel:+919546308950" className="block w-full text-center py-3 mt-2 rounded-xl font-semibold border-2 border-white/50 text-white hover:bg-white/10 transition-colors text-sm">
+                Call: +91 95463 08950
               </a>
             </div>
 

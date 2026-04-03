@@ -66,14 +66,14 @@ export function About() {
       <div className="bg-gradient-to-br from-primary/10 via-amber-50 to-orange-50 py-20 border-b border-primary/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            🙏 About VedicPuja
+            🙏 About Radhe Radhe Puja
           </div>
           <h1 className="text-3xl md:text-5xl font-display font-bold text-foreground mb-6">
             Best Pandit Service for<br />
             <span className="text-primary">North Indian Families in Bangalore</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            VedicPuja was founded with one simple mission: to ensure that North Indian families living in Bangalore never have to compromise on the authenticity of their sacred rituals. We bring experienced, Hindi-speaking pandits from the Varanasi and Haridwar traditions directly to your doorstep.
+            Radhe Radhe Puja was founded with one simple mission: to ensure that North Indian families living in Bangalore never have to compromise on the authenticity of their sacred rituals. We bring experienced, Hindi-speaking pandits from the Varanasi and Haridwar traditions directly to your doorstep.
           </p>
         </div>
       </div>
@@ -106,13 +106,13 @@ export function About() {
               <h2 className="text-3xl font-display font-bold text-foreground mb-6">Our Story</h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  VedicPuja was born out of a personal experience. Our founder — a North Indian professional who had moved to Bangalore for work — was planning his Griha Pravesh puja in his new Whitefield apartment. He called multiple local puja services but found that most pandits were South Indian and performed the ceremony in a way that felt unfamiliar to his family visiting from Varanasi.
+                  Radhe Radhe Puja was born out of a personal experience. Our founder — a North Indian professional who had moved to Bangalore for work — was planning his Griha Pravesh puja in his new Whitefield apartment. He called multiple local puja services but found that most pandits were South Indian and performed the ceremony in a way that felt unfamiliar to his family visiting from Varanasi.
                 </p>
                 <p>
                   That day, he realized that thousands of North Indian families in Bangalore faced the same challenge — the desire to maintain authentic Vedic traditions but struggling to find pandits who understood North Indian rituals, could recite the Satyanarayan Katha in proper Hindi, or knew the regional variations of different ceremonies.
                 </p>
                 <p>
-                  VedicPuja was built to solve this problem. We partner exclusively with experienced North Indian pandits — trained in Varanasi, Haridwar, Mathura, and Ayodhya traditions — who are based in Bangalore and serve all major residential areas of the city.
+                  Radhe Radhe Puja was built to solve this problem. We partner exclusively with experienced North Indian pandits — trained in Varanasi, Haridwar, Mathura, and Ayodhya traditions — who are based in Bangalore and serve all major residential areas of the city.
                 </p>
               </div>
             </div>
@@ -219,14 +219,14 @@ export function About() {
       <div className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-display font-bold text-foreground mb-4">Ready to Book a Pandit?</h2>
-          <p className="text-muted-foreground mb-8">Join 10,000+ North Indian families in Bangalore who trust VedicPuja for their sacred rituals.</p>
+          <p className="text-muted-foreground mb-8">Join 10,000+ North Indian families in Bangalore who trust Radhe Radhe Puja for their sacred rituals.</p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link href="/book" className="px-8 py-3.5 rounded-full font-semibold bg-primary text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">
               Book a Pandit Now
             </Link>
-            <a href="tel:+919876543210" className="px-8 py-3.5 rounded-full font-semibold border-2 border-primary text-primary hover:bg-primary/5 transition-all flex items-center gap-2">
+            <a href="tel:+919546308950" className="px-8 py-3.5 rounded-full font-semibold border-2 border-primary text-primary hover:bg-primary/5 transition-all flex items-center gap-2">
               <Phone className="w-4 h-4" />
-              +91 98765 43210
+              +91 95463 08950
             </a>
           </div>
         </div>

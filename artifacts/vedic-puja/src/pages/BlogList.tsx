@@ -124,8 +124,8 @@ export function BlogList() {
             <Link href="/book" className="px-6 py-3 rounded-full font-semibold bg-white text-primary hover:bg-orange-50 transition-colors">
               Book Pandit Now
             </Link>
-            <a href="tel:+919876543210" className="px-6 py-3 rounded-full font-semibold border-2 border-white/60 text-white hover:bg-white/10 transition-colors">
-              Call: +91 98765 43210
+            <a href="tel:+919546308950" className="px-6 py-3 rounded-full font-semibold border-2 border-white/60 text-white hover:bg-white/10 transition-colors">
+              Call: +91 95463 08950
             </a>
           </div>
         </div>

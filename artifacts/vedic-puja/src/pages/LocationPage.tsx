@@ -55,7 +55,7 @@ export function LocationPage() {
               Book Pandit in {location.name}
             </a>
             <a
-              href="tel:+919876543210"
+              href="tel:+919546308950"
               className="px-6 py-3 rounded-full font-semibold border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-200 flex items-center gap-2"
             >
               <Phone className="w-4 h-4" />
@@ -96,7 +96,7 @@ export function LocationPage() {
             {/* Why Choose Us */}
             <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
               <h2 className="text-2xl font-display font-bold text-foreground mb-6">
-                Why Choose VedicPuja in {location.name}?
+                Why Choose Radhe Radhe Puja in {location.name}?
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
@@ -181,10 +181,10 @@ export function LocationPage() {
                   Book Online
                 </a>
                 <a
-                  href="tel:+919876543210"
+                  href="tel:+919546308950"
                   className="block w-full text-center py-3 rounded-xl font-semibold border-2 border-white/50 text-white hover:bg-white/10 transition-colors"
                 >
-                  Call: +91 98765 43210
+                  Call: +91 95463 08950
                 </a>
               </div>
 

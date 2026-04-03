@@ -100,7 +100,7 @@ export default function Home() {
                 Divine Blessings at <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Your Doorstep</span>
               </motion.h1>
               <motion.p variants={fadeIn} className="text-lg md:text-xl text-muted-foreground mb-8 text-balance">
-                Book experienced, verified North Indian Pandits for authentic Vedic Pujas and rituals right at your home.
+                Book experienced, verified North Indian Pandits for authentic Radhe Radhe Pujas and rituals right at your home.
               </motion.p>
               <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
                 <Link 
@@ -294,7 +294,7 @@ export default function Home() {
                   </div>
                   <div>
                     <div className="text-sm text-muted-foreground">Call Us 24/7</div>
-                    <div className="font-bold text-lg">+91 98765 43210</div>
+                    <div className="font-bold text-lg">+91 95463 08950</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 p-4 rounded-xl bg-white border border-border shadow-sm">
@@ -303,7 +303,7 @@ export default function Home() {
                   </div>
                   <div>
                     <div className="text-sm text-muted-foreground">Email Us</div>
-                    <div className="font-bold text-lg">blessings@vedicpuja.com</div>
+                    <div className="font-bold text-lg">radhepujabangalore@gmail.com</div>
                   </div>
                 </div>
               </div>

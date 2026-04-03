@@ -17,7 +17,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "griha-pravesh-muhurat-2026",
     title: "Griha Pravesh Muhurat 2026 — Auspicious Dates for Housewarming",
-    metaTitle: "Griha Pravesh Muhurat 2026 | Best Dates for Housewarming | VedicPuja",
+    metaTitle: "Griha Pravesh Muhurat 2026 | Best Dates for Housewarming | Radhe Radhe Puja",
     metaDescription: "Find the most auspicious Griha Pravesh muhurat dates in 2026. Complete list of auspicious days and timings for housewarming puja in Bangalore. Pandit available for booking.",
     primaryKeyword: "griha pravesh muhurat 2026",
     category: "Muhurat & Dates",
@@ -86,7 +86,7 @@ Our experienced North Indian pandits are available across all of Bangalore — W
   {
     slug: "satyanarayan-puja-vidhi",
     title: "Satyanarayan Puja Vidhi — Complete Step-by-Step Guide",
-    metaTitle: "Satyanarayan Puja Vidhi | Complete Guide | VedicPuja Bangalore",
+    metaTitle: "Satyanarayan Puja Vidhi | Complete Guide | Radhe Radhe Puja Bangalore",
     metaDescription: "Learn the complete Satyanarayan Puja vidhi step by step. What items are needed, how it's performed, and the meaning behind each ritual. Book a pandit in Bangalore.",
     primaryKeyword: "satyanarayan puja vidhi",
     category: "Puja Guides",
@@ -171,7 +171,7 @@ Our experienced North Indian pandits perform Satyanarayan Puja with the complete
   {
     slug: "puja-samagri-list",
     title: "Complete Puja Samagri List for Home Pujas in 2026",
-    metaTitle: "Puja Samagri List 2026 | Complete Home Puja Items | VedicPuja",
+    metaTitle: "Puja Samagri List 2026 | Complete Home Puja Items | Radhe Radhe Puja",
     metaDescription: "Complete puja samagri list for home pujas — Satyanarayan, Griha Pravesh, Navratri, Ganesh Puja. Which items to buy and where to find them in Bangalore.",
     primaryKeyword: "puja samagri list",
     category: "Puja Guides",
@@ -279,7 +279,7 @@ The easiest option — our pandits bring complete samagri for your booked puja. 
   {
     slug: "benefits-of-rudrabhishek",
     title: "7 Powerful Benefits of Rudrabhishek Puja You Should Know",
-    metaTitle: "Benefits of Rudrabhishek | Why Perform Rudrabhishek | VedicPuja",
+    metaTitle: "Benefits of Rudrabhishek | Why Perform Rudrabhishek | Radhe Radhe Puja",
     metaDescription: "Discover the 7 most powerful benefits of Rudrabhishek puja — from health recovery to Rahu-Ketu dosh removal. Book Rudrabhishek pandit in Bangalore.",
     primaryKeyword: "benefits of rudrabhishek",
     category: "Puja Guides",
@@ -356,7 +356,7 @@ Our experienced Hindi pandits in Bangalore perform complete Rudrabhishek with Na
   {
     slug: "how-to-book-pandit-online",
     title: "How to Book a Pandit Online in Bangalore — Complete Guide",
-    metaTitle: "How to Book Pandit Online Bangalore | Step-by-Step Guide | VedicPuja",
+    metaTitle: "How to Book Pandit Online Bangalore | Step-by-Step Guide | Radhe Radhe Puja",
     metaDescription: "Complete guide on how to book a Hindi-speaking pandit online in Bangalore. Step-by-step process, what to expect, and tips for getting the best puja experience.",
     primaryKeyword: "how to book pandit online",
     category: "Booking Guide",
@@ -447,7 +447,7 @@ Ready to book? [Fill our booking form](/book) or call us directly for instant as
   {
     slug: "pandit-cost-bangalore",
     title: "Pandit Cost in Bangalore 2026 — Complete Pricing Guide",
-    metaTitle: "Pandit Cost in Bangalore 2026 | Puja Price Guide | VedicPuja",
+    metaTitle: "Pandit Cost in Bangalore 2026 | Puja Price Guide | Radhe Radhe Puja",
     metaDescription: "Complete guide to pandit costs in Bangalore in 2026. Pricing for all types of pujas — Satyanarayan, Griha Pravesh, Wedding, Havan. No hidden charges.",
     primaryKeyword: "pandit cost in bangalore",
     category: "Pricing Guide",
@@ -531,13 +531,13 @@ When comparing prices, ensure you're comparing like-for-like:
 - Does the pandit speak Hindi (important for North Indian families)?
 - Is there any experience guarantee?
 
-At VedicPuja, every pandit has 10+ years of experience and our pricing is fully transparent. [Book your puja](/book) or contact us for a custom quote.
+At Radhe Radhe Puja, every pandit has 10+ years of experience and our pricing is fully transparent. [Book your puja](/book) or contact us for a custom quote.
     `
   },
   {
     slug: "north-indian-vs-south-indian-puja",
     title: "North Indian vs South Indian Puja — What's the Difference?",
-    metaTitle: "North Indian vs South Indian Puja | Differences Explained | VedicPuja",
+    metaTitle: "North Indian vs South Indian Puja | Differences Explained | Radhe Radhe Puja",
     metaDescription: "Understand the key differences between North Indian and South Indian Hindu puja traditions — rituals, language, methods, and why a North Indian pandit matters for your community.",
     primaryKeyword: "north indian vs south indian puja",
     category: "Culture & Tradition",
@@ -619,7 +619,7 @@ Our pandits are all North Indian tradition specialists — trained in the Varana
   {
     slug: "importance-of-navgraha-puja",
     title: "Why Navgraha Puja is Important — Planets, Doshas & Your Life",
-    metaTitle: "Importance of Navgraha Puja | Graha Dosh Explained | VedicPuja",
+    metaTitle: "Importance of Navgraha Puja | Graha Dosh Explained | Radhe Radhe Puja",
     metaDescription: "Understand why Navgraha Puja is important for correcting planetary doshas. Which planets cause which problems and how Navgrah Shanti puja helps. Pandit available in Bangalore.",
     primaryKeyword: "importance of navgraha puja",
     category: "Puja Guides",
@@ -711,7 +711,7 @@ Each planet requires specific offerings that correspond to their energetic natur
   {
     slug: "best-day-for-puja",
     title: "Best Days for Puja — Weekday Guide for Each Deity",
-    metaTitle: "Best Day for Puja | Puja Day by Deity | VedicPuja Bangalore",
+    metaTitle: "Best Day for Puja | Puja Day by Deity | Radhe Radhe Puja Bangalore",
     metaDescription: "Learn which day is best for each puja — Monday for Shiva, Tuesday for Hanuman, Friday for Lakshmi. Complete weekday puja guide with timing recommendations.",
     primaryKeyword: "best day for puja",
     category: "Puja Guides",
@@ -800,7 +800,7 @@ Our pandits help you plan pujas on the most auspicious day for maximum benefit. 
   {
     slug: "hindu-rituals-guide",
     title: "16 Samskaras — Hindu Life Rituals Guide for North Indian Families",
-    metaTitle: "Hindu Samskaras Guide | 16 Life Rituals | VedicPuja Bangalore",
+    metaTitle: "Hindu Samskaras Guide | 16 Life Rituals | Radhe Radhe Puja Bangalore",
     metaDescription: "Complete guide to the 16 Hindu Samskaras (life rituals) — from birth to death. Which ones are most important for North Indian families in Bangalore.",
     primaryKeyword: "hindu rituals guide",
     category: "Culture & Tradition",

@@ -70,7 +70,7 @@ export function Navbar() {
               <Flame className="w-5 h-5 text-white" />
             </div>
             <span className="font-display font-bold text-xl md:text-2xl text-foreground">
-              Vedic<span className="text-primary">Puja</span>
+              Radhe Radhe<span className="text-primary">Puja</span>
             </span>
           </Link>
 

@@ -125,7 +125,7 @@ export default function Book() {
                   <input 
                     {...register("phone")}
                     className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all"
-                    placeholder="+91 98765 43210"
+                    placeholder="+91 95463 08950"
                   />
                   {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>}
                 </div>

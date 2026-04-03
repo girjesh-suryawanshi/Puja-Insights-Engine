@@ -5,16 +5,18 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import Home from "./pages/Home";
-import Book from "./pages/Book";
-import PujaDetail from "./pages/PujaDetail";
-import { LocationPage } from "./pages/LocationPage";
-import { BlogPostPage } from "./pages/BlogPost";
-import { BlogList } from "./pages/BlogList";
-import { About } from "./pages/About";
 import NotFound from "@/pages/not-found";
 import { AuthProvider } from "./providers/AuthProvider";
 import { SettingsProvider } from "./providers/SettingsProvider";
 import React, { Suspense } from "react";
+
+// Code Splitting for non-initial routes
+const Book = React.lazy(() => import("./pages/Book"));
+const PujaDetail = React.lazy(() => import("./pages/PujaDetail"));
+const LocationPage = React.lazy(() => import("./pages/LocationPage").then(m => ({ default: m.LocationPage })));
+const BlogPostPage = React.lazy(() => import("./pages/BlogPost").then(m => ({ default: m.BlogPostPage })));
+const BlogList = React.lazy(() => import("./pages/BlogList").then(m => ({ default: m.BlogList })));
+const About = React.lazy(() => import("./pages/About").then(m => ({ default: m.About })));
 
 const AdminApp = React.lazy(() => import("./pages/admin/AdminApp"));
 
@@ -27,12 +29,24 @@ function Router() {
       <main className="flex-grow">
         <Switch>
           <Route path="/" component={Home} />
-          <Route path="/book" component={Book} />
-          <Route path="/puja/:slug" component={PujaDetail} />
-          <Route path="/location/:slug" component={LocationPage} />
-          <Route path="/blog" component={BlogList} />
-          <Route path="/blog/:slug" component={BlogPostPage} />
-          <Route path="/about" component={About} />
+          <Route path="/book">
+            <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}><Book /></Suspense>
+          </Route>
+          <Route path="/puja/:slug">
+            <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}><PujaDetail /></Suspense>
+          </Route>
+          <Route path="/location/:slug">
+            <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}><LocationPage /></Suspense>
+          </Route>
+          <Route path="/blog">
+            <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}><BlogList /></Suspense>
+          </Route>
+          <Route path="/blog/:slug">
+            <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}><BlogPostPage /></Suspense>
+          </Route>
+          <Route path="/about">
+            <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}><About /></Suspense>
+          </Route>
           <Route path="/admin">
             <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading Admin Panel...</div>}>
               <AdminApp />

@@ -123,7 +123,7 @@ export default function PujaDetail() {
               <a href="#book-now" className="inline-flex items-center gap-2 bg-primary text-white px-7 py-3.5 rounded-xl font-bold text-base hover:bg-primary/90 transition-all shadow-lg shadow-primary/25">
                 <CalendarDays className="w-5 h-5" /> Book This Puja
               </a>
-              <a href="tel:+919876543210" className="inline-flex items-center gap-2 bg-white text-foreground border border-border px-7 py-3.5 rounded-xl font-bold text-base hover:bg-muted/50 transition-all">
+              <a href="tel:+919546308950" className="inline-flex items-center gap-2 bg-white text-foreground border border-border px-7 py-3.5 rounded-xl font-bold text-base hover:bg-muted/50 transition-all">
                 <Phone className="w-5 h-5 text-primary" /> Call Now
               </a>
             </div>
@@ -286,7 +286,7 @@ export default function PujaDetail() {
 
               {/* Why Choose Us */}
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="bg-gradient-to-br from-primary to-secondary rounded-2xl p-8 text-white">
-                <h2 className="text-2xl font-bold mb-6">Why Choose VedicPuja for {puja.name}?</h2>
+                <h2 className="text-2xl font-bold mb-6">Why Choose Radhe Radhe Puja for {puja.name}?</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                   {[
                     "Hindi-speaking pandits — feels just like home",
@@ -329,7 +329,7 @@ export default function PujaDetail() {
                     </div>
                     <div>
                       <label className="text-sm font-medium text-foreground block mb-1">Phone *</label>
-                      <input {...register("phone")} placeholder="+91 98765 43210" className="w-full border border-border rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" />
+                      <input {...register("phone")} placeholder="+91 95463 08950" className="w-full border border-border rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" />
                       {errors.phone && <p className="text-xs text-destructive mt-1">{errors.phone.message}</p>}
                     </div>
                     <div>
@@ -366,8 +366,8 @@ export default function PujaDetail() {
                 {/* Contact Card */}
                 <div className="mt-4 bg-primary/5 rounded-2xl border border-primary/10 p-5 text-center">
                   <p className="text-sm font-semibold text-foreground mb-2">Need help choosing?</p>
-                  <a href="tel:+919876543210" className="inline-flex items-center gap-2 text-primary font-bold text-base">
-                    <Phone className="w-5 h-5" /> +91 98765 43210
+                  <a href="tel:+919546308950" className="inline-flex items-center gap-2 text-primary font-bold text-base">
+                    <Phone className="w-5 h-5" /> +91 95463 08950
                   </a>
                   <p className="text-xs text-muted-foreground mt-1">Available 24/7</p>
                 </div>
