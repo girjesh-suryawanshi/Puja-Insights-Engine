@@ -30,10 +30,15 @@ export function BlogList() {
           <Link href={`/blog/${blogPosts[0].slug}`}>
             <div className="group cursor-pointer bg-white border border-border rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
               <div className="grid grid-cols-1 md:grid-cols-2">
-                <div className="bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center min-h-[200px] md:min-h-[300px]">
-                  <div className="text-center p-8">
-                    <div className="text-6xl mb-4">🛕</div>
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-medium">
+                <div className="relative overflow-hidden min-h-[200px] md:min-h-[300px]">
+                  <img
+                    src={`${import.meta.env.BASE_URL}${blogPosts[0].image.replace(/^\//, "")}`}
+                    alt={blogPosts[0].title}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/10" />
+                  <div className="absolute top-4 left-4">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur text-primary text-xs font-semibold shadow-sm">
                       {blogPosts[0].category}
                     </div>
                   </div>
@@ -84,8 +89,13 @@ export function BlogList() {
             >
               <Link href={`/blog/${post.slug}`}>
                 <div className="group cursor-pointer bg-white border border-border rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                  <div className="bg-gradient-to-br from-primary/10 to-amber-50 flex items-center justify-center py-10">
-                    <div className="text-4xl">📿</div>
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={`${import.meta.env.BASE_URL}${post.image.replace(/^\//, "")}`}
+                      alt={post.title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/5" />
                   </div>
                   <div className="p-5 flex flex-col flex-1">
                     <div className="flex items-center gap-2 mb-3">

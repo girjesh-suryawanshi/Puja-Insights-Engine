@@ -24,7 +24,7 @@ export const blogPosts: BlogPost[] = [
     readTime: "6 min read",
     publishDate: "January 15, 2026",
     excerpt: "Planning to move into your new home in 2026? Here are the most auspicious Griha Pravesh muhurat dates as per the Hindu calendar. Book your pandit early!",
-    image: "/images/blog/griha-pravesh-muhurat.jpg",
+    image: "/images/blog/griha-pravesh-muhurat.png",
     tags: ["Griha Pravesh", "Muhurat 2026", "Housewarming", "Auspicious Dates"],
     content: `
 # Griha Pravesh Muhurat 2026 — Complete Guide for Bangalore Families
@@ -93,7 +93,7 @@ Our experienced North Indian pandits are available across all of Bangalore — W
     readTime: "8 min read",
     publishDate: "February 1, 2026",
     excerpt: "Understand the complete Satyanarayan Puja vidhi — from the meaning of the Katha to the significance of suji prasad. A guide for North Indian families in Bangalore.",
-    image: "/images/blog/satyanarayan-vidhi.jpg",
+    image: "/images/blog/satyanarayan-vidhi.png",
     tags: ["Satyanarayan Puja", "Puja Vidhi", "Vishnu Puja", "Katha"],
     content: `
 # Satyanarayan Puja Vidhi — Everything You Need to Know
@@ -178,7 +178,7 @@ Our experienced North Indian pandits perform Satyanarayan Puja with the complete
     readTime: "5 min read",
     publishDate: "January 25, 2026",
     excerpt: "Confused about what to buy for your home puja? Here's the complete puja samagri list for the most popular North Indian pujas — with tips for Bangalore families.",
-    image: "/images/blog/puja-samagri.jpg",
+    image: "/images/blog/puja-samagri.png",
     tags: ["Puja Samagri", "Puja Items", "Home Puja", "Bangalore"],
     content: `
 # Complete Puja Samagri List for Home Pujas
@@ -286,7 +286,7 @@ The easiest option — our pandits bring complete samagri for your booked puja. 
     readTime: "7 min read",
     publishDate: "February 10, 2026",
     excerpt: "Rudrabhishek is one of the most powerful Vedic rituals. Here are the 7 key benefits that make this Shiva puja so deeply transformative for devotees.",
-    image: "/images/blog/rudrabhishek-benefits.jpg",
+    image: "/images/blog/rudrabhishek-benefits.png",
     tags: ["Rudrabhishek", "Shiv Puja", "Benefits", "Vedic Rituals"],
     content: `
 # 7 Powerful Benefits of Rudrabhishek Puja
@@ -363,7 +363,7 @@ Our experienced Hindi pandits in Bangalore perform complete Rudrabhishek with Na
     readTime: "5 min read",
     publishDate: "January 10, 2026",
     excerpt: "New to booking a pandit online in Bangalore? This step-by-step guide explains everything from choosing the right puja to what happens on the day.",
-    image: "/images/blog/book-pandit-online.jpg",
+    image: "/images/blog/book-pandit-online.png",
     tags: ["Book Pandit Online", "Pandit Booking", "Bangalore", "Guide"],
     content: `
 # How to Book a Pandit Online in Bangalore — Step-by-Step Guide
@@ -454,7 +454,7 @@ Ready to book? [Fill our booking form](/book) or call us directly for instant as
     readTime: "4 min read",
     publishDate: "January 5, 2026",
     excerpt: "Wondering what a pandit costs in Bangalore? Here's our transparent 2026 pricing guide for all major puja types — with samagri and without.",
-    image: "/images/blog/pandit-cost.jpg",
+    image: "/images/blog/pandit-cost.png",
     tags: ["Pandit Cost", "Puja Price", "Bangalore", "2026 Pricing"],
     content: `
 # Pandit Cost in Bangalore 2026 — Transparent Pricing Guide
@@ -544,7 +544,7 @@ At Radhe Radhe Puja, every pandit has 10+ years of experience and our pricing is
     readTime: "6 min read",
     publishDate: "February 20, 2026",
     excerpt: "Living in Bangalore means navigating both North and South Indian traditions. Here's a clear explanation of the differences and why it matters for your puja.",
-    image: "/images/blog/north-vs-south-puja.jpg",
+    image: "/images/blog/north-vs-south-puja.png",
     tags: ["North Indian Puja", "South Indian Puja", "Culture", "Traditions"],
     content: `
 # North Indian vs South Indian Puja — Key Differences Explained
@@ -626,7 +626,7 @@ Our pandits are all North Indian tradition specialists — trained in the Varana
     readTime: "7 min read",
     publishDate: "March 1, 2026",
     excerpt: "The 9 planets in Vedic astrology directly affect your health, career, relationships, and prosperity. Here's why Navgraha Puja is one of the most important remedial rituals.",
-    image: "/images/blog/navgraha-puja.jpg",
+    image: "/images/blog/navgraha-puja.png",
     tags: ["Navgraha Puja", "Planetary Doshas", "Astrology", "Remedies"],
     content: `
 # Why Navgraha Puja is Important — A Complete Guide
@@ -718,7 +718,7 @@ Each planet requires specific offerings that correspond to their energetic natur
     readTime: "5 min read",
     publishDate: "January 28, 2026",
     excerpt: "Should you do Shiv Puja on Monday or any day? Which day is best for Lakshmi Puja? Here's the complete weekday guide for North Indian puja practices.",
-    image: "/images/blog/best-day-puja.jpg",
+    image: "/images/blog/best-day-puja.png",
     tags: ["Best Day for Puja", "Puja Days", "Deity Days", "Weekly Puja"],
     content: `
 # Best Days for Puja — Complete Weekday Guide
@@ -807,7 +807,7 @@ Our pandits help you plan pujas on the most auspicious day for maximum benefit. 
     readTime: "8 min read",
     publishDate: "March 10, 2026",
     excerpt: "The 16 Samskaras are the sacred life rituals of Hinduism — from birth to death. This guide explains each one for North Indian families keeping these traditions alive in Bangalore.",
-    image: "/images/blog/hindu-rituals.jpg",
+    image: "/images/blog/hindu-rituals.png",
     tags: ["Samskaras", "Hindu Rituals", "Life Ceremonies", "North Indian Traditions"],
     content: `
 # 16 Samskaras — The Sacred Life Rituals of Hinduism

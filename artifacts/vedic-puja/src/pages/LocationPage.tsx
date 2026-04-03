@@ -26,44 +26,61 @@ export function LocationPage() {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero */}
-      <div className="bg-gradient-to-br from-primary/10 via-amber-50 to-orange-50 py-16 border-b border-primary/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-            <Link href="/" className="hover:text-primary transition-colors">Home</Link>
-            <ChevronRight className="w-4 h-4" />
-            <Link href="/locations" className="hover:text-primary transition-colors">Locations</Link>
-            <ChevronRight className="w-4 h-4" />
-            <span className="text-foreground">{location.name}</span>
-          </div>
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-              <MapPin className="w-6 h-6 text-primary" />
+      <section className="relative overflow-hidden min-h-[40vh] flex items-center">
+        <div className="absolute inset-0 z-0">
+          <img
+            src={`${import.meta.env.BASE_URL}${location.image.replace(/^\//, "")}`}
+            alt={location.name}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 w-full">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+              <Link href="/" className="hover:text-primary transition-colors">Home</Link>
+              <ChevronRight className="w-4 h-4" />
+              <Link href="/locations" className="hover:text-primary transition-colors">Locations</Link>
+              <ChevronRight className="w-4 h-4" />
+              <span className="text-foreground">{location.name}</span>
             </div>
-            <div>
-              <p className="text-sm font-medium text-primary uppercase tracking-wider">Pandit Service</p>
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground">
-                Pandit in {location.name}
-              </h1>
+
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center backdrop-blur shadow-sm border border-primary/20">
+                <MapPin className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-primary uppercase tracking-wider">Premium Pandit Service</p>
+                <h1 className="text-3xl md:text-5xl font-display font-bold text-foreground">
+                  Pandit in {location.name}
+                </h1>
+              </div>
             </div>
-          </div>
-          <p className="text-lg text-muted-foreground max-w-2xl mb-6">{location.metaDescription}</p>
-          <div className="flex flex-wrap gap-3">
-            <a
-              href="/book"
-              className="px-6 py-3 rounded-full font-semibold bg-primary text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
-            >
-              Book Pandit in {location.name}
-            </a>
-            <a
-              href="tel:+919546308950"
-              className="px-6 py-3 rounded-full font-semibold border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-200 flex items-center gap-2"
-            >
-              <Phone className="w-4 h-4" />
-              Call Now
-            </a>
+
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+              {location.metaDescription}
+            </p>
+
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/book"
+                className="px-8 py-3.5 rounded-full font-bold bg-primary text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
+              >
+                Book Pandit in {location.name}
+              </Link>
+              <a
+                href="tel:+919546308950"
+                className="px-8 py-3.5 rounded-full font-bold border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-200 flex items-center gap-2"
+              >
+                <Phone className="w-4 h-4" />
+                Call Now
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">

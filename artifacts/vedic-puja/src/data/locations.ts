@@ -11,6 +11,7 @@ export interface Location {
   areas: string[];
   famousFor: string;
   faq: { q: string; a: string }[];
+  image: string;
 }
 
 export const locations: Location[] = [
@@ -32,7 +33,8 @@ export const locations: Location[] = [
       { q: "Do you cover all apartment complexes in Whitefield?", a: "Yes, we serve all apartment complexes and gated communities in Whitefield including Prestige Shantiniketan, Adarsh Palm Retreat, Brigade Lakefront, and all others." },
       { q: "What is the minimum booking notice for a pandit in Whitefield?", a: "We prefer 24 hours notice for planning, but we accommodate same-day bookings for most puja types subject to availability. Call us directly for urgent requirements." },
       { q: "Are there any extra travel charges for Whitefield?", a: "No extra travel charges apply within Whitefield and its immediate surroundings. Standard pricing applies for all puja services." }
-    ]
+    ],
+    image: "/images/locations/whitefield.png"
   },
   {
     slug: "electronic-city",
@@ -52,7 +54,8 @@ export const locations: Location[] = [
       { q: "Can puja be arranged in large apartment complexes in Electronic City?", a: "Yes, we regularly perform pujas in large apartment complexes in Electronic City. Our pandit coordinates with the building office for any specific requirements." },
       { q: "What are the most popular pujas booked in Electronic City?", a: "Griha Pravesh (housewarming) and Satyanarayan Puja are the most popular, followed by Vastu Puja and Navratri Puja." },
       { q: "Can I book a pandit for a morning slot in Electronic City on a workday?", a: "Yes, many of our clients in Electronic City book early morning pujas (before office hours) or weekend pujas. We accommodate all timing preferences." }
-    ]
+    ],
+    image: "/images/locations/electronic-city.png"
   },
   {
     slug: "marathahalli",
@@ -72,7 +75,8 @@ export const locations: Location[] = [
       { q: "Do you cover Kadubeesanahalli and Devarabisanahalli areas?", a: "Yes, all areas from Marathahalli junction through Kadubeesanahalli and Devarabisanahalli are covered by our service." },
       { q: "How much does a pandit cost in Marathahalli?", a: "Pricing starts from ₹1,500 for basic puja. Our pricing is transparent and consistent across all Bangalore locations including Marathahalli." },
       { q: "Can you do pujas in gated communities in Marathahalli?", a: "Yes, we regularly perform pujas in all gated communities in Marathahalli. Our pandit handles the security/visitor registration process." }
-    ]
+    ],
+    image: "/images/locations/marathahalli.png"
   },
   {
     slug: "btm-layout",
@@ -92,7 +96,8 @@ export const locations: Location[] = [
       { q: "Can I book a Tuesday Hanuman puja in BTM Layout?", a: "Yes, Tuesday and Saturday Sundarkand Path or Hanuman Puja bookings are available. Book by Saturday for Tuesday puja slots." },
       { q: "Are pandits available for late evening pujas in BTM?", a: "Yes, we offer evening puja slots (up to 9 PM) in BTM Layout. For Kali Puja or midnight rituals, special arrangements are made in advance." },
       { q: "What is the cost of pandit in BTM Layout?", a: "Puja starts from ₹1,500. All our pricing is transparent and consistent across Bangalore. No additional charges for BTM Layout." }
-    ]
+    ],
+    image: "/images/locations/btm-layout.png"
   },
   {
     slug: "indiranagar",
@@ -112,7 +117,8 @@ export const locations: Location[] = [
       { q: "Are wedding pandits available in Indiranagar for venue pujas?", a: "Yes, we coordinate with all major event venues and banquet halls in Indiranagar for wedding and engagement pujas." },
       { q: "Do you also perform pujas at the office in Indiranagar?", a: "Yes, office pujas (Vastu Puja, Lakshmi Puja, Ganesh Puja for new office inauguration) are regularly performed in Indiranagar's commercial areas." },
       { q: "Can you do early morning pujas in Indiranagar?", a: "Yes, early morning slots (6 AM onwards) are available in Indiranagar for auspicious occasions requiring specific muhurat times." }
-    ]
+    ],
+    image: "/images/locations/indiranagar.png"
   },
   {
     slug: "hsr-layout",
@@ -132,7 +138,8 @@ export const locations: Location[] = [
       { q: "Do you cover all 7 sectors of HSR Layout?", a: "Yes, all HSR Layout sectors (1 through 7) are fully covered. We also serve Agara and the Haralur Road stretch." },
       { q: "Is Navratri puja available in apartment complexes in HSR?", a: "Yes, we offer community Navratri puja arrangements for apartment complexes in HSR Layout. Contact us for group bookings." },
       { q: "Can I book a pandit for a small Tuesday Hanuman puja in HSR?", a: "Yes, small weekly pujas (Hanuman Chalisa, Satyanarayan, Shiv puja on Mondays) can be arranged with minimum 1 day advance booking in HSR Layout." }
-    ]
+    ],
+    image: "/images/locations/whitefield.png"
   },
   {
     slug: "yelahanka",
@@ -152,7 +159,8 @@ export const locations: Location[] = [
       { q: "Can pandits come early morning before airport travel from Yelahanka?", a: "Yes, our pandits can be arranged for early morning pujas (from 5:30 AM) in Yelahanka for families with early flights or travel plans." },
       { q: "Is Bhumi Pujan available for new construction in Yelahanka?", a: "Yes, Bhumi Pujan is regularly performed for new residential and commercial construction projects in the Yelahanka area." },
       { q: "How much does a pandit cost in Yelahanka?", a: "Our standard pricing applies to Yelahanka. Pujas start from ₹1,500. No extra travel charges within Yelahanka." }
-    ]
+    ],
+    image: "/images/locations/indiranagar.png"
   },
   {
     slug: "hebbal",
@@ -172,7 +180,8 @@ export const locations: Location[] = [
       { q: "Can puja be arranged in large apartment towers in Hebbal?", a: "Yes, we regularly perform pujas in large residential towers along the Outer Ring Road in Hebbal. Our pandit handles all security and parking arrangements." },
       { q: "Is same-day pandit booking possible in Hebbal?", a: "Same-day booking is possible for most puja types in Hebbal. Call us directly for urgent requirements." },
       { q: "Are there any specific pujas popular in the Hebbal community?", a: "Satyanarayan Puja, Griha Pravesh, and Navratri puja are the most booked in Hebbal's North Indian community." }
-    ]
+    ],
+    image: "/images/locations/whitefield.png"
   },
   {
     slug: "sarjapur",
@@ -192,7 +201,8 @@ export const locations: Location[] = [
       { q: "How quickly can a pandit arrive in Sarjapur in an emergency?", a: "We aim for 1–2 hour response for emergencies on Sarjapur Road. Due to traffic, advance booking is highly recommended." },
       { q: "Do you cover Bellandur and Carmelaram areas?", a: "Yes, both Bellandur and Carmelaram are within our Sarjapur service area. These are among our busiest locations." },
       { q: "Can Bhumi Pujan be done for a new plot in Sarjapur?", a: "Yes, Bhumi Pujan for new plots and construction projects is regularly performed throughout the Sarjapur Road corridor." }
-    ]
+    ],
+    image: "/images/locations/marathahalli.png"
   }
 ];
 
