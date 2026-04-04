@@ -38,8 +38,12 @@ FROM nginx:alpine AS runner
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy built frontend assets from the base image
-# vite.config.ts uses outDir: dist/public
-COPY --from=base /app/artifacts/vedic-puja/dist/public/ /usr/share/nginx/html
+# First, copy the standard build output
+COPY --from=base /app/artifacts/vedic-puja/dist/ /usr/share/nginx/html/
+
+# Explicitly copy the public folder contents to ensure SEO files are in the root
+# (In case the build tool put them in a subdirectory)
+COPY --from=base /app/artifacts/vedic-puja/public/ /usr/share/nginx/html/
 
 # Copy custom Nginx configuration (which we'll create next)
 COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
