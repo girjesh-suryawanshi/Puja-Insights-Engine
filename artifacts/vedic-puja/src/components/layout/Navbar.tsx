@@ -90,9 +90,11 @@ export function Navbar() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group shrink-0">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/30 group-hover:scale-105 transition-transform">
-              <Flame className="w-5 h-5 text-white" />
-            </div>
+            <img 
+              src="/pwa-192x192.png" 
+              alt="Radhe Radhe Puja Icon" 
+              className="w-10 h-10 rounded-xl shadow-lg group-hover:scale-105 transition-transform duration-200"
+            />
             <span className="font-display font-bold text-xl md:text-2xl text-foreground">
               Radhe Radhe<span className="text-primary">Puja</span>
             </span>

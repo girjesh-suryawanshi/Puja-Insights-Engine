@@ -30,7 +30,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
       {/* Mobile Header */}
       <header className="md:hidden flex items-center justify-between px-4 py-3 bg-gray-900 text-white fixed top-0 w-full z-40 border-b border-gray-800 shadow-sm">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded bg-gradient-to-br from-orange-400 to-red-600"></div>
+          <img src="/pwa-192x192.png" alt="Icon" className="w-8 h-8 rounded-lg shadow-lg" />
           <span className="font-bold tracking-tight">PujaPanel</span>
         </div>
         <button 
@@ -62,27 +62,31 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
         md:relative md:translate-x-0
       `}>
         <div className="p-6 text-2xl font-black border-b border-gray-800 tracking-tight text-white flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-400 to-red-600 shadow-lg shadow-orange-500/30 shrink-0"></div>
+          <img src="/pwa-192x192.png" alt="Logo" className="w-10 h-10 rounded-xl shadow-lg shadow-orange-500/20" />
           <span className="truncate">Puja<span className="text-orange-500 font-medium">Panel</span></span>
         </div>
         
-        <nav className="p-4 flex flex-col gap-1.5 flex-grow font-medium overflow-y-auto">
-          {navLinks.map((link) => (
-            <Link key={link.href} href={link.href}>
-              <a className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all font-medium ${location === link.href ? 'bg-orange-500/10 text-orange-500 shadow-sm border border-orange-500/10' : 'text-gray-400 hover:bg-gray-800 hover:text-white'}`}>
+        <div className="flex-grow overflow-y-auto custom-scrollbar pt-4 px-4 pb-8">
+          <nav className="flex flex-col gap-1.5 font-medium">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all font-medium ${location === link.href ? 'bg-orange-500/10 text-orange-500 shadow-sm border border-orange-500/10' : 'text-gray-400 hover:bg-gray-800 hover:text-white'}`}
+              >
                 <link.icon className="w-4 h-4" />
                 <span>{link.label}</span>
-              </a>
-            </Link>
-          ))}
-          
-          <div className="mt-auto border-t border-gray-800 pt-4">
-            <button onClick={handleLogout} className="flex items-center gap-3 w-full text-left px-4 py-2.5 text-red-500 hover:bg-red-500/10 rounded-lg transition-all font-bold">
-              <LogOut className="w-4 h-4" />
-              <span>Sign Out</span>
-            </button>
-          </div>
-        </nav>
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        <div className="p-4 border-t border-gray-800 bg-gray-900/50 backdrop-blur-md">
+          <button onClick={handleLogout} className="flex items-center gap-3 w-full text-left px-4 py-2 text-red-500 hover:bg-red-500/10 rounded-lg transition-all font-bold">
+            <LogOut className="w-4 h-4" />
+            <span>Sign Out</span>
+          </button>
+        </div>
       </aside>
 
       {/* Main Content Area */}
