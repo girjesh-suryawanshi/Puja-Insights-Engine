@@ -18,27 +18,15 @@ export default defineConfig(({ mode }) => {
   // Load env file from the root directory (../../)
   const env = loadEnv(mode, path.resolve(import.meta.dirname, "..", ".."), "");
 
-  const rawPort = env.VITE_PORT;
-
-  if (!rawPort) {
-    throw new Error(
-      "PORT environment variable is required but was not provided in the root .env",
-    );
-  }
-
+  const rawPort = env.VITE_PORT || "5173";
   const port = Number(rawPort);
 
   if (Number.isNaN(port) || port <= 0) {
     throw new Error(`Invalid PORT value: "${rawPort}"`);
   }
 
-  const basePath = env.BASE_PATH;
+  const basePath = env.BASE_PATH || "/";
 
-  if (!basePath) {
-    throw new Error(
-      "BASE_PATH environment variable is required but was not provided in the root .env",
-    );
-  }
 
   return {
     base: basePath,

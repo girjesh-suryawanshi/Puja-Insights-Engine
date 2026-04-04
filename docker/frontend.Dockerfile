@@ -8,10 +8,17 @@ RUN npm install -g pnpm
 WORKDIR /app
 
 # Copy root configurations
-COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml tsconfig.base.json ./
+
+# Add build arguments for Vite
+ARG VITE_PORT=4009
+ARG BASE_PATH=/
+ENV VITE_PORT=$VITE_PORT
+ENV BASE_PATH=$BASE_PATH
 
 # Copy libraries
 COPY lib/ ./lib/
+
 
 # Copy the frontend artifact
 COPY artifacts/vedic-puja/ ./artifacts/vedic-puja/
