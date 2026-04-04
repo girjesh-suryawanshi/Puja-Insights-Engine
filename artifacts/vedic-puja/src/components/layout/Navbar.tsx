@@ -24,10 +24,20 @@ export function Navbar() {
   const [isGuideOpen, setIsGuideOpen] = useState(false);
 
   const handleInstallClick = async () => {
+    // If we're on iOS, we always show the guide because Safari doesn't support native prompt
+    if (isIOS) {
+      setIsGuideOpen(true);
+      return;
+    }
+
     if (isInstallable) {
-      await handleInstall();
+      const result = await handleInstall();
+      // If the prompt was dismissed or failed for some reason, we can still show the guide as a fallback
+      if (!result) {
+        setIsGuideOpen(true);
+      }
     } else {
-      // Fallback for iOS or when native prompt isn't ready
+      // Fallback for when native prompt isn't ready or supported
       setIsGuideOpen(true);
     }
   };
