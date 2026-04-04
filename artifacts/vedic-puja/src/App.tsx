@@ -20,8 +20,12 @@ const BlogPostPage = React.lazy(() => import("./pages/BlogPost").then(m => ({ de
 const BlogList = React.lazy(() => import("./pages/BlogList").then(m => ({ default: m.BlogList })));
 const About = React.lazy(() => import("./pages/About").then(m => ({ default: m.About })));
 const LocationsList = React.lazy(() => import("./pages/LocationsList").then(m => ({ default: m.LocationsList })));
+const Privacy = React.lazy(() => import("./pages/legal/Privacy").then(m => ({ default: m.Privacy })));
+const Terms = React.lazy(() => import("./pages/legal/Terms").then(m => ({ default: m.Terms })));
 const AdminApp = React.lazy(() => import("./pages/admin/AdminApp"));
 import { ReloadPrompt } from "./components/pwa/ReloadPrompt";
+import { MetaTags } from "./components/seo/MetaTags";
+import { LocalBusinessSchema } from "./components/seo/LocalBusinessSchema";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +57,12 @@ function Router() {
           </Route>
           <Route path="/about">
             <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}><About /></Suspense>
+          </Route>
+          <Route path="/privacy">
+            <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}><Privacy /></Suspense>
+          </Route>
+          <Route path="/terms">
+            <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}><Terms /></Suspense>
           </Route>
           <Route path="/admin">
             <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading Admin Panel...</div>}>

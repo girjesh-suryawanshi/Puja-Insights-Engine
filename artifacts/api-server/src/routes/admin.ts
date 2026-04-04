@@ -31,19 +31,73 @@ router.delete("/settings/:id", async (req, res) => {
 
 // Blogs
 router.get("/blogs", async (req, res) => {
-  const blogs = await db.select().from(blogsTable);
+  const blogs = await db.select().from(blogsTable).orderBy(desc(blogsTable.createdAt));
   res.json(blogs);
 });
 
+const getSafeBlogData = (body: any) => {
+  return {
+    slug: body.slug,
+    title: body.title,
+    content: body.content,
+    excerpt: body.excerpt,
+    image: body.image,
+    category: body.category,
+    readTime: body.readTime,
+    primaryKeyword: body.primaryKeyword,
+    metaTitle: body.metaTitle,
+    metaDescription: body.metaDescription,
+    status: body.status,
+    tags: body.tags,
+    authorId: body.authorId ? Number(body.authorId) : null,
+  };
+};
+
 router.post("/blogs", async (req, res) => {
-  const newBlog = await db.insert(blogsTable).values(req.body).returning();
-  res.json(newBlog[0]);
+  try {
+    const data = getSafeBlogData(req.body);
+    const publishedAt = req.body.status === 'published' ? new Date() : null;
+    
+    const newBlog = await db.insert(blogsTable)
+      .values({ ...data, publishedAt } as any)
+      .returning();
+    return res.json(newBlog[0]);
+  } catch (err) {
+    console.error("Failed to create blog:", err);
+    return res.status(500).json({ error: "Failed to create blog post" });
+  }
 });
 
 router.put("/blogs/:id", async (req, res) => {
-  const { id } = req.params;
-  const updated = await db.update(blogsTable).set({ ...req.body, updatedAt: new Date() }).where(eq(blogsTable.id, Number(id))).returning();
-  res.json(updated[0]);
+  try {
+    const { id } = req.params;
+    const data = getSafeBlogData(req.body);
+    
+    const existing = await db.select().from(blogsTable).where(eq(blogsTable.id, Number(id))).limit(1);
+    if (existing.length === 0) {
+      return res.status(404).json({ error: "Blog not found" });
+    }
+
+    let publishedAt = existing[0].publishedAt;
+    if (req.body.status === 'published' && !publishedAt) {
+      publishedAt = new Date();
+    } else if (req.body.status === 'draft') {
+      publishedAt = null;
+    }
+
+    const updated = await db.update(blogsTable)
+      .set({ 
+        ...data, 
+        publishedAt,
+        updatedAt: new Date() 
+      })
+      .where(eq(blogsTable.id, Number(id)))
+      .returning();
+    return res.json(updated[0]);
+  } catch (err) {
+    console.error("Failed to update blog:", err);
+    return res.status(500).json({ error: "Failed to update blog post" });
+  }
 });
 
 router.delete("/blogs/:id", async (req, res) => {

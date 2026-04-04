@@ -11,6 +11,8 @@ import { useSubmitContact } from "@workspace/api-client-react";
 import { useToast } from "@/hooks/use-toast";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { pujas } from "@/data/pujas";
+import { MetaTags } from "@/components/seo/MetaTags";
+import { LocalBusinessSchema } from "@/components/seo/LocalBusinessSchema";
 
 // Animations
 const fadeIn = {
@@ -78,9 +80,17 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="overflow-hidden">
+      <MetaTags 
+        title="North Indian Pandit in Bangalore | Hindi Pandit & Vedic Pooja Services"
+        description="Book verified North Indian Pandits in Bangalore for Griha Pravesh, Satyanarayan Puja, Marriage, and Vedic Ceremonies. Expert Hindi-speaking Purohits with full Samagri available in Koramangala, Whitefield, and all areas."
+        keywords="North Indian Pandit Bangalore, Hindi Pandit Bangalore, Griha Pravesh Pandit Bangalore, Satyanarayan Puja Bangalore, Vedic Pandit Bangalore, Pandit for marriage in Bangalore"
+        canonical="/"
+      />
+      <LocalBusinessSchema />
+      
       {/* HERO SECTION */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center pt-20">
         <div className="absolute inset-0 z-0">
           <img 
             src={`${import.meta.env.BASE_URL}images/hero-bg.png`} 

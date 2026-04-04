@@ -1,8 +1,9 @@
 import { useParams, Link } from "wouter";
 import { motion } from "framer-motion";
 import { MapPin, Phone, CheckCircle, ChevronRight, Star } from "lucide-react";
-import { getLocationBySlug } from "../data/locations";
+import { getLocationBySlug, locations } from "../data/locations";
 import { pujas } from "../data/pujas";
+import { MetaTags } from "@/components/seo/MetaTags";
 
 export function LocationPage() {
   const { slug } = useParams<{ slug: string }>();

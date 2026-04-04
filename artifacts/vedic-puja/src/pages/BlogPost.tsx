@@ -1,116 +1,77 @@
 import { useParams, Link } from "wouter";
 import { motion } from "framer-motion";
 import { Calendar, Clock, ChevronRight, Tag } from "lucide-react";
-import { getBlogBySlug, blogPosts } from "../data/blogs";
+import { useQuery } from "@tanstack/react-query";
+import { MarkdownRenderer } from "../components/blog/MarkdownRenderer";
+import { getBlogBySlug as getStaticBlogBySlug } from "../data/blogs";
 
-function MarkdownRenderer({ content }: { content: string }) {
-  const lines = content.trim().split("\n");
-  const elements: JSX.Element[] = [];
-  let key = 0;
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-
-    if (line.startsWith("# ")) {
-      elements.push(<h1 key={key++} className="text-3xl font-display font-bold text-foreground mt-8 mb-4">{line.slice(2)}</h1>);
-    } else if (line.startsWith("## ")) {
-      elements.push(<h2 key={key++} className="text-2xl font-display font-bold text-foreground mt-8 mb-3">{line.slice(3)}</h2>);
-    } else if (line.startsWith("### ")) {
-      elements.push(<h3 key={key++} className="text-xl font-display font-semibold text-foreground mt-6 mb-2">{line.slice(4)}</h3>);
-    } else if (line.startsWith("| ")) {
-      // Table - find all table lines
-      const tableLines = [];
-      let j = i;
-      while (j < lines.length && lines[j].startsWith("| ")) {
-        tableLines.push(lines[j]);
-        j++;
-      }
-      i = j - 1;
-
-      const rows = tableLines.filter(l => !l.includes("---"));
-      elements.push(
-        <div key={key++} className="overflow-x-auto my-6">
-          <table className="w-full border-collapse border border-border rounded-lg overflow-hidden text-sm">
-            {rows.map((row, ri) => {
-              const cells = row.split("|").filter(c => c.trim());
-              return ri === 0 ? (
-                <thead key={ri}><tr className="bg-primary/10">{cells.map((c, ci) => <th key={ci} className="p-3 text-left font-semibold text-foreground border-b border-border">{c.trim()}</th>)}</tr></thead>
-              ) : (
-                <tbody key={ri}><tr className="border-b border-border hover:bg-muted/50">{cells.map((c, ci) => <td key={ci} className="p-3 text-muted-foreground">{c.trim()}</td>)}</tr></tbody>
-              );
-            })}
-          </table>
-        </div>
-      );
-    } else if (line.startsWith("> ")) {
-      elements.push(
-        <blockquote key={key++} className="border-l-4 border-primary pl-4 py-2 my-4 bg-primary/5 rounded-r-lg italic text-muted-foreground">
-          {line.slice(2)}
-        </blockquote>
-      );
-    } else if (line.startsWith("- ") || line.startsWith("* ")) {
-      // Collect list items
-      const items = [];
-      let j = i;
-      while (j < lines.length && (lines[j].startsWith("- ") || lines[j].startsWith("* "))) {
-        items.push(lines[j].slice(2));
-        j++;
-      }
-      i = j - 1;
-      elements.push(
-        <ul key={key++} className="list-disc list-inside space-y-1.5 my-3 text-muted-foreground pl-2">
-          {items.map((item, ii) => {
-            const boldMatch = item.match(/^\*\*(.+?)\*\*(.*)$/);
-            return (
-              <li key={ii} className="leading-relaxed">
-                {boldMatch ? <><strong className="text-foreground">{boldMatch[1]}</strong>{boldMatch[2]}</> : item}
-              </li>
-            );
-          })}
-        </ul>
-      );
-    } else if (/^\d+\. /.test(line)) {
-      const items = [];
-      let j = i;
-      while (j < lines.length && /^\d+\. /.test(lines[j])) {
-        items.push(lines[j].replace(/^\d+\. /, ""));
-        j++;
-      }
-      i = j - 1;
-      elements.push(
-        <ol key={key++} className="list-decimal list-inside space-y-1.5 my-3 text-muted-foreground pl-2">
-          {items.map((item, ii) => {
-            const boldMatch = item.match(/^\*\*(.+?)\*\*(.*)$/);
-            return (
-              <li key={ii} className="leading-relaxed">
-                {boldMatch ? <><strong className="text-foreground">{boldMatch[1]}</strong>{boldMatch[2]}</> : item}
-              </li>
-            );
-          })}
-        </ol>
-      );
-    } else if (line.trim() === "") {
-      // skip empty lines
-    } else {
-      // Regular paragraph — handle inline formatting
-      const formatted = line
-        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary hover:underline font-medium">$1</a>');
-      elements.push(
-        <p key={key++} className="text-muted-foreground leading-relaxed my-3" dangerouslySetInnerHTML={{ __html: formatted }} />
-      );
-    }
-  }
-
-  return <div className="prose-content">{elements}</div>;
+interface Blog {
+  slug: string;
+  title: string;
+  category: string;
+  readTime: string;
+  publishDate?: string;
+  publishedAt?: string;
+  excerpt: string;
+  image: string;
+  content: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  tags?: string | string[];
 }
 
 export function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
-  const post = getBlogBySlug(slug || "");
-  const relatedPosts = blogPosts.filter(b => b.slug !== slug).slice(0, 3);
+  
+  const { data: post, isLoading, error } = useQuery<Blog>({
+    queryKey: ["/api/blogs", slug],
+    queryFn: async () => {
+      const res = await fetch(`/api/blogs/${slug}`);
+      if (!res.ok) throw new Error("Blog not found");
+      return res.json();
+    },
+    enabled: !!slug
+  });
 
-  if (!post) {
+  const staticPost = !post ? getStaticBlogBySlug(slug || "") : null;
+  const currentPost = post || (staticPost ? {
+    ...staticPost,
+    publishedAt: staticPost.publishDate
+  } as Blog : null);
+
+  const { data: allBlogs = [] } = useQuery<Blog[]>({
+    queryKey: ["/api/blogs"],
+    queryFn: async () => {
+      const res = await fetch("/api/blogs");
+      if (!res.ok) return [];
+      return res.json();
+    }
+  });
+
+  const relatedPosts = allBlogs.filter(b => b.slug !== slug).slice(0, 3);
+
+  if (isLoading && !currentPost) {
+    return (
+      <div className="min-h-screen pt-32 flex flex-col items-center justify-center gap-4">
+        <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-muted-foreground animate-pulse font-medium">Opening sacred texts...</p>
+      </div>
+    );
+  }
+
+  // Small background loading indicator
+  const LoadingIndicator = isLoading ? (
+    <div className="fixed top-20 left-0 w-full h-1 bg-primary/20 z-50">
+      <motion.div 
+        initial={{ width: "0%" }}
+        animate={{ width: "100%" }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="h-full bg-primary"
+      />
+    </div>
+  ) : null;
+
+  if (error && !staticPost) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -121,16 +82,25 @@ export function BlogPostPage() {
     );
   }
 
+  if (!currentPost) return null;
+
+  const tags = Array.isArray(currentPost.tags) ? currentPost.tags : (currentPost.tags ? currentPost.tags.split(',').map(t => t.trim()) : []);
+
   return (
     <div className="min-h-screen pt-20">
+      {LoadingIndicator}
       {/* Hero */}
       <section className="relative overflow-hidden min-h-[40vh] flex items-center">
         <div className="absolute inset-0 z-0">
-          <img
-            src={`${import.meta.env.BASE_URL}${post.image.replace(/^\//, "")}`}
-            alt={post.title}
-            className="w-full h-full object-cover"
-          />
+          {currentPost.image ? (
+            <img
+              src={currentPost.image.startsWith('http') || currentPost.image.startsWith('/') ? currentPost.image : `${import.meta.env.BASE_URL}${currentPost.image.replace(/^\//, "")}`}
+              alt={currentPost.title}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full bg-orange-100" />
+          )}
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
           <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
         </div>
@@ -142,26 +112,26 @@ export function BlogPostPage() {
               <ChevronRight className="w-4 h-4" />
               <Link href="/blog" className="hover:text-primary transition-colors">Blog</Link>
               <ChevronRight className="w-4 h-4" />
-              <span className="text-foreground line-clamp-1">{post.title}</span>
+              <span className="text-foreground line-clamp-1">{currentPost.title}</span>
             </div>
 
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4 backdrop-blur shadow-sm border border-primary/20">
               <Tag className="w-3 h-3" />
-              {post.category}
+              {currentPost.category}
             </div>
 
             <h1 className="text-3xl md:text-5xl font-display font-bold text-foreground mb-6 leading-tight">
-              {post.title}
+              {currentPost.title}
             </h1>
 
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-primary" />
-                <span className="font-medium text-foreground">{post.publishDate}</span>
+                <span className="font-medium text-foreground">{currentPost.publishDate || (currentPost.publishedAt ? new Date(currentPost.publishedAt).toLocaleDateString() : "Recently")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-primary" />
-                <span className="font-medium text-foreground">{post.readTime}</span>
+                <span className="font-medium text-foreground">{currentPost.readTime}</span>
               </div>
             </div>
           </div>
@@ -173,19 +143,21 @@ export function BlogPostPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
             <motion.article initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-              <MarkdownRenderer content={post.content} />
+              <MarkdownRenderer content={currentPost.content} />
             </motion.article>
 
             {/* Tags */}
-            <div className="mt-10 pt-6 border-t border-border">
-              <div className="flex flex-wrap gap-2">
-                {post.tags.map(tag => (
-                  <span key={tag} className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
-                    {tag}
-                  </span>
-                ))}
+            {tags.length > 0 && (
+              <div className="mt-10 pt-6 border-t border-border">
+                <div className="flex flex-wrap gap-2">
+                  {tags.map((tag: string) => (
+                    <span key={tag} className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* CTA */}
             <div className="mt-8 p-6 bg-gradient-to-r from-primary to-secondary rounded-2xl text-white">
@@ -212,22 +184,24 @@ export function BlogPostPage() {
             </div>
 
             {/* Related Posts */}
-            <div className="bg-white border border-border rounded-2xl p-5">
-              <h3 className="font-display font-bold text-foreground mb-4">Related Articles</h3>
-              <div className="space-y-4">
-                {relatedPosts.map(related => (
-                  <Link key={related.slug} href={`/blog/${related.slug}`}>
-                    <div className="group cursor-pointer py-3 border-b border-border last:border-0">
-                      <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors leading-snug">{related.title}</p>
-                      <div className="flex items-center gap-2 mt-1.5 text-xs text-muted-foreground">
-                        <Clock className="w-3 h-3" />
-                        <span>{related.readTime}</span>
+            {relatedPosts.length > 0 && (
+              <div className="bg-white border border-border rounded-2xl p-5">
+                <h3 className="font-display font-bold text-foreground mb-4">Related Articles</h3>
+                <div className="space-y-4">
+                  {relatedPosts.map(related => (
+                    <Link key={related.slug} href={`/blog/${related.slug}`}>
+                      <div className="group cursor-pointer py-3 border-b border-border last:border-0">
+                        <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors leading-snug">{related.title}</p>
+                        <div className="flex items-center gap-2 mt-1.5 text-xs text-muted-foreground">
+                          <Clock className="w-3 h-3" />
+                          <span>{related.readTime}</span>
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                ))}
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

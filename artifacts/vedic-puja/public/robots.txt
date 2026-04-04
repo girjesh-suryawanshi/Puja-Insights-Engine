@@ -1,0 +1,8 @@
+# robots.txt for Radhe Radhe Puja Services
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://radheradhepuja.com/sitemap.xml

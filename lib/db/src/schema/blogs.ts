@@ -8,11 +8,17 @@ export const blogsTable = pgTable("blogs", {
   slug: varchar("slug", { length: 255 }).notNull().unique(),
   title: varchar("title", { length: 255 }).notNull(),
   content: text("content").notNull(),
+  excerpt: text("excerpt"),
+  image: text("image"),
+  category: varchar("category", { length: 100 }),
+  readTime: varchar("read_time", { length: 50 }),
+  primaryKeyword: varchar("primary_keyword", { length: 255 }),
   metaTitle: varchar("meta_title", { length: 255 }),
   metaDescription: varchar("meta_description", { length: 500 }),
   status: varchar("status", { length: 50 }).notNull().default("draft"), // 'draft' or 'published'
   authorId: integer("author_id").references(() => usersTable.id),
   publishedAt: timestamp("published_at"),
+  tags: text("tags"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
