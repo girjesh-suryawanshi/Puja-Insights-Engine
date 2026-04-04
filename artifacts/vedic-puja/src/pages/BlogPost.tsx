@@ -94,7 +94,16 @@ export function BlogPostPage() {
         <div className="absolute inset-0 z-0">
           {currentPost.image ? (
             <img
-              src={currentPost.image.startsWith('http') || currentPost.image.startsWith('/') ? currentPost.image : `${import.meta.env.BASE_URL}${currentPost.image.replace(/^\//, "")}`}
+              src={(() => {
+                let url = currentPost.image;
+                if (url.includes("drive.google.com")) {
+                  const driveIdMatch = url.match(/\/d\/([^\/]+)/) || url.match(/id=([^\&]+)/);
+                  if (driveIdMatch && driveIdMatch[1]) {
+                    return `https://drive.google.com/uc?id=${driveIdMatch[1]}`;
+                  }
+                }
+                return url.startsWith('http') || url.startsWith('/') ? url : `${import.meta.env.BASE_URL}${url.replace(/^\//, "")}`;
+              })()}
               alt={currentPost.title}
               className="w-full h-full object-cover"
             />

@@ -89,13 +89,79 @@ export function MarkdownRenderer({ content }: { content: string }) {
     } else if (line.trim() === "") {
       // skip empty lines
     } else {
-      // Regular paragraph — handle inline formatting
-      const formatted = line
-        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary hover:underline font-medium">$1</a>');
-      elements.push(
-        <p key={key++} className="text-muted-foreground leading-relaxed my-3" dangerouslySetInnerHTML={{ __html: formatted }} />
-      );
+      // Regular paragraph — handle inline formatting and images
+      let formatted = line;
+      
+      // Handle Markdown Images: ![alt](url)
+      // This needs a special replacement to handle the URL resolution
+      const imageRegex = /!\[(.+?)\]\((.+?)\)/g;
+      let match;
+      const parts = [];
+      let lastIndex = 0;
+
+      while ((match = imageRegex.exec(line)) !== null) {
+        // Text before image
+        if (match.index > lastIndex) {
+          parts.push(line.slice(lastIndex, match.index));
+        }
+        
+        let url = match[2];
+        const alt = match[1];
+
+        // Solve Google Drive links
+        if (url.includes("drive.google.com")) {
+          const driveIdMatch = url.match(/\/d\/([^\/]+)/) || url.match(/id=([^\&]+)/);
+          if (driveIdMatch && driveIdMatch[1]) {
+            url = `https://drive.google.com/uc?id=${driveIdMatch[1]}`;
+          }
+        }
+
+        parts.push(
+          <div key={`img-${key++}`} className="my-8 flex justify-center">
+            <div className="relative group max-w-full">
+              <img 
+                src={url} 
+                alt={alt} 
+                className="rounded-2xl border-4 border-white shadow-xl max-w-full h-auto object-cover hover:scale-[1.01] transition-transform duration-500" 
+              />
+              <div className="absolute inset-x-0 bottom-0 py-2 px-4 bg-black/40 backdrop-blur-sm text-white text-[10px] text-center rounded-b-2xl opacity-0 group-hover:opacity-100 transition-opacity">
+                {alt}
+              </div>
+            </div>
+          </div>
+        );
+        
+        lastIndex = imageRegex.lastIndex;
+      }
+
+      if (parts.length > 0) {
+        // Remaining text after last image
+        if (lastIndex < line.length) {
+          parts.push(line.slice(lastIndex));
+        }
+        
+        elements.push(
+          <div key={key++} className="space-y-4">
+            {parts.map((p, pi) => typeof p === 'string' ? (
+              <p key={pi} className="text-muted-foreground leading-relaxed my-3" 
+                 dangerouslySetInnerHTML={{ __html: p
+                   .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                   .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary hover:underline font-medium">$1</a>')
+                 }} 
+              />
+            ) : p)}
+          </div>
+        );
+      } else {
+        // Standard paragraph
+        formatted = line
+          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary hover:underline font-medium">$1</a>');
+        
+        elements.push(
+          <p key={key++} className="text-muted-foreground leading-relaxed my-3" dangerouslySetInnerHTML={{ __html: formatted }} />
+        );
+      }
     }
   }
 

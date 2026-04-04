@@ -38,6 +38,24 @@ export function BlogsEditor() {
   const [editing, setEditing] = useState<Partial<Blog> | null>(null);
   const [showPreview, setShowPreview] = useState(false);
   const { toast } = useToast();
+  
+  const getBlogImageUrl = (url: string) => {
+    if (!url) return "";
+    
+    // Handle Google Drive links (convert View/Open to Direct)
+    if (url.includes("drive.google.com")) {
+      const driveIdMatch = url.match(/\/d\/([^\/]+)/) || url.match(/id=([^\&]+)/);
+      if (driveIdMatch && driveIdMatch[1]) {
+        return `https://drive.google.com/uc?id=${driveIdMatch[1]}`;
+      }
+    }
+
+    if (url.startsWith('http') || url.startsWith('/')) return url;
+    
+    // Resolve relative paths from the base URL to prevent /admin/ prepending
+    const baseUrl = import.meta.env.BASE_URL || "/";
+    return `${baseUrl}${url.startsWith('/') ? url.slice(1) : url}`;
+  };
 
   const fetchBlogs = async () => {
     setLoading(true);
@@ -321,7 +339,7 @@ export function BlogsEditor() {
                   />
                   {editing.image && (
                     <div className="mt-2 rounded-lg overflow-hidden border bg-gray-100 aspect-video flex items-center justify-center">
-                      <img src={editing.image} alt="Preview" className="w-full h-full object-cover" />
+                      <img src={getBlogImageUrl(editing.image)} alt="Preview" className="w-full h-full object-cover" />
                     </div>
                   )}
                 </div>
@@ -399,7 +417,7 @@ export function BlogsEditor() {
                     <div className="flex items-center gap-4">
                       {blog.image ? (
                         <div className="w-12 h-12 rounded-lg border overflow-hidden shrink-0 hidden sm:block">
-                          <img src={blog.image} className="w-full h-full object-cover" />
+                          <img src={getBlogImageUrl(blog.image)} className="w-full h-full object-cover" />
                         </div>
                       ) : (
                         <div className="w-12 h-12 rounded-lg border bg-gray-100 flex items-center justify-center shrink-0 hidden sm:block">

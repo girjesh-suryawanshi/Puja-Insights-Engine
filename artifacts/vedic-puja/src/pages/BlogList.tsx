@@ -115,7 +115,16 @@ export function BlogList() {
                   <div className="relative overflow-hidden min-h-[200px] md:min-h-[300px]">
                     {featuredPost.image ? (
                       <img
-                        src={featuredPost.image.startsWith('http') || featuredPost.image.startsWith('/') ? featuredPost.image : `${import.meta.env.BASE_URL}${featuredPost.image.replace(/^\//, "")}`}
+                        src={(() => {
+                          let url = featuredPost.image;
+                          if (url.includes("drive.google.com")) {
+                            const driveIdMatch = url.match(/\/d\/([^\/]+)/) || url.match(/id=([^\&]+)/);
+                            if (driveIdMatch && driveIdMatch[1]) {
+                               return `https://drive.google.com/uc?id=${driveIdMatch[1]}`;
+                            }
+                          }
+                          return url.startsWith('http') || url.startsWith('/') ? url : `${import.meta.env.BASE_URL}${url.replace(/^\//, "")}`;
+                        })()}
                         alt={featuredPost.title}
                         className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
@@ -181,7 +190,16 @@ export function BlogList() {
                   <div className="relative h-48 overflow-hidden">
                     {post.image ? (
                       <img
-                        src={post.image.startsWith('http') || post.image.startsWith('/') ? post.image : `${import.meta.env.BASE_URL}${post.image.replace(/^\//, "")}`}
+                        src={(() => {
+                          let url = post.image;
+                          if (url.includes("drive.google.com")) {
+                            const driveIdMatch = url.match(/\/d\/([^\/]+)/) || url.match(/id=([^\&]+)/);
+                            if (driveIdMatch && driveIdMatch[1]) {
+                               return `https://drive.google.com/uc?id=${driveIdMatch[1]}`;
+                            }
+                          }
+                          return url.startsWith('http') || url.startsWith('/') ? url : `${import.meta.env.BASE_URL}${url.startsWith('/') ? url.slice(1) : url}`;
+                        })()}
                         alt={post.title}
                         className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
