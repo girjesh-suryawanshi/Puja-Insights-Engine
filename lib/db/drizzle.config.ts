@@ -1,16 +1,7 @@
 import { defineConfig } from "drizzle-kit";
-import path from "path";
-import { fileURLToPath } from "url";
-import * as dotenv from "dotenv";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Load environment variables from the root .env file
-dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
 if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL, ensure the database is provisioned");
+  throw new Error("DATABASE_URL is required for the database push operation.");
 }
 
 export default defineConfig({
