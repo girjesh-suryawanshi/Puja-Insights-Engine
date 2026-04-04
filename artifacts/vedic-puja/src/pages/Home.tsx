@@ -11,13 +11,18 @@ import { useSubmitContact } from "@workspace/api-client-react";
 import { useToast } from "@/hooks/use-toast";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { pujas } from "@/data/pujas";
+import { ImageGallery } from "@/components/sections/ImageGallery";
 import { MetaTags } from "@/components/seo/MetaTags";
 import { LocalBusinessSchema } from "@/components/seo/LocalBusinessSchema";
 
 // Animations
 const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.8 } 
+  }
 };
 
 const staggerContainer = {
@@ -290,6 +295,8 @@ export default function Home() {
         </div>
       </section>
 
+      <ImageGallery />
+      
       {/* TESTIMONIALS */}
       <section className="py-20 bg-primary text-primary-foreground relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
