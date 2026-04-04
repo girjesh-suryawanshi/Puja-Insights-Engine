@@ -17,7 +17,7 @@ COPY lib/ ./lib/
 COPY artifacts/api-server/ ./artifacts/api-server/
 
 # Install all dependencies (including workspace dependencies)
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --no-frozen-lockfile
 
 # Build the API server
 # This runs node build.mjs which bundles the app into artifacts/api-server/dist
