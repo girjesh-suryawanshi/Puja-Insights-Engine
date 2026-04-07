@@ -101,6 +101,8 @@ export default function Home() {
             src={`${import.meta.env.BASE_URL}images/hero-bg.png`} 
             alt="Divine Background" 
             className="w-full h-full object-cover opacity-90"
+            loading="eager"
+            fetchpriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-transparent" />
         </div>
@@ -176,6 +178,7 @@ export default function Home() {
                       <img
                         src={`${import.meta.env.BASE_URL}${puja.image.replace(/^\//, "")}`}
                         alt={puja.name}
+                        loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -207,7 +210,7 @@ export default function Home() {
       <section id="how-it-works" className="py-20 bg-white relative overflow-hidden">
         {/* Decorative background image */}
         <div className="absolute right-0 top-0 w-1/3 opacity-5 pointer-events-none">
-          <img src={`${import.meta.env.BASE_URL}images/puja-items.png`} alt="" className="w-full object-cover" />
+          <img src={`${import.meta.env.BASE_URL}images/puja-items.png`} alt="" className="w-full object-cover" loading="lazy" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -252,6 +255,7 @@ export default function Home() {
                   <img 
                     src={`${import.meta.env.BASE_URL}images/${pandit.img}`} 
                     alt={pandit.name} 
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute bottom-4 left-4 z-20 md:hidden">
