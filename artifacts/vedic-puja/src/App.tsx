@@ -5,7 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { ScrollToTop } from "./components/layout/ScrollToTop";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, Phone } from "lucide-react";
 import Home from "./pages/Home";
 import NotFound from "@/pages/not-found";
 import { AuthProvider } from "./providers/AuthProvider";
@@ -82,21 +82,36 @@ function Router() {
       </main>
       {!isAdmin && <Footer />}
 
-      {/* Floating WhatsApp Icon */}
+      {/* Floating Action Buttons */}
       {!isAdmin && (
-        <a
-          href="https://wa.me/919546308950?text=Namaste%2C%20I%20would%20like%20to%20book%20a%20puja."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 group flex items-center justify-center animate-in fade-in zoom-in duration-500"
-          aria-label="Contact on WhatsApp"
-        >
-          <MessageCircle className="w-6 h-6 fill-current" />
-          <span className="absolute right-full mr-4 bg-white text-gray-800 px-3 py-1.5 rounded-xl text-sm font-semibold shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-2 group-hover:translate-x-0 whitespace-nowrap pointer-events-none border border-gray-100/50 backdrop-blur-sm">
-            Chat with Pandit ji
-          </span>
-          <span className="absolute -top-1 -right-1 w-4 h-4 bg-orange-500 rounded-full border-2 border-white animate-pulse" />
-        </a>
+        <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
+          {/* Phone Call Button */}
+          <a
+            href="tel:+919546308950"
+            className="bg-primary text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 group flex items-center justify-center animate-in fade-in zoom-in duration-700"
+            aria-label="Call Pandit ji"
+          >
+            <Phone className="w-6 h-6 fill-current" />
+            <span className="absolute right-full mr-4 bg-white text-gray-800 px-3 py-1.5 rounded-xl text-sm font-semibold shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-2 group-hover:translate-x-0 whitespace-nowrap pointer-events-none border border-gray-100/50 backdrop-blur-sm">
+              Call Pandit ji
+            </span>
+          </a>
+
+          {/* WhatsApp Icon */}
+          <a
+            href="https://wa.me/919546308950?text=Namaste%2C%20I%20would%20like%20to%20book%20a%20puja."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 group flex items-center justify-center animate-in fade-in zoom-in duration-500"
+            aria-label="Contact on WhatsApp"
+          >
+            <MessageCircle className="w-6 h-6 fill-current" />
+            <span className="absolute right-full mr-4 bg-white text-gray-800 px-3 py-1.5 rounded-xl text-sm font-semibold shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-2 group-hover:translate-x-0 whitespace-nowrap pointer-events-none border border-gray-100/50 backdrop-blur-sm">
+              Chat with Pandit ji
+            </span>
+            <span className="absolute -top-1 -right-1 w-4 h-4 bg-orange-500 rounded-full border-2 border-white animate-pulse" />
+          </a>
+        </div>
       )}
     </div>
   );
