@@ -34,7 +34,7 @@ docker exec -it puja-web-prod ls -l /usr/share/nginx/html/sitemap.xml
 docker exec puja-api-prod node -e "console.log(require('bcryptjs').hashSync('pass@123', 10))"
 
 
-docker exec -it puja-db-prod psql -U puja_admin -d puja_insights -c "UPDATE users SET password_hash = 'PASTE_THE_STRING_HERE' WHERE email = 'manali@gmail.com';"
+docker exec -it puja-db-prod psql -U puja_admin -d puja_insights -c "UPDATE users SET password_hash = '$2b$10$9iB0VmAyt3APZf4XiuQoA.NJrvqhWcM1SYD22dzY3NkTq5Ak9hc7W' WHERE email = 'admin@radheradhepuja.com';"
 
 
 🛠️ Commands to Check Logs:
@@ -80,6 +80,59 @@ docker exec -it puja-api-prod pnpm -w run db:push
 docker exec -it puja-api-prod pnpm -w run db:push
 
 
+cat <<EOF > scripts/seed_admin.mjs
+import pg from 'pg';
+import bcrypt from 'bcryptjs';
+
+const DATABASE_URL = "postgresql://puja_admin:puja_pwd_change_me@localhost:5436/puja_insights";
+
+async function createAdmin() {
+  const client = new pg.Client({ connectionString: DATABASE_URL });
+  try {
+    await client.connect();
+    const email = "admin@radheradhepuja.com";
+    const password = "Crompton@1310"; // CHANGE THIS!
+    const role = "admin";
+    const hash = await bcrypt.hash(password, 10);
+    
+    await client.query(
+      "INSERT INTO users (email, password_hash, role) VALUES (\\\$1, \\\$2, \\\$3) ON CONFLICT (email) DO NOTHING",
+      [email, hash, role]
+    );
+    console.log("✅ Admin user created: " + email);
+  } catch (err) {
+    console.error("❌ Error creating admin:", err);
+  } finally {
+    await client.end();
+  }
+}
+
+createAdmin();
+EOF
+
+# Run the script
+node scripts/seed_admin.mjs
 
 
+
+
+
+Important step after database push 
+
+1. Generate has password
+docker exec puja-api-prod node -e "console.log(require('bcryptjs').hashSync('pass@123', 10))"
+
+2. update password =pass@123
+docker exec -it puja-db-prod psql -U puja_admin -d puja_insights -c "UPDATE users SET password_hash = '\$2b\$10\$Ci2YOzYQtMB2BGo45rcNae2COpoDDhPYOymHSw48ksPAtUXLKVr6e' WHERE email = 'admin@radheradhepuja.com';"
+
+3.check 
+docker exec -it puja-db-prod psql -U puja_admin -d puja_insights -c "SELECT email, password_hash FROM users;
+4 verify
+
+root@srv1022252:/opt/Puja-Insights-Engine# docker exec -it puja-db-prod psql -U puja_admin -d puja_insights -c "SELECT * FROM users;"
+ id |          email           |                        password_hash                         | role  |         created_at         
+----+--------------------------+--------------------------------------------------------------+-------+----------------------------
+  1 | admin@radheradhepuja.com | $2b$10$Ci2YOzYQtMB2BGo45rcNae2COpoDDhPYOymHSw48ksPAtUXLKVr6e | admin | 2026-04-07 18:21:52.450826
+  2 | girjeshlt@gmail.com      | $2b$10$36eXrs9H720bxFa5YH1BVOXDNafCwyM1Vp351wALO62crVKfMPWoe | admin | 2026-04-07 18:32:34.99676
+(2 rows)
 
