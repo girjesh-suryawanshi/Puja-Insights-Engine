@@ -87,8 +87,9 @@ function Router() {
         <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
           {/* Phone Call Button */}
           <a
+            id="phone-contact-link"
             href="tel:+919546308950"
-            className="bg-primary text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 group flex items-center justify-center animate-in fade-in zoom-in duration-700"
+            className="bg-blue-600 text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 group flex items-center justify-center animate-in fade-in zoom-in duration-700"
             aria-label="Call Pandit ji"
           >
             <Phone className="w-6 h-6 fill-current" />
@@ -99,6 +100,7 @@ function Router() {
 
           {/* WhatsApp Icon */}
           <a
+            id="whatsapp-contact-link"
             href="https://wa.me/919546308950?text=Namaste%2C%20I%20would%20like%20to%20book%20a%20puja."
             target="_blank"
             rel="noopener noreferrer"
