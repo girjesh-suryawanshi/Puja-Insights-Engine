@@ -25,6 +25,13 @@ const fadeIn = {
   }
 };
 
+// GTM dataLayer type
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
@@ -67,6 +74,15 @@ export default function Home() {
       { data },
       {
         onSuccess: () => {
+          // Push event to GTM dataLayer for conversion tracking
+          if (typeof window !== "undefined" && window.dataLayer) {
+            window.dataLayer.push({
+              event: "generate_lead",
+              formId: "lead-contact-form",
+              conversionType: "lead_form"
+            });
+          }
+          
           toast({
             title: "Message Sent!",
             description: "We will get back to you shortly.",
@@ -361,7 +377,7 @@ export default function Home() {
 
             <div className="bg-white rounded-3xl p-8 shadow-xl border border-border">
               <h3 className="text-2xl font-display font-bold mb-6">Send a Message</h3>
-              <form onSubmit={handleSubmit(onSubmitContact)} className="space-y-4">
+              <form id="lead-contact-form" onSubmit={handleSubmit(onSubmitContact)} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-1">Full Name</label>
