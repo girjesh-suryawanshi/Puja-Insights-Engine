@@ -17,7 +17,7 @@ COPY lib/ ./lib/
 COPY artifacts/api-server/ ./artifacts/api-server/
 
 # Install all dependencies (including workspace dependencies)
-RUN pnpm install --no-frozen-lockfile
+RUN pnpm config set ignore-scripts false && pnpm install --no-frozen-lockfile
 
 # Build the API server
 # This runs node build.mjs which bundles the app into artifacts/api-server/dist
@@ -40,7 +40,7 @@ COPY --from=base /app/lib ./lib
 
 # Install only production dependencies for the API server
 WORKDIR /app/artifacts/api-server
-RUN pnpm install --prod --frozen-lockfile
+RUN pnpm config set ignore-scripts false && pnpm install --prod --frozen-lockfile
 
 # Expose the API port (as defined in .env or default)
 EXPOSE 5000
