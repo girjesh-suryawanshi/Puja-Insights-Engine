@@ -2,6 +2,7 @@ import { Flame, Mail, MapPin, Phone } from "lucide-react";
 import { Link } from "wouter";
 import { pujas } from "@/data/pujas";
 import { locations } from "@/data/locations";
+import { trackPhoneCallClick } from "@/lib/analytics";
 
 export function Footer() {
   const popularPujas = pujas.filter(p => ["satyanarayan-puja", "ganesh-puja", "griha-pravesh", "rudrabhishek", "navratri-puja", "diwali-lakshmi-puja", "vivah-puja", "namkaran-ceremony", "havan-puja", "kaal-sarp-dosh-puja"].includes(p.slug));
@@ -27,7 +28,7 @@ export function Footer() {
             <div className="space-y-3 text-gray-400 text-sm">
               <div className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                <a href="tel:+919546308950" className="hover:text-primary transition-colors">+91 95463 08950</a>
+                <a href="tel:+919546308950" onClick={() => trackPhoneCallClick("footer_phone")} className="hover:text-primary transition-colors">+91 95463 08950</a>
               </div>
               <div className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-primary shrink-0 mt-0.5" />

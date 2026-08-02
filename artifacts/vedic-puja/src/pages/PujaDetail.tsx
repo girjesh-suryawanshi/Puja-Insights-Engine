@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useCreateBooking } from "@workspace/api-client-react";
 import { useToast } from "@/hooks/use-toast";
+import { trackBookingSuccess } from "@/lib/analytics";
 
 const bookingSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -61,8 +62,10 @@ export default function PujaDetail() {
       { data: { ...data, pujaType: puja.name, message: data.message || "" } },
       {
         onSuccess: () => {
+          trackBookingSuccess(puja.name);
           toast({ title: "Booking Confirmed!", description: "Our team will call you shortly to confirm the details." });
           reset();
+          window.location.href = `/thank-you?puja=${encodeURIComponent(puja.name)}`;
         },
         onError: () => {
           toast({ title: "Error", description: "Failed to submit booking. Please try again.", variant: "destructive" });

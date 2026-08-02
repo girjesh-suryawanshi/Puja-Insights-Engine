@@ -14,6 +14,7 @@ import React, { Suspense } from "react";
 
 // Code Splitting for non-initial routes
 const Book = React.lazy(() => import("./pages/Book"));
+const ThankYou = React.lazy(() => import("./pages/ThankYou"));
 const PujaDetail = React.lazy(() => import("./pages/PujaDetail"));
 const LocationPage = React.lazy(() => import("./pages/LocationPage").then(m => ({ default: m.LocationPage })));
 const BlogPostPage = React.lazy(() => import("./pages/BlogPost").then(m => ({ default: m.BlogPostPage })));
@@ -26,6 +27,7 @@ const AdminApp = React.lazy(() => import("./pages/admin/AdminApp"));
 import { ReloadPrompt } from "./components/pwa/ReloadPrompt";
 import { MetaTags } from "./components/seo/MetaTags";
 import { LocalBusinessSchema } from "./components/seo/LocalBusinessSchema";
+import { trackWhatsAppClick, trackPhoneCallClick } from "@/lib/analytics";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +44,9 @@ function Router() {
           <Route path="/" component={Home} />
           <Route path="/book">
             <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}><Book /></Suspense>
+          </Route>
+          <Route path="/thank-you">
+            <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}><ThankYou /></Suspense>
           </Route>
           <Route path="/puja/:slug">
             <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}><PujaDetail /></Suspense>
@@ -89,6 +94,7 @@ function Router() {
           <a
             id="phone-contact-link"
             href="tel:+919546308950"
+            onClick={() => trackPhoneCallClick("floating_phone_icon")}
             className="bg-blue-600 text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 group flex items-center justify-center animate-in fade-in zoom-in duration-700"
             aria-label="Call Pandit ji"
           >
@@ -104,6 +110,7 @@ function Router() {
             href="https://wa.me/919546308950?text=Namaste%2C%20I%20would%20like%20to%20book%20a%20puja."
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsAppClick("floating_whatsapp_icon")}
             className="bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 group flex items-center justify-center animate-in fade-in zoom-in duration-500"
             aria-label="Contact on WhatsApp"
           >

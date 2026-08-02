@@ -6,6 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CalendarDays, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
+import { trackBookingSuccess } from "@/lib/analytics";
 
 const bookingSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -44,8 +45,8 @@ export default function Book() {
       { data },
       {
         onSuccess: () => {
-          setIsSuccess(true);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          trackBookingSuccess(data.pujaType);
+          window.location.href = `/thank-you?puja=${encodeURIComponent(data.pujaType)}`;
         },
         onError: (err) => {
           toast({

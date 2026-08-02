@@ -6,7 +6,7 @@ import { UploadCloud, X, RefreshCw } from 'lucide-react';
 export function ReloadPrompt() {
   const {
     offlineReady: [offlineReady, setOfflineReady],
-    needUpdate: [needUpdate, setNeedUpdate],
+    needRefresh: [needUpdate, setNeedUpdate],
     updateServiceWorker,
   } = useRegisterSW({
     onRegistered(r: ServiceWorkerRegistration | undefined) {

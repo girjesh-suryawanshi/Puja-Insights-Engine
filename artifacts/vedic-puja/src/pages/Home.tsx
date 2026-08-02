@@ -15,6 +15,10 @@ import { ImageGallery } from "@/components/sections/ImageGallery";
 import { MetaTags } from "@/components/seo/MetaTags";
 import { LocalBusinessSchema } from "@/components/seo/LocalBusinessSchema";
 
+import { useState } from "react";
+import { QuickBookingModal } from "@/components/booking/QuickBookingModal";
+import { trackBookingSuccess } from "@/lib/analytics";
+
 // Animations
 const fadeIn = {
   hidden: { opacity: 0, y: 30 },
@@ -24,13 +28,6 @@ const fadeIn = {
     transition: { duration: 0.8 } 
   }
 };
-
-// GTM dataLayer type
-declare global {
-  interface Window {
-    dataLayer: any[];
-  }
-}
 
 const staggerContainer = {
   hidden: { opacity: 0 },
@@ -64,6 +61,7 @@ const contactSchema = z.object({
 export default function Home() {
   const { toast } = useToast();
   const contactMutation = useSubmitContact();
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   
   const { register, handleSubmit, reset, formState: { errors } } = useForm<z.infer<typeof contactSchema>>({
     resolver: zodResolver(contactSchema)
@@ -74,20 +72,13 @@ export default function Home() {
       { data },
       {
         onSuccess: () => {
-          // Push event to GTM dataLayer for conversion tracking
-          if (typeof window !== "undefined" && window.dataLayer) {
-            window.dataLayer.push({
-              event: "generate_lead",
-              formId: "lead-contact-form",
-              conversionType: "lead_form"
-            });
-          }
-          
+          trackBookingSuccess(data.subject);
           toast({
             title: "Message Sent!",
             description: "We will get back to you shortly.",
           });
           reset();
+          window.location.href = `/thank-you?puja=${encodeURIComponent(data.subject)}`;
         },
         onError: () => {
           toast({
@@ -102,6 +93,7 @@ export default function Home() {
 
   return (
     <div className="overflow-hidden">
+      <QuickBookingModal isOpen={isBookingModalOpen} onClose={() => setIsBookingModalOpen(false)} />
       <MetaTags 
         title="North Indian Pandit in Bangalore | Hindi Pandit & Vedic Pooja Services"
         description="Book verified North Indian Pandits in Bangalore for Griha Pravesh, Satyanarayan Puja, Marriage, and Vedic Ceremonies. Expert Hindi-speaking Purohits with full Samagri available in Koramangala, Whitefield, and all areas."
@@ -118,7 +110,7 @@ export default function Home() {
             alt="Divine Background" 
             className="w-full h-full object-cover opacity-90"
             loading="eager"
-            fetchpriority="high"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-transparent" />
         </div>
@@ -136,12 +128,12 @@ export default function Home() {
                 Book Pandit Diwakar Pandey, an experienced, verified North Indian Pandit for authentic Radhe Radhe Pujas and rituals right at your home.
               </motion.p>
               <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
-                <Link 
-                  href="/book" 
-                  className="px-8 py-4 rounded-xl font-bold text-lg bg-gradient-to-r from-primary to-secondary text-white shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-1 transition-all duration-300 text-center"
+                <button 
+                  onClick={() => setIsBookingModalOpen(true)}
+                  className="px-8 py-4 rounded-xl font-bold text-lg bg-gradient-to-r from-primary to-secondary text-white shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-1 transition-all duration-300 text-center cursor-pointer"
                 >
                   Book a Pandit Now
-                </Link>
+                </button>
                 <a 
                   href="#services" 
                   className="px-8 py-4 rounded-xl font-bold text-lg bg-white border-2 border-border text-foreground hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 text-center"

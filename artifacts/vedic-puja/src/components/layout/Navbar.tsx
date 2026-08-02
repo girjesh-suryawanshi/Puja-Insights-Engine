@@ -6,6 +6,7 @@ import { pujas } from "@/data/pujas";
 import { locations } from "@/data/locations";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
 import { InstallGuide } from "@/components/pwa/InstallGuide";
+import { QuickBookingModal } from "@/components/booking/QuickBookingModal";
 
 const categoryLabels: Record<string, string> = {
   puja: "Puja Services",
@@ -18,6 +19,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isQuickBookingOpen, setIsQuickBookingOpen] = useState(false);
   const [location] = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { isInstallable, isIOS, isStandalone, handleInstall } = usePWAInstall();
@@ -179,12 +181,12 @@ export function Navbar() {
                 </Link>
               )
             ))}
-            <Link
-              href="/book"
+            <button
+              onClick={() => setIsQuickBookingOpen(true)}
               className="px-5 py-2.5 rounded-full font-semibold bg-gradient-to-r from-primary to-primary/80 text-white shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 transition-all duration-200 whitespace-nowrap"
             >
               Book a Pandit
-            </Link>
+            </button>
             {!isStandalone && (
               <button
                 onClick={handleInstallClick}
@@ -207,6 +209,7 @@ export function Navbar() {
       </div>
 
       <InstallGuide isOpen={isGuideOpen} onClose={() => setIsGuideOpen(false)} isIOS={isIOS} />
+      <QuickBookingModal isOpen={isQuickBookingOpen} onClose={() => setIsQuickBookingOpen(false)} />
 
       {/* Mobile Nav */}
       <AnimatePresence>
@@ -278,14 +281,15 @@ export function Navbar() {
               <Link href="/about" onClick={() => setIsMobileMenuOpen(false)}>
                 <a className="font-medium text-lg text-foreground hover:text-primary transition-colors py-2 block">About</a>
               </Link>
-              <Link
-                href="/book"
-                onClick={() => setIsMobileMenuOpen(false)}
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setIsQuickBookingOpen(true);
+                }}
+                className="w-full px-6 py-3 text-center rounded-xl font-semibold bg-primary text-white shadow-md mt-2 block"
               >
-                <a className="px-6 py-3 text-center rounded-xl font-semibold bg-primary text-white shadow-md mt-2 block">
-                  Book a Pandit Now
-                </a>
-              </Link>
+                Book a Pandit Now
+              </button>
               {!isStandalone && (
                 <button
                   onClick={() => {
