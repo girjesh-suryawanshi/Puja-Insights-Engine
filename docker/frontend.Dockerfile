@@ -23,8 +23,9 @@ COPY lib/ ./lib/
 # Copy the frontend artifact
 COPY artifacts/vedic-puja/ ./artifacts/vedic-puja/
 
-# Install dependencies (including workspace dependencies)
-RUN pnpm install --no-frozen-lockfile --config.onlyBuiltDependencies=esbuild
+# Delete lockfile so pnpm regenerates it fresh from pnpm-workspace.yaml
+# (pnpm-workspace.yaml already has esbuild in onlyBuiltDependencies)
+RUN rm -f pnpm-lock.yaml && pnpm install
 
 # Build the frontend application
 # vite build --config vite.config.ts

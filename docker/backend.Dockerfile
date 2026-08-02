@@ -16,8 +16,9 @@ COPY lib/ ./lib/
 # Copy the API server package
 COPY artifacts/api-server/ ./artifacts/api-server/
 
-# Install all dependencies (including workspace dependencies)
-RUN pnpm install --no-frozen-lockfile --config.onlyBuiltDependencies=esbuild
+# Delete lockfile so pnpm regenerates it fresh from pnpm-workspace.yaml
+# (pnpm-workspace.yaml already has esbuild in onlyBuiltDependencies)
+RUN rm -f pnpm-lock.yaml && pnpm install
 
 # Build the API server
 # This runs node build.mjs which bundles the app into artifacts/api-server/dist
@@ -40,7 +41,7 @@ COPY --from=base /app/lib ./lib
 
 # Install only production dependencies for the API server
 WORKDIR /app/artifacts/api-server
-RUN pnpm install --prod --frozen-lockfile --config.onlyBuiltDependencies=esbuild
+RUN pnpm install --prod
 
 # Expose the API port (as defined in .env or default)
 EXPOSE 5000
