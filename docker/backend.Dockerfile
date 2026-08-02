@@ -1,8 +1,8 @@
 # Use Node 24 Alpine for a smaller footprint
 FROM node:24-alpine AS base
 
-# Install pnpm for dependency management
-RUN npm install -g pnpm
+# Install pnpm v9 (v10 requires 'pnpm approve-builds' which breaks Docker builds)
+RUN npm install -g pnpm@9
 
 # Set working directory
 WORKDIR /app
@@ -16,9 +16,8 @@ COPY lib/ ./lib/
 # Copy the API server package
 COPY artifacts/api-server/ ./artifacts/api-server/
 
-# Delete lockfile so pnpm regenerates it fresh from pnpm-workspace.yaml
-# (pnpm-workspace.yaml already has esbuild in onlyBuiltDependencies)
-RUN rm -f pnpm-lock.yaml && pnpm install
+# Install all dependencies (including workspace dependencies)
+RUN pnpm install --no-frozen-lockfile
 
 # Build the API server
 # This runs node build.mjs which bundles the app into artifacts/api-server/dist
@@ -30,8 +29,8 @@ FROM node:24-alpine AS runner
 
 WORKDIR /app
 
-# Copy pnpm again for the runner
-RUN npm install -g pnpm
+# Copy pnpm again for the runner (pin to v9)
+RUN npm install -g pnpm@9
 
 # Copy built application and necessary workspace files
 COPY --from=base /app/package.json /app/pnpm-workspace.yaml /app/pnpm-lock.yaml ./
@@ -41,7 +40,7 @@ COPY --from=base /app/lib ./lib
 
 # Install only production dependencies for the API server
 WORKDIR /app/artifacts/api-server
-RUN pnpm install --prod
+RUN pnpm install --prod --no-frozen-lockfile
 
 # Expose the API port (as defined in .env or default)
 EXPOSE 5000

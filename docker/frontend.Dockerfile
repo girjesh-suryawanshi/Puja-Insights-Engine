@@ -1,8 +1,8 @@
 # Use Node 24 Alpine for building
 FROM node:24-alpine AS base
 
-# Install pnpm for dependency management
-RUN npm install -g pnpm
+# Install pnpm v9 (v10 requires 'pnpm approve-builds' which breaks Docker builds)
+RUN npm install -g pnpm@9
 
 # Set working directory
 WORKDIR /app
@@ -23,9 +23,8 @@ COPY lib/ ./lib/
 # Copy the frontend artifact
 COPY artifacts/vedic-puja/ ./artifacts/vedic-puja/
 
-# Delete lockfile so pnpm regenerates it fresh from pnpm-workspace.yaml
-# (pnpm-workspace.yaml already has esbuild in onlyBuiltDependencies)
-RUN rm -f pnpm-lock.yaml && pnpm install
+# Install dependencies (including workspace dependencies)
+RUN pnpm install --no-frozen-lockfile
 
 # Build the frontend application
 # vite build --config vite.config.ts
