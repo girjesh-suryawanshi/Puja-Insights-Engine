@@ -24,7 +24,7 @@ COPY lib/ ./lib/
 COPY artifacts/vedic-puja/ ./artifacts/vedic-puja/
 
 # Install dependencies (including workspace dependencies)
-RUN pnpm install --no-frozen-lockfile
+RUN pnpm install --no-frozen-lockfile --config.onlyBuiltDependencies=esbuild
 
 # Build the frontend application
 # vite build --config vite.config.ts
