@@ -4,6 +4,8 @@ import { MapPin, Phone, CheckCircle, ChevronRight, Star } from "lucide-react";
 import { getLocationBySlug, locations } from "../data/locations";
 import { pujas } from "../data/pujas";
 import { MetaTags } from "@/components/seo/MetaTags";
+import { FAQSchema } from "@/components/seo/FAQSchema";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 
 export function LocationPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -26,6 +28,33 @@ export function LocationPage() {
 
   return (
     <div className="min-h-screen pt-20">
+      {/* SEO: Dynamic Meta Tags, FAQ & Breadcrumb Schemas */}
+      <MetaTags
+        title={location.metaTitle}
+        description={location.metaDescription}
+        keywords={[
+          location.primaryKeyword,
+          `north indian pandit in ${location.name.toLowerCase()}`,
+          `hindi pandit in ${location.name.toLowerCase()}`,
+          `pandit for griha pravesh in ${location.name.toLowerCase()}`,
+          `satyanarayan puja pandit in ${location.name.toLowerCase()}`,
+          `pooja services in ${location.name.toLowerCase()}`,
+          `puja pandit near ${location.name.toLowerCase()} bangalore`,
+        ].join(", ")}
+        canonical={`/location/${location.slug}`}
+        ogTitle={location.metaTitle}
+        ogDescription={location.metaDescription}
+      />
+      <FAQSchema faq={location.faq} id={`faq-location-${location.slug}`} />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Locations", url: "/locations" },
+          { name: location.name, url: `/location/${location.slug}` },
+        ]}
+        id={`breadcrumb-location-${location.slug}`}
+      />
+
       {/* Hero */}
       <section className="relative overflow-hidden min-h-[40vh] flex items-center">
         <div className="absolute inset-0 z-0">

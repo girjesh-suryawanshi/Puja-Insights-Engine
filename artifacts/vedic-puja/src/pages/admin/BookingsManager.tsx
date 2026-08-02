@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { DateRangeFilter } from "@/components/ui/DateRangeFilter";
 import { PaginationControls } from "@/components/ui/PaginationControls";
 interface Booking {
@@ -25,7 +25,7 @@ interface Contact {
   createdAt: string;
 }
 import { format } from "date-fns";
-import { Download, Calendar, MapPin, User, Mail, Phone, Info } from "lucide-react";
+import { Download, Calendar, MapPin, User, Mail, Phone, Info, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { 
@@ -44,6 +44,28 @@ export function BookingsManager() {
   const [pageSize, setPageSize] = React.useState(10);
   const [startDate, setStartDate] = React.useState<string | undefined>(undefined);
   const [endDate, setEndDate] = React.useState<string | undefined>(undefined);
+  const queryClient = useQueryClient();
+
+  const deleteMutation = useMutation({
+    mutationFn: async (id: number) => {
+      const res = await fetch(`/api/admin/bookings/${id}`, { method: "DELETE" });
+      if (!res.ok) throw new Error("Failed to delete booking");
+      return res.json();
+    },
+    onSuccess: () => {
+      toast.success("Booking deleted successfully");
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/bookings"] });
+    },
+    onError: () => {
+      toast.error("Failed to delete booking");
+    }
+  });
+
+  const handleDelete = (id: number) => {
+    if (window.confirm("Are you sure you want to delete this booking?")) {
+      deleteMutation.mutate(id);
+    }
+  };
 
   const { data: response, isLoading, error } = useQuery<{ data: Booking[]; total: number }>({
     queryKey: ["/api/admin/bookings", { page, pageSize, startDate, endDate }],
@@ -142,6 +164,7 @@ export function BookingsManager() {
                   <TableHead className="font-bold text-gray-900">Location</TableHead>
                   <TableHead className="font-bold text-gray-900">Status</TableHead>
                   <TableHead className="font-bold text-gray-900 text-right">Created</TableHead>
+                  <TableHead className="font-bold text-gray-900 text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -185,11 +208,21 @@ export function BookingsManager() {
                     <TableCell className="text-right text-xs text-gray-500">
                       {format(new Date(booking.createdAt), "MMM d, h:mm a")}
                     </TableCell>
+                    <TableCell className="text-right">
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        onClick={() => handleDelete(booking.id)}
+                        className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </TableCell>
                   </TableRow>
                 ))}
                 {(!bookings || bookings.length === 0) && (
                   <TableRow>
-                    <TableCell colSpan={6} className="h-48 text-center text-muted-foreground italic">
+                    <TableCell colSpan={7} className="h-48 text-center text-muted-foreground italic">
                       <div className="flex flex-col items-center gap-2">
                         <Info className="w-8 h-8 opacity-20" />
                         No bookings found in the database.

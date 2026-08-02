@@ -95,9 +95,9 @@ export default function Home() {
     <div className="overflow-hidden">
       <QuickBookingModal isOpen={isBookingModalOpen} onClose={() => setIsBookingModalOpen(false)} />
       <MetaTags 
-        title="North Indian Pandit in Bangalore | Hindi Pandit & Vedic Pooja Services"
-        description="Book verified North Indian Pandits in Bangalore for Griha Pravesh, Satyanarayan Puja, Marriage, and Vedic Ceremonies. Expert Hindi-speaking Purohits with full Samagri available in Koramangala, Whitefield, and all areas."
-        keywords="North Indian Pandit Bangalore, Hindi Pandit Bangalore, Griha Pravesh Pandit Bangalore, Satyanarayan Puja Bangalore, Vedic Pandit Bangalore, Pandit for marriage in Bangalore"
+        title="North Indian Pandit in Bangalore | Hindi Pandit for Griha Pravesh & Puja"
+        description="Book verified North Indian Pandit in Bangalore for Griha Pravesh Puja, Satyanarayan Puja, Rudrabhishek & Marriage. Hindi-speaking Pandit Ji with complete Pooja Samagri available across Whitefield, HSR Layout, Electronic City & all Bengaluru areas."
+        keywords="north indian pandit in bangalore, hindi pandit in bangalore, pandit in bangalore, pandit for griha pravesh puja in bangalore, pandit for puja in bangalore, pandit ji in bangalore, book pandit in bangalore, pandit for satyanarayan puja in bangalore, north indian pandit for griha pravesh puja in bangalore, north indian pandit for puja in bangalore, griha pravesh puja pandit in bangalore, best pandit in bangalore, griha pravesh puja in bangalore, north pandit in bangalore, north indian pandit ji in bangalore, griha pravesh pooja bangalore, satyanarayan puja pandit in bangalore, satyanarayan puja in bangalore, pooja services in bangalore, north indian pandit in bangalore for marriage, hindi pandit bangalore, rudrabhishek puja in bangalore, hindu pandit in bangalore, pandit for griha pravesh in bangalore, pandit for marriage in bangalore, best hindi pandit in bangalore, griha pravesh puja bangalore, griha pravesh bangalore, pooja in bangalore, pandit for shradh puja in bangalore, puja bangalore, rudrabhishek in bangalore, bangalore puja, shradh puja in bangalore, bengaluru puja, pooja samagri bangalore"
         canonical="/"
       />
       <LocalBusinessSchema />

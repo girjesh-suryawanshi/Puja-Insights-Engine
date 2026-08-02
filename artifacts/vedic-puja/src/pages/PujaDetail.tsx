@@ -12,6 +12,10 @@ import { z } from "zod";
 import { useCreateBooking } from "@workspace/api-client-react";
 import { useToast } from "@/hooks/use-toast";
 import { trackBookingSuccess } from "@/lib/analytics";
+import { MetaTags } from "@/components/seo/MetaTags";
+import { FAQSchema } from "@/components/seo/FAQSchema";
+import { ServiceSchema } from "@/components/seo/ServiceSchema";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 
 const bookingSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -76,6 +80,40 @@ export default function PujaDetail() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* SEO: Dynamic Meta Tags, Schemas */}
+      <MetaTags
+        title={puja.metaTitle}
+        description={puja.metaDescription}
+        keywords={[
+          puja.primaryKeyword,
+          `${puja.primaryKeyword} in bangalore`,
+          `north indian pandit for ${puja.name.toLowerCase()} in bangalore`,
+          `hindi pandit for ${puja.name.toLowerCase()} bangalore`,
+          `pandit for ${puja.name.toLowerCase()} in bangalore`,
+          ...puja.areas.map(a => `pandit in ${a.toLowerCase()}`),
+        ].join(", ")}
+        canonical={`/puja/${puja.slug}`}
+        ogTitle={puja.metaTitle}
+        ogDescription={puja.metaDescription}
+        ogImage={`https://radheradhepuja.com${puja.image}`}
+      />
+      <FAQSchema faq={puja.faq} id={`faq-${puja.slug}`} />
+      <ServiceSchema
+        serviceName={`${puja.name} in Bangalore`}
+        description={puja.metaDescription}
+        url={`https://radheradhepuja.com/puja/${puja.slug}`}
+        areaServed={["Bangalore", ...puja.areas]}
+        id={`service-${puja.slug}`}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/#services" },
+          { name: puja.name, url: `/puja/${puja.slug}` },
+        ]}
+        id={`breadcrumb-${puja.slug}`}
+      />
+
       {/* Breadcrumb */}
       <div className="bg-primary/5 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-2 text-sm text-muted-foreground">

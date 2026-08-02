@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Star, Award, Users, Heart, CheckCircle, Phone } from "lucide-react";
+import { MetaTags } from "@/components/seo/MetaTags";
+import { LocalBusinessSchema } from "@/components/seo/LocalBusinessSchema";
 
 const stats = [
   { value: "10,000+", label: "Families Served" },
@@ -46,6 +48,13 @@ const values = [
 export function About() {
   return (
     <div className="min-h-screen">
+      <MetaTags
+        title="Best Pandit in Bangalore | Hindi Pandit Ji | Radhe Radhe Puja"
+        description="Radhe Radhe Puja — Bangalore's most trusted North Indian Pandit service. Led by Acharya Pt. Diwakar Pandey with 20+ years Vedic experience from Varanasi. Best Hindi Pandit in Bangalore for Griha Pravesh, Marriage, Satyanarayan Puja & all Vedic rituals."
+        keywords="best pandit in bangalore, best hindi pandit in bangalore, hindu pandit in bangalore, north indian pandit ji in bangalore, experienced pandit bangalore, vedic pandit bangalore, pt diwakar pandey bangalore, trusted pandit bangalore, top pandit service bangalore"
+        canonical="/about"
+      />
+      <LocalBusinessSchema />
       {/* Hero Header */}
       <section className="relative h-[60vh] min-h-[400px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">

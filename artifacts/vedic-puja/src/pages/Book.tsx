@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CalendarDays, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { trackBookingSuccess } from "@/lib/analytics";
+import { MetaTags } from "@/components/seo/MetaTags";
 
 const bookingSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -83,8 +84,13 @@ export default function Book() {
 
   return (
     <div className="min-h-screen pt-32 pb-20 bg-background">
+      <MetaTags
+        title="Book Pandit in Bangalore | Online Puja Booking | Radhe Radhe Puja"
+        description="Book a verified North Indian Pandit in Bangalore online. Instant confirmation for Griha Pravesh, Satyanarayan Puja, Marriage Puja, Rudrabhishek & all Vedic ceremonies. Hindi-speaking Pandits with complete Samagri across all Bangalore areas."
+        keywords="book pandit in bangalore, book hindi pandit bangalore, pandit booking bangalore, online puja booking bangalore, book pandit online, pandit for puja in bangalore"
+        canonical="/book"
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-border">
           {/* Header */}
           <div className="bg-gradient-to-r from-primary to-secondary p-8 md:p-12 text-center text-white relative">

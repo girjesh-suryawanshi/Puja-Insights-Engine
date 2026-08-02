@@ -2,10 +2,17 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { locations } from "@/data/locations";
 import { MapPin, ChevronRight, Sparkles } from "lucide-react";
+import { MetaTags } from "@/components/seo/MetaTags";
 
 export function LocationsList() {
   return (
     <div className="min-h-screen bg-background pt-20">
+      <MetaTags
+        title="Pooja Services in Bangalore | Pandit Near Me | Radhe Radhe Puja"
+        description="Find experienced North Indian Pandits for all Pooja services across Bangalore and Bengaluru. Hindi-speaking Pandits available in Whitefield, Electronic City, HSR Layout, Indiranagar, Marathahalli & all areas. Same-day booking available."
+        keywords="pooja services in bangalore, bengaluru puja, pooja in bangalore, pandit near me bangalore, puja bangalore, hindi pandit near me, north indian pandit bangalore, pooja services bengaluru"
+        canonical="/locations"
+      />
       {/* Hero */}
       <section className="bg-primary/5 border-b border-border py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

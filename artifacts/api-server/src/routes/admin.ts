@@ -194,4 +194,16 @@ router.get("/contacts", async (req, res) => {
   res.json({ data, total });
 });
 
+router.delete("/bookings/:id", async (req, res) => {
+  const { id } = req.params;
+  await db.delete(bookingsTable).where(eq(bookingsTable.id, Number(id)));
+  res.json({ success: true });
+});
+
+router.delete("/contacts/:id", async (req, res) => {
+  const { id } = req.params;
+  await db.delete(contactsTable).where(eq(contactsTable.id, Number(id)));
+  res.json({ success: true });
+});
+
 export default router;

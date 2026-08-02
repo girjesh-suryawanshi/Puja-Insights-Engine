@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { DateRangeFilter } from "@/components/ui/DateRangeFilter";
 import { PaginationControls } from "@/components/ui/PaginationControls";
 interface Contact {
@@ -12,7 +12,7 @@ interface Contact {
   createdAt: string;
 }
 import { format } from "date-fns";
-import { Download, MessageSquare, Mail, Phone, Info, Clock, Tag } from "lucide-react";
+import { Download, MessageSquare, Mail, Phone, Info, Clock, Tag, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { 
@@ -30,6 +30,28 @@ export function InquiriesManager() {
   const [pageSize, setPageSize] = React.useState(10);
   const [startDate, setStartDate] = React.useState<string | undefined>(undefined);
   const [endDate, setEndDate] = React.useState<string | undefined>(undefined);
+  const queryClient = useQueryClient();
+
+  const deleteMutation = useMutation({
+    mutationFn: async (id: number) => {
+      const res = await fetch(`/api/admin/contacts/${id}`, { method: "DELETE" });
+      if (!res.ok) throw new Error("Failed to delete inquiry");
+      return res.json();
+    },
+    onSuccess: () => {
+      toast.success("Inquiry deleted successfully");
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/contacts"] });
+    },
+    onError: () => {
+      toast.error("Failed to delete inquiry");
+    }
+  });
+
+  const handleDelete = (id: number) => {
+    if (window.confirm("Are you sure you want to delete this inquiry?")) {
+      deleteMutation.mutate(id);
+    }
+  };
 
   const { data: response, isLoading, error } = useQuery<{ data: Contact[]; total: number }>({
     queryKey: ["/api/admin/contacts", { page, pageSize, startDate, endDate }],
@@ -122,6 +144,7 @@ export function InquiriesManager() {
                   <TableHead className="font-bold text-gray-900">Sender</TableHead>
                   <TableHead className="font-bold text-gray-900">Subject & Message</TableHead>
                   <TableHead className="font-bold text-gray-900 text-right">Received</TableHead>
+                  <TableHead className="font-bold text-gray-900 text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -161,11 +184,21 @@ export function InquiriesManager() {
                         <span className="text-xs text-gray-400">{format(new Date(contact.createdAt), "h:mm a")}</span>
                       </div>
                     </TableCell>
+                    <TableCell className="text-right pt-5">
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        onClick={() => handleDelete(contact.id)}
+                        className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </TableCell>
                   </TableRow>
                 ))}
                 {(!contacts || contacts.length === 0) && (
                   <TableRow>
-                    <TableCell colSpan={4} className="h-48 text-center text-muted-foreground italic">
+                    <TableCell colSpan={5} className="h-48 text-center text-muted-foreground italic">
                       <div className="flex flex-col items-center gap-2">
                         <Info className="w-8 h-8 opacity-20" />
                         No inquiries found.
