@@ -93,7 +93,19 @@ export function Footer() {
 
         <div className="pt-8 border-t border-gray-800 text-center text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4">
           <p>© {new Date().getFullYear()} Radhe Radhe Puja Services. All rights reserved. | North Indian Pandit Service in Bangalore</p>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap justify-center items-center gap-4">
+            <span>
+              Designed &amp; Developed by{" "}
+              <a
+                href="https://www.manalitheboss.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-primary font-medium transition-colors underline decoration-primary/40 underline-offset-4 hover:decoration-primary"
+              >
+                manalitheboss
+              </a>
+            </span>
+            <span className="hidden md:inline text-gray-700">|</span>
             <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
           </div>

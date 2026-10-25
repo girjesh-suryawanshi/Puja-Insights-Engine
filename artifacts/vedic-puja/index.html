@@ -3,12 +3,29 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Radhe Radhe Puja Services</title>
   <link rel="icon" type="image/png" href="/pwa-192x192.png" />
+  <!-- Fallback SEO meta tags (overridden per-page by MetaTags component) -->
+  <meta name="description" content="Book verified North Indian Pandit in Bangalore for Griha Pravesh, Satyanarayan Puja &amp; Rudrabhishek. Hindi-speaking Pandit Ji with complete Pooja Samagri across Whitefield, HSR Layout, Electronic City &amp; all Bengaluru." />
+  <meta property="og:title" content="North Indian Pandit in Bangalore | Radhe Radhe Puja Services" />
+  <meta property="og:description" content="Book verified North Indian Pandit in Bangalore for Griha Pravesh, Satyanarayan Puja &amp; Rudrabhishek. Hindi-speaking Pandit Ji with complete Pooja Samagri." />
+  <meta property="og:image" content="https://radheradhepuja.com/opengraph.jpg" />
+  <meta property="og:url" content="https://radheradhepuja.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Radhe Radhe Puja Services" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="North Indian Pandit in Bangalore | Radhe Radhe Puja Services" />
+  <meta name="twitter:description" content="Book verified North Indian Pandit in Bangalore for Griha Pravesh, Satyanarayan Puja &amp; Rudrabhishek." />
+  <meta name="twitter:image" content="https://radheradhepuja.com/opengraph.jpg" />
+  <!-- Fonts: Outfit + Cinzel Decorative loaded in index.css. Inter not used. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- DNS prefetch for third-party domains -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
+  <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
   <meta name="google-site-verification" content="ZP9OdBGStyGFqrfkyZV5Tq0kOIcixaqLyO7OpDOdVrE" />
   <meta http-equiv="Content-Security-Policy"
     content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://tagmanager.google.com https://www.google-analytics.com https://ssl.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com https://www.google.com https://*.googletagmanager.com https://*.google-analytics.com https://td.doubleclick.net https://*.doubleclick.net; script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://www.google-analytics.com https://ssl.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com https://www.google.com https://*.googletagmanager.com https://*.google-analytics.com https://td.doubleclick.net https://*.doubleclick.net; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com https://ssl.gstatic.com https://www.gstatic.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com https://www.google.com https://www.google.co.in https://*.google-analytics.com https://*.googletagmanager.com https://*.gstatic.com https://*.doubleclick.net; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com https://stats.g.doubleclick.net https://www.google.com https://www.google.co.in https://td.doubleclick.net https://*.doubleclick.net https://*.google.com; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; frame-src 'self' https://www.googletagmanager.com https://td.doubleclick.net https://www.googleadservices.com https://bid.g.doubleclick.net https://googleads.g.doubleclick.net;">
@@ -22,15 +39,11 @@
           'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-NF9Q2KDS');</script>
   <!-- End Google Tag Manager -->
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18089240965">
-  </script>
+  <!-- gtag.js removed: GA4 & Ads conversion tracking managed via GTM container GTM-NF9Q2KDS -->
+  <!-- Expose gtag() shim so any legacy calls don't throw errors -->
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'AW-18089240965');
+    window.gtag = function() { window.dataLayer.push(arguments); };
   </script>
 
   <!-- Automatic WhatsApp & Phone Call Conversion Tracker -->
@@ -77,7 +90,8 @@
   </script>
 
   <!-- Preload Hero Image to improve LCP -->
-  <link rel="preload" as="image" href="/images/hero-bg.png" fetchpriority="high">
+  <!-- Preload hero in WebP; PNG fallback handled in Home.tsx <picture> -->
+  <link rel="preload" as="image" href="/images/hero-bg.webp" type="image/webp" fetchpriority="high">
 </head>
 
 <body>

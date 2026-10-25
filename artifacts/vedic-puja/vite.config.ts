@@ -38,6 +38,31 @@ export default defineConfig(({ mode }) => {
       VitePWA({
         registerType: "autoUpdate",
         includeAssets: ["favicon.svg", "opengraph.jpg", "pwa-192x192.png", "pwa-512x512.png"],
+        workbox: {
+          globPatterns: ["**/*.{js,css,html,ico,webp,avif,svg,woff,woff2}"],
+          // Exclude raw PNGs from precache — WebP versions are served instead
+          globIgnores: ["**/images/**/*.png", "**/images/**/*.jpg", "**/images/**/*.jpeg"],
+          maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5 MB
+          runtimeCaching: [
+            {
+              urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+              handler: "CacheFirst",
+              options: {
+                cacheName: "google-fonts-stylesheets",
+                expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              },
+            },
+            {
+              urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
+              handler: "CacheFirst",
+              options: {
+                cacheName: "google-fonts-webfonts",
+                expiration: { maxEntries: 20, maxAgeSeconds: 60 * 60 * 24 * 365 },
+                cacheableResponse: { statuses: [0, 200] },
+              },
+            },
+          ],
+        },
         manifest: {
           name: "Radhe Radhe Puja - North Indian Pandit Bangalore",
           short_name: "Radhe Puja",
@@ -79,6 +104,46 @@ export default defineConfig(({ mode }) => {
   build: {
     outDir: "dist",
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          // React core
+          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+            return 'react-vendor';
+          }
+          // Routing
+          if (id.includes('node_modules/wouter')) {
+            return 'router';
+          }
+          // Data fetching
+          if (id.includes('node_modules/@tanstack/react-query')) {
+            return 'query';
+          }
+          // Animations
+          if (id.includes('node_modules/framer-motion')) {
+            return 'motion';
+          }
+          // All Radix UI primitives together
+          if (id.includes('node_modules/@radix-ui/')) {
+            return 'ui-radix';
+          }
+          // Icons
+          if (id.includes('node_modules/lucide-react')) {
+            return 'icons';
+          }
+          // Forms & validation
+          if (id.includes('node_modules/react-hook-form') ||
+              id.includes('node_modules/@hookform/') ||
+              id.includes('node_modules/zod')) {
+            return 'forms';
+          }
+          // Charts
+          if (id.includes('node_modules/recharts')) {
+            return 'charts';
+          }
+        },
+      },
+    },
   },
     server: {
       port,

@@ -105,13 +105,21 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="relative min-h-[90vh] flex items-center pt-20">
         <div className="absolute inset-0 z-0">
-          <img 
-            src={`${import.meta.env.BASE_URL}images/hero-bg.png`} 
-            alt="Divine Background" 
-            className="w-full h-full object-cover opacity-90"
-            loading="eager"
-            fetchPriority="high"
-          />
+          <picture>
+            <source
+              srcSet={`${import.meta.env.BASE_URL}images/hero-bg.webp`}
+              type="image/webp"
+            />
+            <img
+              src={`${import.meta.env.BASE_URL}images/hero-bg.png`}
+              alt="Traditional Vedic puja ceremony background with sacred flowers and lamps"
+              className="w-full h-full object-cover opacity-90"
+              loading="eager"
+              fetchPriority="high"
+              width={1920}
+              height={1080}
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-transparent" />
         </div>
 
